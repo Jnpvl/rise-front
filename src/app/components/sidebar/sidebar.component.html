@@ -1,0 +1,81 @@
+<aside
+  class="fixed inset-y-0 left-0 z-50 flex h-full w-[17.5rem] max-w-[85vw] flex-col border-r border-line bg-white/95 backdrop-blur transition-transform duration-200 ease-out lg:static lg:z-auto lg:max-w-none lg:translate-x-0 lg:bg-white/90"
+  [class.-translate-x-full]="!mobileOpen"
+  [class.translate-x-0]="mobileOpen"
+  aria-label="Navegación principal"
+>
+  <div class="relative px-4 pt-4 pb-3 flex justify-center">
+    <img
+      src="/logo-clear.png"
+      alt="Servicios Médicos RISE"
+      class="w-[9.5rem] h-auto object-contain"
+    />
+    <button
+      type="button"
+      class="absolute right-3 top-3 lg:hidden inline-flex h-9 w-9 items-center justify-center rounded-xl border border-line text-muted hover:bg-brand-soft"
+      aria-label="Cerrar menú"
+      (click)="requestClose()"
+    >
+      <mat-icon fontIcon="close" class="text-xl"></mat-icon>
+    </button>
+  </div>
+
+  <nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
+    <a
+      routerLink="/admin/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      (click)="requestClose()"
+    >
+      <mat-icon fontIcon="dashboard"></mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+    <a routerLink="/admin/pacientes" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="people"></mat-icon>
+      <span>Pacientes</span>
+    </a>
+
+    <a routerLink="/admin/consultation" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="medical_services"></mat-icon>
+      <span>Consultas</span>
+    </a>
+
+    <a routerLink="/admin/laboratorios" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="science"></mat-icon>
+      <span>Laboratorios</span>
+    </a>
+
+    <a routerLink="/admin/schedule" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="calendar_month"></mat-icon>
+      <span>Calendario</span>
+    </a>
+
+    <a routerLink="/admin/solicitudes" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="inbox"></mat-icon>
+      <span>Solicitudes</span>
+    </a>
+
+    <a routerLink="/admin/staff" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="badge"></mat-icon>
+      <span>Staff</span>
+    </a>
+
+    <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-item" (click)="requestClose()">
+      <mat-icon fontIcon="settings"></mat-icon>
+      <span>Configuración</span>
+    </a>
+  </nav>
+
+  <div class="p-4 mt-auto border-t border-line">
+    <div class="rounded-2xl brand-gradient-soft p-3 mb-3">
+      <p class="text-sm font-semibold text-ink truncate">{{ userName || 'Usuario' }}</p>
+      <p class="text-xs text-muted capitalize">{{ userRole || 'staff' }}</p>
+    </div>
+    <button type="button" (click)="logout()" class="btn-brand-outline w-full text-sm">
+      <mat-icon class="text-base" fontIcon="logout"></mat-icon>
+      Cerrar sesión
+    </button>
+  </div>
+</aside>

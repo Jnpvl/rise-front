@@ -1,0 +1,101 @@
+<div class="page-shell space-y-6">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-accent mb-1">Sitio público</p>
+      <h1 class="font-display text-2xl sm:text-3xl font-bold text-ink">Configuración</h1>
+      <p class="text-muted mt-1">
+        Datos de contacto y redes que se muestran en la página web
+      </p>
+    </div>
+    <button
+      type="button"
+      class="btn-brand w-full sm:w-auto"
+      (click)="save()"
+      [disabled]="isLoading || isSaving"
+    >
+      <mat-icon fontIcon="save"></mat-icon>
+      {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+    </button>
+  </header>
+
+  <div *ngIf="isLoading" class="surface-card flex justify-center items-center py-16 gap-3 text-brand-dark font-semibold">
+    <span class="h-5 w-5 rounded-full border-2 border-brand/30 border-t-brand animate-spin"></span>
+    Cargando configuración...
+  </div>
+
+  <form
+    *ngIf="!isLoading"
+    class="surface-card p-6 md:p-8 space-y-6 w-full"
+    (ngSubmit)="save()"
+  >
+    <div>
+      <h2 class="font-display text-lg font-semibold text-ink mb-1">Contacto</h2>
+      <p class="text-sm text-muted mb-5">Aparece en la sección de contacto de la landing</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted md:col-span-2">
+          <span>Horario</span>
+          <input
+            class="input-brand font-normal text-ink"
+            name="horario"
+            [(ngModel)]="form.horario"
+            placeholder="Lun–Vie 9:00–19:00 · Sáb 9:00–14:00"
+          />
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Teléfono</span>
+          <input
+            class="input-brand font-normal text-ink"
+            name="telefono"
+            [(ngModel)]="form.telefono"
+            placeholder="+52 (xxx) xxx xxxx"
+          />
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>WhatsApp</span>
+          <input
+            class="input-brand font-normal text-ink"
+            name="whatsapp"
+            [(ngModel)]="form.whatsapp"
+            placeholder="+52 (xxx) xxx xxxx"
+          />
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted md:col-span-2">
+          <span>Ubicación</span>
+          <input
+            class="input-brand font-normal text-ink"
+            name="ubicacion"
+            [(ngModel)]="form.ubicacion"
+            placeholder="Ciudad / colonia"
+          />
+        </label>
+      </div>
+    </div>
+
+    <div class="border-t border-line pt-6">
+      <h2 class="font-display text-lg font-semibold text-ink mb-1">Redes sociales</h2>
+      <p class="text-sm text-muted mb-5">Enlace en el pie de la página pública (incluye https://)</p>
+
+      <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+        <span>Facebook (URL)</span>
+        <input
+          class="input-brand font-normal text-ink"
+          name="facebookUrl"
+          type="text"
+          [(ngModel)]="form.facebookUrl"
+          placeholder="https://www.facebook.com/tu-pagina"
+        />
+      </label>
+    </div>
+
+    <div class="pt-2">
+      <button type="submit" class="btn-brand" [disabled]="isSaving">
+        <mat-icon fontIcon="save"></mat-icon>
+        {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+      </button>
+    </div>
+  </form>
+</div>

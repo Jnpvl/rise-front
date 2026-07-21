@@ -1,0 +1,409 @@
+<div class="page-shell space-y-4 print:space-y-0">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 print:hidden">
+    <div>
+      <p class="text-sm font-semibold text-accent mb-1">Laboratorios</p>
+      <h1 class="font-display text-2xl sm:text-3xl font-bold text-ink">Captura de laboratorios</h1>
+      <p class="text-muted mt-1">
+        Resultados con referencias en texto libre (rangos, contextos clínicos, etc.)
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+      <button
+        type="button"
+        class="btn-brand-outline w-full sm:w-auto"
+        (click)="generatePdf()"
+        [disabled]="isGeneratingPdf"
+      >
+        <ng-container *ngIf="isGeneratingPdf; else pdfLabel">
+          Generando…
+        </ng-container>
+        <ng-template #pdfLabel>
+          <mat-icon fontIcon="picture_as_pdf" class="text-base"></mat-icon>
+          Generar PDF
+        </ng-template>
+      </button>
+      <button
+        type="button"
+        class="btn-brand w-full sm:w-auto"
+        (click)="saveToChart()"
+        [disabled]="isSaving"
+      >
+        <ng-container *ngIf="isSaving; else saveLabel">
+          Guardando…
+        </ng-container>
+        <ng-template #saveLabel>
+          Guardar en expediente
+        </ng-template>
+      </button>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 gap-4 items-start 2xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">
+    <!-- Captura -->
+    <div class="space-y-4 print:hidden min-w-0">
+      <section class="surface-card p-4 sm:p-6 space-y-4">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-ink">1. Paciente</h2>
+          <p class="text-sm text-muted">El resultado quedará en su expediente</p>
+        </div>
+
+        <div *ngIf="isLoadingPatientFromQuery" class="text-sm text-muted py-2">
+          Cargando paciente...
+        </div>
+
+        <div *ngIf="!isLoadingPatientFromQuery && selectedPatient; else patientSearchBlock" class="rounded-2xl brand-gradient-soft p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="font-semibold text-ink">
+                {{ selectedPatient.firstName }} {{ selectedPatient.lastName }}
+              </p>
+              <p class="text-sm text-muted mt-1">
+                {{ patientAge }} · {{ patientGenderLabel }}
+              </p>
+              <p class="text-xs text-muted mt-1 break-all">ID: {{ selectedPatient.id }}</p>
+            </div>
+            <button type="button" class="btn-brand-outline text-xs py-1.5 px-3 shrink-0" (click)="clearPatient()">
+              Cambiar
+            </button>
+          </div>
+        </div>
+
+        <ng-template #patientSearchBlock>
+          <div class="relative">
+            <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+              <span>Buscar paciente</span>
+              <input
+                class="input-brand font-normal text-ink"
+                type="search"
+                [ngModel]="patientSearch"
+                (ngModelChange)="onPatientSearchInput($event)"
+                (focus)="onPatientSearchFocus()"
+                (blur)="closePatientDropdownSoon()"
+                placeholder="Escribe nombre o teléfono (mín. 2 letras)..."
+                autocomplete="off"
+              />
+            </label>
+
+            <div
+              *ngIf="showPatientDropdown && patientSearch.trim().length >= 2"
+              class="absolute z-20 left-0 right-0 mt-1 max-h-60 overflow-y-auto rounded-xl border border-line bg-white shadow-lg"
+            >
+              <div *ngIf="isSearchingPatients" class="px-4 py-3 text-sm text-muted">
+                Buscando...
+              </div>
+
+              <ng-container *ngIf="!isSearchingPatients">
+                <button
+                  type="button"
+                  *ngFor="let p of patientSuggestions"
+                  class="w-full text-left px-4 py-3 hover:bg-brand-soft/50 transition border-b border-line last:border-0"
+                  (mousedown)="$event.preventDefault()"
+                  (click)="selectPatient(p)"
+                >
+                  <p class="font-semibold text-ink text-sm m-0">
+                    {{ p.firstName }} {{ p.lastName }}
+                  </p>
+                  <p class="text-xs text-muted m-0 mt-0.5">
+                    {{ p.phone || 'Sin teléfono' }}
+                  </p>
+                </button>
+
+                <p
+                  *ngIf="patientSuggestions.length === 0"
+                  class="px-4 py-4 text-sm text-muted text-center m-0"
+                >
+                  No se encontraron pacientes
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </ng-template>
+      </section>
+
+      <section class="surface-card p-4 sm:p-6 space-y-4">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-ink">2. Datos del estudio</h2>
+        </div>
+
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted max-w-xs">
+          <span>Fecha del estudio</span>
+          <input type="date" class="input-brand font-normal text-ink" [(ngModel)]="draft.studyDate" />
+        </label>
+      </section>
+
+      <section class="space-y-3">
+        <div>
+          <h2 class="font-display text-lg font-semibold text-ink">3. Resultados</h2>
+          <p class="text-sm text-muted">
+            Llena de arriba hacia abajo. Al final puedes agregar otro panel.
+          </p>
+        </div>
+
+        <div *ngFor="let panel of draft.panels; let pi = index" class="surface-card relative p-4 sm:p-5 pt-10 space-y-3">
+          <button
+            type="button"
+            class="absolute top-3 right-3 text-sm font-semibold text-red-600 hover:underline"
+            (click)="removePanel(pi)"
+            [disabled]="draft.panels.length <= 1"
+          >
+            Quitar panel
+          </button>
+
+          <div class="space-y-2">
+            <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+              <span>Nombre del panel / estudio</span>
+              <input
+                class="input-brand font-semibold text-ink text-sm py-2 w-full"
+                [(ngModel)]="panel.title"
+                placeholder="Ej. Química sanguínea (6)"
+              />
+            </label>
+
+            <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+              <span>Método (opcional)</span>
+              <input
+                class="input-brand text-sm py-2 w-full"
+                [(ngModel)]="panel.method"
+                placeholder="Ej. Espectrofometría automatizada"
+              />
+            </label>
+          </div>
+
+          <div class="rounded-xl border border-line divide-y divide-line overflow-hidden">
+            <div
+              *ngFor="let row of panel.rows; let ri = index"
+              class="px-3 py-3 space-y-2 hover:bg-canvas/50"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <p class="text-xs font-bold uppercase tracking-wide text-muted m-0">Análisis</p>
+                <button
+                  type="button"
+                  class="text-xs font-semibold text-red-600 hover:underline shrink-0"
+                  (click)="removeRow(panel, ri)"
+                >
+                  Quitar
+                </button>
+              </div>
+
+              <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+                <span>Sección (opcional)</span>
+                <input
+                  class="input-brand font-normal text-ink text-sm py-2 w-full"
+                  [(ngModel)]="row.section"
+                  placeholder="Ej. Fórmula Roja, Serie Plaquetaria… (vacío = no divide)"
+                />
+              </label>
+
+              <input
+                class="input-brand text-sm py-2 font-semibold text-ink w-full"
+                [(ngModel)]="row.name"
+                placeholder="Nombre del análisis"
+              />
+
+              <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+                <span>Resultado</span>
+                <input
+                  class="input-brand font-normal text-ink text-sm py-2 w-full"
+                  [(ngModel)]="row.value"
+                  placeholder="Valor"
+                />
+              </label>
+
+              <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+                <span>Unidad</span>
+                <input
+                  class="input-brand font-normal text-ink text-sm py-2 w-full"
+                  [(ngModel)]="row.unit"
+                  placeholder="mg/dL"
+                />
+              </label>
+
+              <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+                <span>Estatus (opcional)</span>
+                <input
+                  class="input-brand font-normal text-ink text-sm py-2 w-full"
+                  [(ngModel)]="row.status"
+                  placeholder="Ej. No diabético, Fase folicular, Diabético controlado…"
+                />
+              </label>
+
+              <label class="flex flex-col gap-1 text-xs font-semibold text-muted">
+                <span>Referencia</span>
+                <textarea
+                  class="input-brand font-normal text-ink text-sm py-2 w-full min-h-[56px] resize-y"
+                  rows="2"
+                  [(ngModel)]="row.reference"
+                  placeholder="60 – 100&#10;o varias líneas: Menopausia 0.13-0.51…"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+            <button type="button" class="btn-brand-outline text-xs py-1.5 px-3" (click)="addRow(panel)">
+              + Análisis
+            </button>
+            <input
+              class="input-brand text-sm flex-1"
+              [(ngModel)]="panel.notes"
+              placeholder="Notas del panel (opcional)"
+            />
+          </div>
+        </div>
+
+        <div>
+          <button type="button" class="btn-brand-outline text-sm" (click)="addPanel()">
+            + Agregar panel
+          </button>
+        </div>
+
+        <label class="surface-card p-4 flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Notas generales</span>
+          <textarea
+            class="input-brand font-normal text-ink min-h-[80px]"
+            [(ngModel)]="draft.generalNotes"
+            placeholder="Observaciones internas..."
+          ></textarea>
+        </label>
+      </section>
+    </div>
+
+    <!-- Plantilla RISE (preview) -->
+    <aside class="xl:sticky xl:top-4 print:static print:w-full">
+      <div class="surface-card overflow-hidden shadow-lg print:shadow-none print:border-0">
+        <div class="px-4 py-3 border-b border-line flex items-center justify-between gap-2 print:hidden">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-accent">Plantilla RISE</p>
+            <p class="text-sm text-muted">Vista previa del documento</p>
+          </div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-soft text-brand-dark">A4</span>
+        </div>
+
+        <div
+          id="lab-rise-preview"
+          class="bg-white text-[#15202b] p-5 sm:p-7 text-[11px] leading-relaxed print:p-0 max-h-[80vh] overflow-y-auto print:max-h-none print:overflow-visible"
+        >
+          <div class="flex items-center justify-between gap-4 border-b-2 border-accent pb-3 mb-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <img src="/logo-clear.png" alt="RISE" class="h-14 w-auto object-contain" />
+              <div>
+                <p class="font-display text-base font-bold text-accent uppercase m-0">RISE</p>
+                <p class="text-[10px] text-[#B0307E] m-0">Servicios Médicos</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="font-display text-sm font-bold m-0">Resultados de laboratorio</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-x-4 gap-y-2 rounded-lg bg-[#f8fbfc] border border-line p-3 mb-4">
+            <div>
+              <p class="text-[8px] font-bold uppercase text-muted m-0">Paciente</p>
+              <p class="font-semibold text-[11px] m-0">
+                <ng-container *ngIf="selectedPatient; else noPatient">
+                  {{ selectedPatient.firstName }} {{ selectedPatient.lastName }}
+                </ng-container>
+                <ng-template #noPatient><span class="text-muted italic">Selecciona un paciente</span></ng-template>
+              </p>
+            </div>
+            <div>
+              <p class="text-[8px] font-bold uppercase text-muted m-0">Fecha del estudio</p>
+              <p class="font-semibold text-[11px] m-0">{{ formattedStudyDate }}</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-[8px] font-bold uppercase text-muted m-0">Edad / sexo</p>
+              <p class="font-semibold text-[11px] m-0">
+                {{ selectedPatient ? (patientAge + ' · ' + patientGenderLabel) : '—' }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngFor="let panel of draft.panels" class="mb-5">
+            <div class="flex items-baseline justify-between gap-2 mb-2">
+              <h3 class="font-bold text-accent uppercase text-[10px] border-l-[3px] border-brand pl-2 m-0">
+                {{ panel.title || 'Panel' }}
+              </h3>
+              <span *ngIf="panel.method" class="text-[8px] text-muted text-right">{{ panel.method }}</span>
+            </div>
+
+            <table class="w-full border-collapse text-[10px]">
+              <thead>
+                <tr class="bg-accent-soft/60">
+                  <th class="border border-line px-2 py-1.5 text-left font-bold text-[#B0307E]">Análisis</th>
+                  <th class="border border-line px-2 py-1.5 text-left font-bold text-[#B0307E]">Resultado</th>
+                  <th class="border border-line px-2 py-1.5 text-left font-bold text-[#B0307E]">Unidad</th>
+                  <th
+                    *ngIf="panelHasStatus(panel)"
+                    class="border border-line px-2 py-1.5 text-left font-bold text-[#B0307E]"
+                  >
+                    Estatus
+                  </th>
+                  <th class="border border-line px-2 py-1.5 text-left font-bold text-[#B0307E]">Referencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let block of groupRowsBySection(panel.rows)">
+                  <tr *ngIf="block.section">
+                    <td
+                      class="border border-line px-2 py-1.5 font-bold text-ink bg-brand-soft/40"
+                      [attr.colspan]="panelHasStatus(panel) ? 5 : 4"
+                    >
+                      {{ block.section }}
+                    </td>
+                  </tr>
+                  <tr *ngFor="let row of block.rows">
+                    <td class="border border-line px-2 py-1.5 font-medium align-top break-words whitespace-normal">
+                      {{ row.name || '—' }}
+                    </td>
+                    <td class="border border-line px-2 py-1.5 font-semibold align-top whitespace-nowrap">
+                      {{ row.value || '—' }}
+                    </td>
+                    <td class="border border-line px-2 py-1.5 text-muted align-top whitespace-nowrap">
+                      {{ row.unit }}
+                    </td>
+                    <td
+                      *ngIf="panelHasStatus(panel)"
+                      class="border border-line px-2 py-1.5 text-muted align-top"
+                    >
+                      {{ row.status.trim() || '' }}
+                    </td>
+                    <td class="border border-line px-2 py-1.5 text-muted align-top whitespace-pre-line">
+                      {{ row.reference }}
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+
+            <p *ngIf="panel.notes" class="text-[9px] text-muted mt-1.5 italic m-0">
+              Nota: {{ panel.notes }}
+            </p>
+          </div>
+
+          <div *ngIf="draft.generalNotes" class="mb-4 rounded-lg border border-dashed border-line p-3">
+            <p class="text-[8px] font-bold uppercase text-accent m-0 mb-1">Notas generales</p>
+            <p class="text-[10px] whitespace-pre-wrap m-0">{{ draft.generalNotes }}</p>
+          </div>
+
+          <div class="mt-8 pt-3 border-t border-line flex justify-end text-[8px] text-muted">
+            <div class="text-center min-w-[9rem]">
+              <img
+                *ngIf="signingDoctorSignature"
+                [src]="signingDoctorSignature"
+                alt="Firma"
+                class="h-14 w-auto max-w-[12rem] mx-auto mb-1 object-contain"
+              />
+              <div
+                *ngIf="!signingDoctorSignature"
+                class="border-t border-ink w-36 mx-auto mb-1.5 mt-8"
+              ></div>
+              <p class="m-0 font-semibold text-ink text-[10px]">{{ signingDoctorName }}</p>
+              <p class="m-0" *ngIf="signingDoctorCedula">Cédula: {{ signingDoctorCedula }}</p>
+              <p class="m-0">Firma del médico</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

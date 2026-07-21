@@ -1,0 +1,472 @@
+<!-- Estilos personalizados para SweetAlert2 -->
+<style>
+  .swal2-custom-popup {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .swal2-custom-html .swal2-form-container {
+    text-align: left;
+    max-width: 500px;
+  }
+
+  .swal2-custom-html .form-group {
+    margin-bottom: 20px;
+  }
+
+  .swal2-custom-html .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+  }
+
+  .swal2-custom-html .swal2-input,
+  .swal2-custom-html .swal2-textarea,
+  .swal2-custom-html select.swal2-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .swal2-custom-html .swal2-input:focus,
+  .swal2-custom-html .swal2-textarea:focus,
+  .swal2-custom-html select.swal2-input:focus {
+    outline: none;
+    border-color: #20D0DF;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .swal2-custom-html .swal2-textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .swal2-custom-html select.swal2-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+
+  .swal2-custom-html input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .swal2-custom-html input[type="number"]::-webkit-outer-spin-button,
+  .swal2-custom-html input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .swal2-custom-html input[type="datetime-local"] {
+    font-family: inherit;
+  }
+
+  /* Estilos para el campo de motivo de cancelación */
+  .swal2-custom-html #swal-cancellation-reason-group {
+    border-left: 4px solid #ef4444;
+    padding-left: 16px;
+    background-color: #fef2f2;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .swal2-custom-html #swal-cancellation-reason-group .form-label {
+    color: #dc2626;
+  }
+
+  .apt-view-popup {
+    border-radius: 1.25rem !important;
+    padding: 0.5rem 0.25rem 1rem !important;
+  }
+
+  .apt-view {
+    text-align: left;
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .apt-view-header {
+    background: linear-gradient(135deg, rgba(32, 208, 223, 0.14) 0%, rgba(229, 64, 174, 0.12) 100%);
+    border-radius: 1rem;
+    padding: 1.25rem 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .apt-view-kicker {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #E540AE;
+  }
+
+  .apt-view-title {
+    margin: 0 0 0.75rem;
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #15202b;
+  }
+
+  .apt-view-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .apt-view-item {
+    background: #f8fafc;
+    border: 1px solid #e2ebf0;
+    border-radius: 0.85rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .apt-view-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #5b6b7c;
+    margin-bottom: 0.35rem;
+  }
+
+  .apt-view-value {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #15202b;
+    line-height: 1.35;
+    text-transform: capitalize;
+  }
+
+  .apt-view-origin {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    color: #5b6b7c;
+  }
+
+  .apt-view-notes {
+    background: #fff;
+    border: 1px solid #e2ebf0;
+    border-radius: 0.85rem;
+    padding: 0.85rem 1rem;
+    margin-top: 0.35rem;
+  }
+
+  .apt-view-notes p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #15202b;
+    white-space: pre-wrap;
+  }
+
+  .apt-view-cancel {
+    border-color: #fecaca;
+    background: #fef2f2;
+  }
+
+  .apt-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .apt-badge-scheduled { background: #e6fafc; color: #0e7490; }
+  .apt-badge-confirmed { background: #dcfce7; color: #15803d; }
+  .apt-badge-cancelled { background: #fee2e2; color: #b91c1c; }
+  .apt-badge-completed { background: #e5e7eb; color: #374151; }
+  .apt-badge-noshow { background: #ffedd5; color: #c2410c; }
+
+  @media (max-width: 640px) {
+    .apt-view-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .swal2-custom-html .swal2-form-container {
+      max-width: 100%;
+    }
+    
+    .swal2-custom-html .swal2-input,
+    .swal2-custom-html .swal2-textarea,
+    .swal2-custom-html select.swal2-input {
+      font-size: 16px; /* Evita zoom en iOS */
+    }
+  }
+
+  /* Estilos del contenedor del calendario */
+  .calendar-container {
+    min-height: 100vh;
+    background-color: #f9fafb;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .calendar-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .calendar-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .calendar-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #eff6ff;
+    color: #1e40af;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .calendar-view-info {
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .calendar-view-info p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .calendar-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .calendar-wrapper.loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #20D0DF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loading-spinner p {
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  /* Estilos para FullCalendar */
+  :host ::ng-deep .fc {
+    font-family: inherit;
+  }
+
+  :host ::ng-deep .fc-header-toolbar {
+    margin-bottom: 1.5rem;
+  }
+
+  :host ::ng-deep .fc-button {
+    background-image: linear-gradient(135deg, #20d0df 0%, #e540ae 100%);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    transition: filter 0.2s ease;
+  }
+
+  :host ::ng-deep .fc-button:hover {
+    filter: brightness(1.05);
+  }
+
+  :host ::ng-deep .fc-button-active {
+    filter: brightness(0.95);
+  }
+
+  :host ::ng-deep .fc-event {
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  :host ::ng-deep .fc-event:hover {
+    transform: scale(1.02);
+  }
+
+  :host ::ng-deep .fc-header-toolbar {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  :host ::ng-deep .fc-toolbar-chunk {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    :host ::ng-deep .fc-header-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    :host ::ng-deep .fc-toolbar-title {
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    :host ::ng-deep .fc-button {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.8rem;
+    }
+
+    :host ::ng-deep .fc-daygrid-day-number {
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
+<!-- Contenido del calendario -->
+<div class="space-y-4 sm:space-y-6">
+  <!-- Indicadores de estado y estadísticas -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+    <!-- Título de estadísticas -->
+    <div class="mb-4 sm:mb-6">
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-800">Resumen de Citas</h2>
+      <p class="text-gray-600 text-sm">Período seleccionado: {{ visibleDateRange }}</p>
+    </div>
+    
+    <!-- Grid de estadísticas -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4 mb-4 sm:mb-6">
+      <!-- Total -->
+      <div class="bg-gradient-to-br from-brand to-accent-dark rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getTotalAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">Total</div>
+      </div>
+      
+      <!-- Programadas -->
+      <div class="bg-gradient-to-br from-brand to-accent rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getScheduledAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">Programadas</div>
+      </div>
+      
+      <!-- Confirmadas -->
+      <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getConfirmedAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">Confirmadas</div>
+      </div>
+      
+      <!-- Completadas -->
+      <div class="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getCompletedAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">Completadas</div>
+      </div>
+      
+      <!-- Canceladas -->
+      <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getCancelledAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">Canceladas</div>
+      </div>
+      
+      <!-- No se presentó -->
+      <div class="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg p-4 text-center text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="text-2xl font-bold mb-1">{{ getNoShowAppointmentsCount() }}</div>
+        <div class="text-xs font-medium opacity-90">No Presentó</div>
+      </div>
+    </div>
+    
+    <!-- Leyenda de colores -->
+    <div class="border-t border-gray-200 pt-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-4">Leyenda de Colores:</h3>
+      <div class="flex flex-wrap gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-brand rounded border-2 border-white shadow-sm"></div>
+          <span class="text-sm text-gray-600">Programada</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-green-500 rounded border-2 border-white shadow-sm"></div>
+          <span class="text-sm text-gray-600">Confirmada</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-gray-500 rounded border-2 border-white shadow-sm"></div>
+          <span class="text-sm text-gray-600">Completada</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-red-500 rounded border-2 border-white shadow-sm"></div>
+          <span class="text-sm text-gray-600">Cancelada</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-yellow-500 rounded border-2 border-white shadow-sm"></div>
+          <span class="text-sm text-gray-600">No se presentó</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendario -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-3 sm:p-6 relative">
+    <div class="overflow-x-auto -mx-1 px-1">
+      <div class="min-w-[320px]">
+        <full-calendar [options]="calendarOptions"></full-calendar>
+      </div>
+    </div>
+    
+    <!-- Indicador de carga -->
+    <div *ngIf="isLoading" class="absolute inset-0 bg-white/90 rounded-xl flex flex-col items-center justify-center z-10">
+      <div class="w-10 h-10 border-4 border-gray-200 border-t-brand rounded-full animate-spin mb-4"></div>
+      <div class="text-gray-600 font-medium">Cargando citas...</div>
+    </div>
+  </div>
+</div>

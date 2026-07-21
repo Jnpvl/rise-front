@@ -1,0 +1,125 @@
+<div class="page-shell space-y-6">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-accent mb-1">Expedientes</p>
+      <h1 class="font-display text-2xl sm:text-3xl font-bold text-ink">Pacientes</h1>
+      <p class="text-muted mt-1">Busca, filtra y abre el historial clínico</p>
+    </div>
+    <button class="btn-brand w-full sm:w-auto" (click)="addNewPatient()">
+      <mat-icon fontIcon="person_add"></mat-icon>
+      Nuevo paciente
+    </button>
+  </header>
+
+  <div class="surface-card p-4 flex flex-col gap-3">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchInputChange($event)"
+      placeholder="Buscar por nombre, apellido o teléfono..."
+      class="input-brand w-full lg:max-w-md"
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="flex flex-col gap-1.5 min-w-0">
+        <label for="creatorFilter" class="text-sm text-muted">Creado por</label>
+        <select
+          [(ngModel)]="creatorFilter"
+          (change)="onFilterChange()"
+          id="creatorFilter"
+          class="input-brand w-full"
+        >
+          <option value="">Todos los médicos</option>
+          <option *ngFor="let staff of staffList" [value]="staff.id">{{ staff.name }}</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5 min-w-0">
+        <label for="activeFilter" class="text-sm text-muted">Estado</label>
+        <select
+          [(ngModel)]="activeFilter"
+          (change)="onFilterChange()"
+          id="activeFilter"
+          class="input-brand w-full"
+        >
+          <option value="true">Activos</option>
+          <option value="false">Inactivos</option>
+          <option value="all">Todos</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="surface-card overflow-hidden">
+    <div *ngIf="isLoading" class="flex justify-center items-center py-12 gap-3 text-brand-dark font-semibold">
+      <span class="h-5 w-5 rounded-full border-2 border-brand/30 border-t-brand animate-spin"></span>
+      Cargando pacientes...
+    </div>
+
+    <div class="overflow-x-auto" *ngIf="!isLoading && patientsList.length > 0">
+      <table class="min-w-full">
+        <thead class="bg-brand-soft/60">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Nombre</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Edad</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Teléfono</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Tipo de sangre</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Creado por</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Estado</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr *ngFor="let patient of patientsList" class="hover:bg-brand-soft/40 transition-colors">
+            <td class="px-6 py-4 text-sm font-semibold text-ink">{{ patient.firstName }} {{ patient.lastName }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ getAge(patient.birthDate) }} años</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ patient.phone }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ patient.bloodType }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ patient.createdByName || '—' }}</td>
+            <td class="px-6 py-4 text-sm">
+              <span
+                class="inline-flex px-2.5 py-1 rounded-full text-xs font-bold"
+                [ngClass]="patient.isActive ? 'bg-brand-soft text-brand-dark' : 'bg-red-50 text-red-600'">
+                {{ patient.isActive ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td class="px-6 py-4 text-sm font-semibold">
+              <button (click)="viewPatientDetails(patient.id)" class="text-accent hover:text-accent-dark">
+                Detalles
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!isLoading && patientsList.length === 0" class="p-10 text-center text-muted">
+      No se encontraron pacientes con los criterios seleccionados.
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-3" *ngIf="total > 0">
+    <div class="text-sm text-muted">
+      Mostrando {{ (page - 1) * limit + 1 }} a
+      {{ Math.min(page * limit, total) }} de {{ total }} pacientes
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        (click)="changePage(false)"
+        [disabled]="page <= 1"
+        class="btn-brand-outline disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Anterior
+      </button>
+      <span class="px-3 text-sm text-muted">Página {{ page }} de {{ Math.ceil(total / limit) }}</span>
+      <button
+        (click)="changePage(true)"
+        [disabled]="page >= Math.ceil(total / limit)"
+        class="btn-brand-outline disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="page-shell space-y-8">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-accent mb-1">Panel principal</p>
+      <h1 class="font-display text-2xl sm:text-3xl font-bold text-ink">Dashboard</h1>
+      <p class="text-muted mt-1">Resumen operativo de tu clínica</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <button type="button" class="btn-brand-outline text-sm w-full sm:w-auto" (click)="loadSummary()" [disabled]="isLoading">
+        Actualizar
+      </button>
+      <img src="/logo-clear.png" alt="RISE" class="h-16 w-auto object-contain hidden md:block" />
+    </div>
+  </header>
+
+  <div *ngIf="errorMessage" class="surface-card px-5 py-4 text-red-600 font-medium">
+    {{ errorMessage }}
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+    <div class="rounded-2xl p-6 text-white brand-gradient shadow-lg shadow-accent/20">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-white/80 text-sm">Pacientes activos</p>
+          <p class="font-display text-3xl font-bold mt-1">
+            {{ isLoading ? '…' : summary.patientsActive }}
+          </p>
+          <p class="text-white/70 text-xs mt-1" *ngIf="!isLoading">
+            {{ summary.patientsTotal }} en total
+          </p>
+        </div>
+        <mat-icon class="text-4xl text-white/80" fontIcon="people"></mat-icon>
+      </div>
+    </div>
+
+    <div class="surface-card p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-muted text-sm">Citas hoy</p>
+          <p class="font-display text-3xl font-bold text-ink mt-1">
+            {{ isLoading ? '…' : summary.appointmentsToday }}
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-xl brand-gradient-soft flex items-center justify-center">
+          <mat-icon class="text-accent" fontIcon="event"></mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="surface-card p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-muted text-sm">Consultas</p>
+          <p class="font-display text-3xl font-bold text-ink mt-1">
+            {{ isLoading ? '…' : summary.consultationsTotal }}
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-xl brand-gradient-soft flex items-center justify-center">
+          <mat-icon class="text-brand-dark" fontIcon="medical_services"></mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="surface-card p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-muted text-sm">Equipo activo</p>
+          <p class="font-display text-3xl font-bold text-ink mt-1">
+            {{ isLoading ? '…' : summary.staffActive }}
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-xl brand-gradient-soft flex items-center justify-center">
+          <mat-icon class="text-accent" fontIcon="groups"></mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="surface-card overflow-hidden">
+    <div class="px-4 sm:px-6 py-4 border-b border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div>
+        <h2 class="font-display text-lg font-semibold text-ink">Próximas citas</h2>
+        <p class="text-sm text-muted">Desde hoy en adelante</p>
+      </div>
+      <a routerLink="/admin/schedule" class="text-sm font-semibold text-accent hover:text-accent-dark">Ver calendario</a>
+    </div>
+
+    <div *ngIf="isLoading" class="p-8 text-center text-muted">Cargando citas...</div>
+
+    <div *ngIf="!isLoading && summary.upcomingAppointments.length === 0" class="p-8 text-center text-muted">
+      No hay citas próximas programadas.
+    </div>
+
+    <div *ngIf="!isLoading && summary.upcomingAppointments.length > 0" class="divide-y divide-line">
+      <div
+        *ngFor="let appt of summary.upcomingAppointments"
+        class="px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 hover:bg-brand-soft/40 transition-colors">
+        <div class="min-w-0">
+          <p class="font-semibold text-ink">{{ appt.patientName }}</p>
+          <p class="text-sm text-muted">Dr(a). {{ appt.doctorName }}</p>
+          <p class="text-xs text-muted" *ngIf="appt.createdByName">Agendó: {{ appt.createdByName }}</p>
+        </div>
+        <div class="text-sm sm:text-right">
+          <p class="font-medium text-ink">{{ formatAppointmentDate(appt.scheduledDate) }}</p>
+          <p class="text-muted">{{ statusLabel(appt.status) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

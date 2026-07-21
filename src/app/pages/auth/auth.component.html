@@ -1,0 +1,93 @@
+<div class="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+  <div class="absolute inset-0 brand-gradient opacity-90"></div>
+  <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/20 blur-3xl"></div>
+  <div class="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-white/15 blur-3xl"></div>
+
+  <div class="relative w-full max-w-md page-shell">
+    <div class="text-center mb-7">
+      <div class="mx-auto inline-flex rounded-3xl bg-black/40 p-3 shadow-2xl shadow-black/30 ring-1 ring-white/15 backdrop-blur-sm">
+        <img
+          src="/logo.png"
+          alt="Servicios Médicos RISE"
+          class="mx-auto h-auto w-[210px] max-w-full object-contain rounded-2xl float-soft" />
+      </div>
+    </div>
+
+    <div class="surface-card p-8">
+      <div class="mb-6">
+        <h2 class="font-display text-2xl font-semibold text-ink mb-1">Iniciar sesión</h2>
+        <p class="text-muted text-sm">Accede a tu cuenta para continuar</p>
+      </div>
+
+      <div class="mb-5">
+        <label for="email" class="block text-sm font-semibold text-ink mb-2">Correo electrónico</label>
+        <div
+          class="flex items-center gap-2 rounded-[0.85rem] border-[1.5px] bg-white px-3 transition-shadow"
+          [ngClass]="{
+            'border-red-300 focus-within:border-red-500': emailError,
+            'border-brand focus-within:border-brand focus-within:shadow-[0_0_0_4px_rgba(32,208,223,0.18)]': isEmailValid && email && !emailError,
+            'border-line focus-within:border-brand focus-within:shadow-[0_0_0_4px_rgba(32,208,223,0.18)]': !emailError && !(isEmailValid && email)
+          }">
+          <mat-icon class="text-muted !text-[20px] !w-5 !h-5 !leading-none shrink-0" fontIcon="mail"></mat-icon>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            (input)="validateForm()"
+            class="w-full border-0 bg-transparent py-3 text-ink outline-none placeholder:text-muted/70"
+            placeholder="usuario@ejemplo.com"
+            required />
+        </div>
+        <div *ngIf="emailError" class="mt-2 text-sm text-red-600 flex items-center gap-1">
+          <mat-icon class="!text-[16px] !w-4 !h-4" fontIcon="error"></mat-icon>
+          {{ emailError }}
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-semibold text-ink mb-2">Contraseña</label>
+        <div
+          class="flex items-center gap-2 rounded-[0.85rem] border-[1.5px] border-line bg-white px-3 transition-shadow focus-within:border-brand focus-within:shadow-[0_0_0_4px_rgba(32,208,223,0.18)]">
+          <mat-icon class="text-muted !text-[20px] !w-5 !h-5 !leading-none shrink-0" fontIcon="lock"></mat-icon>
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            (input)="validateForm()"
+            class="w-full border-0 bg-transparent py-3 text-ink outline-none placeholder:text-muted/70"
+            placeholder="Ingresa tu contraseña"
+            required />
+          <button
+            type="button"
+            (click)="showPassword = !showPassword"
+            class="shrink-0 text-muted hover:text-accent flex items-center justify-center p-0">
+            <mat-icon class="!text-[20px] !w-5 !h-5 !leading-none" [fontIcon]="showPassword ? 'visibility_off' : 'visibility'"></mat-icon>
+          </button>
+        </div>
+        <div *ngIf="passwordError" class="mt-2 text-sm text-red-600 flex items-center gap-1">
+          <mat-icon class="!text-[16px] !w-4 !h-4" fontIcon="error"></mat-icon>
+          {{ passwordError }}
+        </div>
+      </div>
+
+      <button
+        (click)="login()"
+        [disabled]="!isFormValid() || isLoading"
+        class="btn-brand w-full"
+        type="submit">
+        <ng-container *ngIf="!isLoading; else loadingContent">
+          <mat-icon class="!text-[20px] !w-5 !h-5" fontIcon="login"></mat-icon>
+          Iniciar sesión
+        </ng-container>
+        <ng-template #loadingContent>
+          <span class="inline-block h-5 w-5 rounded-full border-2 border-white/40 border-t-white animate-spin"></span>
+          Iniciando sesión...
+        </ng-template>
+      </button>
+    </div>
+
+    <p class="text-center mt-8 text-white/80 text-sm">
+      © {{ currentYear }} RISE · Sistema de Gestión Clínica
+    </p>
+  </div>
+</div>

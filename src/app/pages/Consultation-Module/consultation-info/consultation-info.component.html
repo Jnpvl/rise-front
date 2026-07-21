@@ -1,0 +1,317 @@
+<!-- consultation-info.component.html -->
+<div
+  class="lg:col-span-1 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+      <div class="min-w-0">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">
+          {{ isPodology ? 'Seguimiento podológico' : 'Información de la Consulta' }}
+        </h1>
+        <p class="text-sm text-gray-600 mt-1">
+          Plantilla:
+          <span class="font-semibold text-ink">{{ templateLabel }}</span>
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto sm:flex-wrap sm:justify-end">
+        @if(!isEditing && !isPodology){
+          <button (click)="getPrescription()" [disabled]="isPrescriptionLoading"
+          class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg w-full sm:w-auto text-sm sm:text-base">
+
+          <ng-container *ngIf="isPrescriptionLoading; else pdfText">
+            <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+            </svg>
+            Cargando...
+          </ng-container>
+          <ng-template #pdfText>
+            Visualizar Receta
+          </ng-template>
+        </button>
+        }
+        @if(!isEditing && isPodology){
+          <button (click)="getPodologyReport()" [disabled]="isPrescriptionLoading"
+            class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl shadow-lg w-full sm:w-auto text-sm sm:text-base">
+            <ng-container *ngIf="isPrescriptionLoading; else podologyPdfText">
+              <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+              </svg>
+              Generando...
+            </ng-container>
+            <ng-template #podologyPdfText>
+              Imprimir seguimiento
+            </ng-template>
+          </button>
+        }
+        <button (click)="toggleEdit()"
+          class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg w-full sm:w-auto text-sm sm:text-base">
+          {{ isEditing ? 'Cancelar Edición' : (isPodology ? 'Editar seguimiento' : 'Editar Consulta') }}
+        </button>
+        @if(!isEditing){
+        <button (click)="expediente()"
+          class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg w-full sm:w-auto text-sm sm:text-base">
+          Ir al expediente
+        </button>
+      }
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
+    <ng-container *ngIf="isLoading">
+      <div class="flex flex-col items-center justify-center min-h-[200px]">
+        <svg class="animate-spin h-10 w-10 text-brand-dark mb-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+        <span class="text-brand-dark font-medium">Cargando información...</span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="isEditing; else viewMode">
+        <app-consultation-form
+          [mode]="consultationId ? 'edit' : 'create'"
+          [consultationData]="consultationData"
+          [patientsList]="patientsList"
+          [showBackButton]="false"
+          (formSubmitted)="onFormSubmitted($event)"
+          (formCancelled)="onFormCancelled()"
+          [staffMap]="staffMap"
+          [getStaffNameFn]="getStaffName.bind(this)"
+        ></app-consultation-form>
+      </ng-container>
+
+      <ng-template #viewMode>
+        <!-- Datos generales (ambos) -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+          <div class="border-b border-gray-100 px-6 py-4">
+            <h2 class="text-xl font-semibold text-gray-900">Datos generales</h2>
+          </div>
+          <div class="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Paciente</label>
+              <p class="text-lg font-medium text-gray-900">{{ consultationData.patientName }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                {{ isPodology ? 'Podólogo' : 'Médico' }}
+              </label>
+              <p class="text-lg text-gray-800">{{ getStaffName(consultationData.doctorId) }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Fecha</label>
+              <p class="text-lg text-gray-800">
+                {{ (podology.followUpDate || consultationData.consultationDate) | date:'mediumDate' }}
+              </p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Plantilla</label>
+              <p class="text-lg text-gray-800">{{ templateLabel }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========= PODOLOGÍA ========= -->
+        <ng-container *ngIf="isPodology; else generalView">
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">
+            <h2 class="text-xl font-semibold text-gray-900">Observaciones iniciales</h2>
+            <p class="text-gray-800 whitespace-pre-wrap">{{ podology.initialObservations || '—' }}</p>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Exploración clínica</h2>
+            </div>
+            <div class="p-6" *ngIf="activeConditions.length; else noConditions">
+              <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-brand-soft/40">
+                    <tr>
+                      <th class="px-3 py-2 text-left">Padecimiento</th>
+                      <th class="px-3 py-2 text-center">Izq.</th>
+                      <th class="px-3 py-2 text-center">Der.</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-line">
+                    <tr *ngFor="let item of activeConditions">
+                      <td class="px-3 py-2 font-medium">{{ item.label }}</td>
+                      <td class="px-3 py-2 text-center">{{ item.left ? 'Sí' : '—' }}</td>
+                      <td class="px-3 py-2 text-center">{{ item.right ? 'Sí' : '—' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <ng-template #noConditions>
+              <p class="p-6 text-gray-500">Sin padecimientos marcados.</p>
+            </ng-template>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Tipo de pie derecho</label>
+              <p class="text-lg text-gray-800">{{ footTypeLabel(podology.footTypeRight) }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Tipo de pie izquierdo</label>
+              <p class="text-lg text-gray-800">{{ footTypeLabel(podology.footTypeLeft) }}</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-3" *ngIf="podology.feetDiagramDataUrl">
+            <h2 class="text-xl font-semibold text-gray-900">Diagrama de los pies</h2>
+            <img [src]="podology.feetDiagramDataUrl" alt="Diagrama marcado" class="max-w-full rounded-xl border border-line bg-white" />
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">
+            <h2 class="text-xl font-semibold text-gray-900">Observaciones de la exploración</h2>
+            <p class="text-gray-800 whitespace-pre-wrap">{{ podology.explorationNotes || '—' }}</p>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">
+            <h2 class="text-xl font-semibold text-gray-900">Referencia</h2>
+            <p class="text-gray-800">
+              {{ podology.hasReferral === true ? 'Sí' : podology.hasReferral === false ? 'No' : '—' }}
+              <span *ngIf="podology.hasReferral && podology.referralTo"> · {{ podology.referralTo }}</span>
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">
+            <h2 class="text-xl font-semibold text-gray-900">Terapéutica</h2>
+            <p class="text-gray-800 whitespace-pre-wrap">{{ podology.therapeutics || '—' }}</p>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">
+            <h2 class="text-xl font-semibold text-gray-900">Tratamiento</h2>
+            <p class="text-gray-800 whitespace-pre-wrap">{{ podology.treatment || '—' }}</p>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div *ngIf="podology.patientSignatureDataUrl">
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Firma del paciente</label>
+              <img [src]="podology.patientSignatureDataUrl" alt="Firma paciente" class="mt-2 border border-line rounded-xl bg-white w-full" />
+            </div>
+            <div *ngIf="podology.podologistSignatureDataUrl">
+              <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Firma del podólogo</label>
+              <img [src]="podology.podologistSignatureDataUrl" alt="Firma podólogo" class="mt-2 border border-line rounded-xl bg-white w-full" />
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- ========= MÉDICO GENERAL ========= -->
+        <ng-template #generalView>
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Motivo</h2>
+            </div>
+            <div class="p-6">
+              <p class="text-lg text-gray-800">{{ consultationData.reasonForConsultation }}</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Signos vitales</h2>
+            </div>
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div><span class="font-medium">Presión:</span> {{ consultationData.bloodPressure || '—' }}</div>
+              <div><span class="font-medium">FC:</span> {{ consultationData.heartRate || '—' }}</div>
+              <div><span class="font-medium">FR:</span> {{ consultationData.respiratoryRate || '—' }}</div>
+              <div><span class="font-medium">Temp.:</span> {{ consultationData.temperature || '—' }}</div>
+              <div><span class="font-medium">SpO₂:</span> {{ consultationData.oxygenSaturation || '—' }}</div>
+              <div><span class="font-medium">Peso:</span> {{ consultationData.weight || '—' }}</div>
+              <div><span class="font-medium">Estatura:</span> {{ consultationData.height || '—' }}</div>
+              <div><span class="font-medium">IMC:</span> {{ consultationData.bmi || '—' }}</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Exploración y diagnóstico</h2>
+            </div>
+            <div class="p-6 space-y-4">
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Exploración física</label>
+                <p class="text-gray-800">{{ consultationData.physicalExam || '—' }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Revisión por sistemas</label>
+                <p class="text-gray-800">{{ consultationData.systemReview || '—' }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Diagnóstico</label>
+                <p class="text-lg font-semibold text-gray-900">{{ consultationData.diagnosis }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Plan de tratamiento</h2>
+            </div>
+            <div class="p-6 space-y-4">
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Indicaciones generales</label>
+                <p class="text-gray-800">{{ consultationData.generalInstructions || '—' }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Estudios solicitados</label>
+                <p class="text-gray-800">{{ consultationData.requestedStudies || 'Ninguno' }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Próxima cita</label>
+                <p class="text-gray-800">{{ consultationData.nextAppointment | date:'medium' }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Notas adicionales</label>
+                <p class="text-gray-800">{{ consultationData.additionalNotes || '—' }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div class="border-b border-gray-100 px-6 py-4">
+              <h2 class="text-xl font-semibold text-gray-900">Medicamentos recetados</h2>
+            </div>
+            <div class="p-6" *ngIf="consultationData.prescribedMedications?.length; else noMeds">
+              <div *ngFor="let med of consultationData.prescribedMedications; let i = index"
+                class="border rounded-lg p-4 bg-gray-50 shadow-sm mb-4">
+                <strong class="block mb-2">#{{ i + 1 }} {{ med.name }}</strong>
+                <p class="text-sm text-gray-700"><span class="font-medium">Dosis:</span> {{ med.dose }}</p>
+                <p class="text-sm text-gray-700"><span class="font-medium">Frecuencia:</span> {{ med.frequency }}</p>
+                <p class="text-sm text-gray-700"><span class="font-medium">Duración:</span> {{ med.duration }}</p>
+              </div>
+            </div>
+            <ng-template #noMeds>
+              <p class="p-6 text-gray-500">No hay medicamentos registrados.</p>
+            </ng-template>
+          </div>
+        </ng-template>
+
+        <!-- Documentos (ambos) -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm">
+          <div class="border-b border-gray-100 px-6 py-4">
+            <h2 class="text-xl font-semibold text-gray-900">Documentos adjuntos</h2>
+          </div>
+          <div class="p-6" *ngIf="consultationData.attachedDocuments?.length; else noDocs">
+            <ul class="space-y-2">
+              <li *ngFor="let doc of consultationData.attachedDocuments">
+                <a [href]="doc.fileUrl" target="_blank" class="text-brand-dark hover:underline">
+                  {{ doc.fileName }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <ng-template #noDocs>
+            <p class="p-6 text-gray-500">No hay documentos adjuntos.</p>
+          </ng-template>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

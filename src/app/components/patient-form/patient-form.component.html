@@ -1,0 +1,172 @@
+<div class="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8 mx-auto text-sm text-gray-800 w-full min-w-0">
+  
+  <!-- Botón volver -->
+  <div class="mb-6" *ngIf="showBackButton">
+    <button type="button" (click)="goBack()" class="text-brand-dark hover:underline font-medium">
+      ← Volver al listado
+    </button>
+  </div>
+
+  <div class="mb-6 sm:mb-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ mode === 'create' ? 'Nuevo Paciente' : 'Editar Paciente' }}</h2>
+    <p class="text-sm text-gray-500 mt-1">
+      {{ mode === 'create' ? 'Completa los campos para registrar un paciente.' : 'Edita la información del paciente.' }}
+    </p>
+  </div>
+
+  <form #formRef="ngForm" (ngSubmit)="submit(formRef)" class="space-y-12">
+
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A8.966 8.966 0 0112 15c2.21 0 4.221.804 5.879 2.121M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Datos personales
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="firstName" class="block mb-1">Nombre *</label>
+          <input id="firstName" name="firstName" [(ngModel)]="form.firstName" required #firstNameRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="firstNameRef.invalid && firstNameRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="lastName" class="block mb-1">Apellido *</label>
+          <input id="lastName" name="lastName" [(ngModel)]="form.lastName" required #lastNameRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="lastNameRef.invalid && lastNameRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="gender" class="block mb-1">Género *</label>
+          <select id="gender" name="gender" [(ngModel)]="form.gender" required #genderRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2">
+            <option value="" disabled selected>Selecciona</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+          <p *ngIf="genderRef.invalid && genderRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="birthDate" class="block mb-1">Fecha de nacimiento *</label>
+          <input type="date" id="birthDate" name="birthDate" [(ngModel)]="form.birthDate" required
+            #birthDateRef="ngModel" class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="birthDateRef.invalid && birthDateRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="maritalStatus" class="block mb-1">Estado civil</label>
+          <input id="maritalStatus" name="maritalStatus" [(ngModel)]="form.maritalStatus"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="guardianName" class="block mb-1">Responsable</label>
+          <input id="guardianName" name="guardianName" [(ngModel)]="form.guardianName"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 📞 Contacto -->
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="phone" class="block mb-1">Teléfono *</label>
+          <input id="phone" name="phone" [(ngModel)]="form.phone" required #phoneRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="phoneRef.invalid && phoneRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="email" class="block mb-1">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="form.email"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div class="md:col-span-2">
+          <label for="address" class="block mb-1">Dirección *</label>
+          <input id="address" name="address" [(ngModel)]="form.address" required #addressRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="addressRef.invalid && addressRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4">Información profesional</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="occupation" class="block mb-1">Ocupación *</label>
+          <input id="occupation" name="occupation" [(ngModel)]="form.occupation" required #occupationRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="occupationRef.invalid && occupationRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="educationLevel" class="block mb-1">Nivel educativo *</label>
+          <input id="educationLevel" name="educationLevel" [(ngModel)]="form.educationLevel" required
+            #educationRef="ngModel" class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="educationRef.invalid && educationRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+        <div>
+          <label for="curp" class="block mb-1">CURP</label>
+          <input id="curp" name="curp" [(ngModel)]="form.curp"
+            class="w-full border border-gray-300 rounded px-3 py-2 font-mono" />
+        </div>
+        <div>
+          <label for="bloodType" class="block mb-1">Tipo de sangre *</label>
+          <input id="bloodType" name="bloodType" [(ngModel)]="form.bloodType" required #bloodRef="ngModel"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+          <p *ngIf="bloodRef.invalid && bloodRef.touched" class="text-red-500 mt-1">Requerido</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4">Información médica</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="allergies" class="block mb-1">Alergias</label>
+          <input id="allergies" name="allergies" [(ngModel)]="form.allergies"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="patologicos" class="block mb-1">Patologicas</label>
+          <input id="patologicos" name="patologicos" [(ngModel)]="form.patologicos"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="noPatologicos" class="block mb-1">No Patologicas</label>
+          <input id="noPatologicos" name="noPatologicos" [(ngModel)]="form.noPatologicos"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="medicalConditions" class="block mb-1">Condiciones médicas</label>
+          <input id="medicalConditions" name="medicalConditions" [(ngModel)]="form.medicalConditions"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="currentMedications" class="block mb-1">Medicamentos actuales</label>
+          <input id="currentMedications" name="currentMedications" [(ngModel)]="form.currentMedications"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div class="md:col-span-2">
+          <label for="initialNotes" class="block mb-1">Notas iniciales</label>
+          <textarea id="initialNotes" name="initialNotes" rows="3" [(ngModel)]="form.initialNotes"
+            class="w-full border border-gray-300 rounded px-3 py-2 resize-none"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+      <button *ngIf="mode === 'create'" type="button" (click)="reset()"
+        class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition w-full sm:w-auto">
+        Limpiar
+      </button>
+      <button type="button" (click)="cancel()" class="px-4 py-2.5 border rounded-xl text-gray-500 hover:bg-gray-100 transition w-full sm:w-auto">
+        Cancelar
+      </button>
+      <button type="submit"
+        class="px-6 py-2.5 bg-brand text-white rounded-xl hover:bg-brand-dark transition disabled:opacity-50 w-full sm:w-auto"
+        [disabled]="formRef.invalid || isLoading">
+        {{ isLoading ? 'Guardando...' : (mode === 'create' ? 'Guardar Paciente' : 'Actualizar Paciente') }}
+      </button>
+    </div>
+  </form>
+</div>

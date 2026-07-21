@@ -1,0 +1,275 @@
+<div class="bg-canvas text-ink">
+  <!-- HERO -->
+  <section
+    id="inicio"
+    class="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden text-white"
+    aria-label="Inicio"
+  >
+    <div
+      class="absolute inset-0 bg-cover bg-center scale-105 bg-[url('/fondo.png')]"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink/70 pointer-events-none"
+      aria-hidden="true"
+    ></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(32,208,223,0.2),transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative z-10 w-full max-w-2xl px-6 py-16 text-center page-shell">
+      <img
+        src="/logo-clear.png"
+        alt="RISE Servicios Médicos"
+        class="w-48 sm:w-60 h-auto mx-auto mb-6 drop-shadow-2xl float-soft"
+      />
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-3">
+        Atención médica cercana y ordenada
+      </h1>
+      <p class="mx-auto max-w-xl text-base sm:text-lg leading-relaxed text-white/90 mb-8">
+        Consulta, seguimiento y acompañamiento clínico con el cuidado que mereces.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/agenda" class="btn-brand" (click)="goToSection($event, 'agenda')">Agendar cita</a>
+        <a
+          href="/contacto"
+          (click)="goToSection($event, 'contacto')"
+          class="inline-flex items-center justify-center px-4 py-2.5 rounded-[0.85rem] font-semibold text-white border-[1.5px] border-white/55 bg-white/10 hover:bg-white/20 hover:border-white transition"
+        >
+          Pedir información
+        </a>
+      </div>
+    </div>
+
+    <a
+      href="/servicios"
+      (click)="goToSection($event, 'servicios')"
+      class="absolute z-10 bottom-6 left-1/2 -translate-x-1/2 text-xs font-semibold tracking-wider uppercase text-white/75 hover:text-white transition"
+      aria-label="Ver servicios"
+    >
+      Conoce más
+    </a>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Lo que hacemos</p>
+      <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
+        Servicios pensados para tu consulta
+      </h2>
+      <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-10">
+        En RISE acompañamos tu salud con procesos claros: desde la primera valoración hasta el seguimiento.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 border-t border-line">
+        <article class="py-6 pr-0 md:pr-6 border-b border-line">
+          <h3 class="font-display text-lg font-semibold mb-2">Consulta general</h3>
+          <p class="text-muted leading-relaxed">
+            Valoración médica, diagnóstico y plan de tratamiento con indicaciones claras.
+          </p>
+        </article>
+        <article class="py-6 md:pl-6 border-b border-line md:border-l border-line">
+          <h3 class="font-display text-lg font-semibold mb-2">Podología</h3>
+          <p class="text-muted leading-relaxed">
+            Cuidado de pies y uñas: valoración, seguimiento y tratamiento de micosis,
+            uña encarnada y otras alteraciones podológicas.
+          </p>
+        </article>
+        <article class="py-6 pr-0 md:pr-6 border-b border-line">
+          <h3 class="font-display text-lg font-semibold mb-2">Recetas e indicaciones</h3>
+          <p class="text-muted leading-relaxed">
+            Prescripción documentada y recomendaciones para que sepas qué hacer en casa.
+          </p>
+        </article>
+        <article class="py-6 md:pl-6 border-b border-line md:border-l border-line">
+          <h3 class="font-display text-lg font-semibold mb-2">Estudios y referencias</h3>
+          <p class="text-muted leading-relaxed">
+            Orientación sobre estudios necesarios y canalización cuando el caso lo requiere.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24 brand-gradient-soft">
+    <div class="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Tu experiencia</p>
+        <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
+          Una visita simple, de principio a fin
+        </h2>
+        <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl">
+          Queremos que llegar a consulta se sienta ordenado: agenda, atención y siguiente paso sin complicaciones.
+        </p>
+      </div>
+
+      <ol class="space-y-6 list-none m-0 p-0">
+        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
+          <span class="font-display font-bold text-brand-dark pt-0.5">01</span>
+          <div>
+            <strong class="font-display block mb-1">Agenda</strong>
+            <p class="m-0 text-muted leading-relaxed">Elige un horario o déjanos tus datos y te confirmamos.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
+          <span class="font-display font-bold text-brand-dark pt-0.5">02</span>
+          <div>
+            <strong class="font-display block mb-1">Consulta</strong>
+            <p class="m-0 text-muted leading-relaxed">Atención médica con tiempo para escucharte y resolver dudas.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
+          <span class="font-display font-bold text-brand-dark pt-0.5">03</span>
+          <div>
+            <strong class="font-display block mb-1">Seguimiento</strong>
+            <p class="m-0 text-muted leading-relaxed">Indicaciones, próxima cita si hace falta y tu historial al día.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24">
+    <div class="max-w-md mx-auto w-full">
+      <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Agenda</p>
+      <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
+        Solicita tu cita
+      </h2>
+      <p class="text-muted leading-relaxed mb-8">
+        Completa el formulario y nos pondremos en contacto para confirmar el horario.
+      </p>
+
+      <form class="flex flex-col gap-4" (submit)="onAppointmentSubmit($event)">
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Nombre completo</span>
+          <input class="input-brand font-normal text-ink" name="apptName" [(ngModel)]="appointmentForm.name" placeholder="Tu nombre" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Teléfono</span>
+          <input class="input-brand font-normal text-ink" name="apptPhone" [(ngModel)]="appointmentForm.phone" placeholder="10 dígitos" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Fecha preferida</span>
+          <input class="input-brand font-normal text-ink" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Motivo de consulta</span>
+          <textarea
+            class="input-brand font-normal text-ink min-h-24 resize-y"
+            name="apptReason"
+            [(ngModel)]="appointmentForm.reason"
+            placeholder="Cuéntanos brevemente el motivo"
+            rows="4"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingAppointment">
+          {{ submittingAppointment ? 'Enviando...' : 'Enviar solicitud' }}
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24 brand-gradient-soft">
+    <div class="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Contacto</p>
+        <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
+          ¿Tienes dudas? Escríbenos
+        </h2>
+        <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-8">
+          Horarios, servicios o cualquier duda antes de tu visita. Respondemos lo antes posible.
+        </p>
+
+        <ul class="space-y-4 list-none m-0 p-0">
+          <li class="flex flex-col gap-0.5" *ngIf="clinic.horario">
+            <strong class="text-xs tracking-wider uppercase text-accent">Horario</strong>
+            <span class="font-semibold text-ink">{{ clinic.horario }}</span>
+          </li>
+          <li class="flex flex-col gap-0.5" *ngIf="clinic.telefono">
+            <strong class="text-xs tracking-wider uppercase text-accent">Teléfono</strong>
+            <a [href]="'tel:' + clinic.telefono" class="font-semibold text-ink no-underline hover:text-accent-dark transition">{{ clinic.telefono }}</a>
+          </li>
+          <li class="flex flex-col gap-0.5" *ngIf="clinic.whatsapp">
+            <strong class="text-xs tracking-wider uppercase text-accent">WhatsApp</strong>
+            <a
+              [href]="whatsappHref"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-ink no-underline hover:text-accent-dark transition"
+            >
+              {{ clinic.whatsapp }}
+            </a>
+          </li>
+          <li class="flex flex-col gap-0.5" *ngIf="clinic.ubicacion">
+            <strong class="text-xs tracking-wider uppercase text-accent">Ubicación</strong>
+            <span class="font-semibold text-ink">{{ clinic.ubicacion }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="flex flex-col gap-4" (submit)="onContactSubmit($event)">
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Nombre</span>
+          <input class="input-brand font-normal text-ink" name="contactName" [(ngModel)]="contactForm.name" placeholder="Tu nombre" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Teléfono</span>
+          <input class="input-brand font-normal text-ink" name="contactPhone" [(ngModel)]="contactForm.phone" placeholder="10 dígitos" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Correo (opcional)</span>
+          <input class="input-brand font-normal text-ink" type="email" name="contactEmail" [(ngModel)]="contactForm.email" placeholder="correo@ejemplo.com" />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
+          <span>Mensaje</span>
+          <textarea
+            class="input-brand font-normal text-ink min-h-24 resize-y"
+            name="contactMessage"
+            [(ngModel)]="contactForm.message"
+            placeholder="¿En qué podemos ayudarte?"
+            rows="4"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingContact">
+          {{ submittingContact ? 'Enviando...' : 'Enviar mensaje' }}
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-line bg-white px-5 py-8 md:py-10">
+    <div class="max-w-5xl mx-auto flex flex-col gap-5 items-start">
+      <div class="flex items-center gap-3">
+        <img src="/logo-clear.png" alt="" class="w-12 h-auto" />
+        <p class="font-display font-bold text-sm m-0">RISE · Servicios Médicos</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Secciones">
+        <a href="/servicios" (click)="goToSection($event, 'servicios')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Servicios</a>
+        <a href="/experiencia" (click)="goToSection($event, 'experiencia')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Experiencia</a>
+        <a href="/agenda" (click)="goToSection($event, 'agenda')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Agenda</a>
+        <a href="/contacto" (click)="goToSection($event, 'contacto')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Contacto</a>
+      </nav>
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          *ngIf="facebookHref"
+          [href]="facebookHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-accent-dark transition no-underline"
+          aria-label="Facebook"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.4V9.85c0-2.37 1.4-3.68 3.56-3.68 1.03 0 2.11.18 2.11.18v2.32h-1.19c-1.17 0-1.54.73-1.54 1.48v1.78h2.62l-.42 2.9h-2.2V22c4.78-.75 8.44-4.91 8.44-9.93z"/>
+          </svg>
+          Facebook
+        </a>
+      </div>
+      <p class="text-xs text-muted m-0">
+        © {{ currentYear }} RISE. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #20d0df;
+  --color-brand-dark: #14b8c7;
+  --color-brand-soft: #e6fafc;
+  --color-accent: #e540ae;
+  --color-accent-dark: #c93495;
+  --color-accent-soft: #fce7f5;
+  --color-ink: #15202b;
+  --color-muted: #5b6b7c;
+  --color-line: #e2ebf0;
+  --color-canvas: #f3f7f9;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+.brand-gradient {
+  background-image: linear-gradient(135deg, #20d0df 0%, #e540ae 100%);
+}
+
+.brand-gradient-soft {
+  background-image: linear-gradient(135deg, rgba(32, 208, 223, 0.12) 0%, rgba(229, 64, 174, 0.1) 100%);
+}
+
+.brand-text-gradient {
+  background-image: linear-gradient(135deg, #20d0df 0%, #e540ae 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.surface-card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(21, 32, 43, 0.04);
+}
+
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 0.85rem;
+  color: #fff;
+  font-weight: 600;
+  background-image: linear-gradient(135deg, #20d0df 0%, #e540ae 100%);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 10px 24px rgba(229, 64, 174, 0.22);
+}
+
+.btn-brand:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.btn-brand:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-brand-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  background: #fff;
+  border: 1.5px solid rgba(229, 64, 174, 0.35);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-brand-outline:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.input-brand {
+  width: 100%;
+  border: 1.5px solid var(--color-line);
+  border-radius: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-brand:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 4px rgba(32, 208, 223, 0.18);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 0.9rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-item:hover {
+  background: var(--color-brand-soft);
+  color: var(--color-ink);
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(32, 208, 223, 0.18) 0%, rgba(229, 64, 174, 0.14) 100%);
+  color: var(--color-ink);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.page-shell {
+  animation: rise-in 0.35s ease both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.float-soft {
+  animation: soft-float 5s ease-in-out infinite;
+}
+
+/* Tablas admin: celdas más compactas en móvil */
+@media (max-width: 639px) {
+  .surface-card table th,
+  .surface-card table td {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  aside.xl\:sticky {
+    position: static !important;
+  }
+
+  #lab-rise-preview {
+    box-shadow: none !important;
+  }
+}
+
+

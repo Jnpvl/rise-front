@@ -1,0 +1,109 @@
+<div class="space-y-4">
+  <div class="surface-card px-4 sm:px-6 py-4 sm:py-5">
+    <h2 class="font-display text-lg sm:text-xl font-bold text-ink">Adjuntos del expediente</h2>
+    <p class="text-sm text-muted mt-1">
+      Resultados de laboratorio y archivos de consultas del paciente
+    </p>
+  </div>
+
+  <div *ngIf="isLoading" class="surface-card flex justify-center items-center py-12 gap-3 text-brand-dark font-semibold">
+    <span class="h-5 w-5 rounded-full border-2 border-brand/30 border-t-brand animate-spin"></span>
+    Cargando adjuntos...
+  </div>
+
+  <div *ngIf="!isLoading && !hasContent" class="surface-card p-10 text-center text-muted">
+    Este paciente aún no tiene resultados de laboratorio ni archivos adjuntos.
+  </div>
+
+  <!-- Laboratorios -->
+  <div class="surface-card overflow-hidden" *ngIf="!isLoading && labResults.length > 0">
+    <div class="px-4 sm:px-6 py-3 border-b border-line bg-brand-soft/40">
+      <h3 class="font-display text-base font-bold text-ink m-0">Resultados de laboratorio</h3>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead class="bg-canvas/80">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Documento</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Paneles</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Fecha estudio</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr *ngFor="let lab of labResults" class="hover:bg-brand-soft/40 transition-colors">
+            <td class="px-6 py-4 text-sm font-semibold text-ink">
+              <div class="flex items-center gap-2">
+                <mat-icon class="text-accent text-base" fontIcon="science"></mat-icon>
+                <span>Resultados de laboratorio</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-sm text-muted">{{ panelSummary(lab) }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ formatDate(lab.studyDate) }}</td>
+            <td class="px-6 py-4 text-sm">
+              <button
+                type="button"
+                class="btn-brand-outline text-xs py-1.5 px-3"
+                (click)="openLabPdf(lab)"
+                [disabled]="openingLabId === lab.id"
+              >
+                {{ openingLabId === lab.id ? 'Abriendo…' : 'Ver PDF' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Archivos de consultas -->
+  <div class="surface-card overflow-hidden" *ngIf="!isLoading && attachments.length > 0">
+    <div class="px-4 sm:px-6 py-3 border-b border-line bg-brand-soft/40">
+      <h3 class="font-display text-base font-bold text-ink m-0">Archivos de consultas</h3>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead class="bg-canvas/80">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Archivo</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Consulta</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Fecha</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr *ngFor="let doc of attachments" class="hover:bg-brand-soft/40 transition-colors">
+            <td class="px-6 py-4 text-sm font-semibold text-ink">
+              <div class="flex items-center gap-2">
+                <mat-icon class="text-accent text-base" fontIcon="attach_file"></mat-icon>
+                <span class="truncate max-w-[16rem]">{{ doc.fileName }}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-sm text-muted">{{ doc.consultationType || '—' }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ formatDate(doc.consultationDate) }}</td>
+            <td class="px-6 py-4 text-sm">
+              <div class="flex flex-wrap gap-2">
+                <a
+                  *ngIf="doc.fileUrl"
+                  [href]="doc.fileUrl"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-brand-outline text-xs py-1.5 px-3"
+                >
+                  Ver archivo
+                </a>
+                <button
+                  type="button"
+                  class="text-xs font-semibold text-accent hover:underline px-2"
+                  (click)="openConsultation(doc.consultationId)"
+                >
+                  Ir a consulta
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

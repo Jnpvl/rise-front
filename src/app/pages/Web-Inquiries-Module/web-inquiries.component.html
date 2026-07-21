@@ -1,0 +1,130 @@
+<div class="page-shell space-y-6">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-accent mb-1">Sitio web</p>
+      <h1 class="font-display text-2xl sm:text-3xl font-bold text-ink">Solicitudes</h1>
+      <p class="text-muted mt-1">
+        Citas y dudas enviadas desde la página pública
+        <span *ngIf="pendingCount > 0" class="ml-2 text-accent font-semibold">
+          · {{ pendingCount }} pendiente{{ pendingCount === 1 ? '' : 's' }}
+        </span>
+      </p>
+    </div>
+    <button type="button" class="btn-brand-outline w-full sm:w-auto" (click)="load()" [disabled]="isLoading">
+      <mat-icon fontIcon="refresh"></mat-icon>
+      Actualizar
+    </button>
+  </header>
+
+  <div class="surface-card p-4 flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+    <div class="flex flex-wrap gap-2">
+      <button
+        type="button"
+        class="px-3 py-2 rounded-xl text-sm font-semibold transition"
+        [class.bg-brand]="activeTab === 'appointment'"
+        [class.text-white]="activeTab === 'appointment'"
+        [class.bg-brand-soft]="activeTab !== 'appointment'"
+        [class.text-ink]="activeTab !== 'appointment'"
+        (click)="setTab('appointment')"
+      >
+        Citas
+      </button>
+      <button
+        type="button"
+        class="px-3 py-2 rounded-xl text-sm font-semibold transition"
+        [class.bg-brand]="activeTab === 'contact'"
+        [class.text-white]="activeTab === 'contact'"
+        [class.bg-brand-soft]="activeTab !== 'contact'"
+        [class.text-ink]="activeTab !== 'contact'"
+        (click)="setTab('contact')"
+      >
+        Dudas
+      </button>
+      <button
+        type="button"
+        class="px-3 py-2 rounded-xl text-sm font-semibold transition"
+        [class.bg-brand]="activeTab === 'all'"
+        [class.text-white]="activeTab === 'all'"
+        [class.bg-brand-soft]="activeTab !== 'all'"
+        [class.text-ink]="activeTab !== 'all'"
+        (click)="setTab('all')"
+      >
+        Todas
+      </button>
+    </div>
+
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Buscar por nombre, teléfono o texto..."
+      class="input-brand max-w-md w-full"
+    />
+  </div>
+
+  <div class="surface-card overflow-hidden">
+    <div *ngIf="isLoading" class="flex justify-center items-center py-12 gap-3 text-brand-dark font-semibold">
+      <span class="h-5 w-5 rounded-full border-2 border-brand/30 border-t-brand animate-spin"></span>
+      Cargando solicitudes...
+    </div>
+
+    <div *ngIf="!isLoading && filteredItems.length === 0" class="p-10 text-center text-muted">
+      No hay solicitudes en esta vista.
+    </div>
+
+    <div class="overflow-x-auto" *ngIf="!isLoading && filteredItems.length > 0">
+      <table class="min-w-full">
+        <thead class="bg-brand-soft/60">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Tipo</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Nombre</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Teléfono</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Detalle</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Recibida</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Estado</th>
+            <th class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wide text-muted">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr
+            *ngFor="let item of filteredItems"
+            class="hover:bg-brand-soft/40 transition-colors"
+            [class.bg-accent-soft/30]="normalizeStatus(item) === 'pending'"
+          >
+            <td class="px-6 py-4 text-sm font-semibold text-ink">
+              {{ item.type === 'appointment' ? 'Cita' : 'Duda' }}
+            </td>
+            <td class="px-6 py-4 text-sm font-semibold text-ink">{{ item.name }}</td>
+            <td class="px-6 py-4 text-sm text-muted">{{ item.phone }}</td>
+            <td class="px-6 py-4 text-sm text-muted max-w-xs truncate">
+              <ng-container *ngIf="item.type === 'appointment'; else contactDetail">
+                {{ formatDate(item.preferredDate) }} · {{ item.reason || 'Sin motivo' }}
+              </ng-container>
+              <ng-template #contactDetail>
+                {{ item.message || '—' }}
+              </ng-template>
+            </td>
+            <td class="px-6 py-4 text-sm text-muted whitespace-nowrap">
+              {{ formatDate(item.createdAt) }}
+            </td>
+            <td class="px-6 py-4 text-sm">
+              <select
+                class="input-brand text-sm py-2 w-full min-w-[9rem] max-w-[12rem]"
+                [ngModel]="normalizeStatus(item)"
+                (ngModelChange)="onStatusChange(item, $event)"
+              >
+                <option *ngFor="let option of statusOptionsFor(item)" [ngValue]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </td>
+            <td class="px-6 py-4 text-sm">
+              <button type="button" class="btn-brand-outline text-xs px-2.5 py-1.5" (click)="viewDetail(item)">
+                Ver
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

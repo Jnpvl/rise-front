@@ -1,0 +1,50 @@
+<div class="page-shell space-y-4">
+  <header class="surface-card px-4 sm:px-6 py-4 sm:py-5">
+    <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between">
+      <div class="flex items-start gap-3 sm:gap-4 min-w-0">
+        <button (click)="goBackToList()" class="btn-brand-outline shrink-0 text-sm px-3 sm:px-4">
+          ← Volver
+        </button>
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-accent mb-1">Expediente</p>
+          <h1 class="font-display text-xl sm:text-2xl font-bold text-ink truncate">{{ patientName }}</h1>
+          <p class="text-sm text-muted truncate">ID: {{ patientId }}</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto shrink-0">
+        <button
+          type="button"
+          (click)="labRegistration()"
+          class="btn-brand-outline w-full sm:w-auto"
+        >
+          Registro de laboratorio
+        </button>
+        <button type="button" (click)="consultation()" class="btn-brand w-full sm:w-auto">
+          Nueva consulta
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="surface-card px-2 py-2 flex flex-wrap gap-1 overflow-x-auto">
+    <button (click)="navigateToSection('informacion')"
+      class="px-4 py-2 rounded-xl text-sm font-semibold transition"
+      [ngClass]="activeSection === 'informacion' ? 'bg-brand-soft text-ink' : 'text-muted hover:bg-brand-soft hover:text-ink'">
+      Información
+    </button>
+    <button (click)="navigateToSection('consultas')"
+      class="px-4 py-2 rounded-xl text-sm font-semibold transition"
+      [ngClass]="activeSection === 'consultas' ? 'bg-brand-soft text-ink' : 'text-muted hover:bg-brand-soft hover:text-ink'">
+      Histórico de consultas
+    </button>
+    <button (click)="navigateToSection('adjuntos')"
+      class="px-4 py-2 rounded-xl text-sm font-semibold transition"
+      [ngClass]="activeSection === 'adjuntos' ? 'bg-brand-soft text-ink' : 'text-muted hover:bg-brand-soft hover:text-ink'">
+      Adjuntos
+    </button>
+  </nav>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

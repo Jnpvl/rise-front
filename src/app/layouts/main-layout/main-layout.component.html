@@ -1,0 +1,48 @@
+<div class="flex h-dvh bg-canvas overflow-hidden">
+  <!-- Mobile backdrop -->
+  <button
+    type="button"
+    *ngIf="sidebarOpen"
+    class="fixed inset-0 z-40 bg-ink/40 backdrop-blur-[2px] lg:hidden"
+    aria-label="Cerrar menú"
+    (click)="closeSidebar()"
+  ></button>
+
+  <app-sidebar
+    class="contents"
+    [userInitials]="userInitials"
+    [userName]="userName"
+    [userRole]="userRole"
+    [mobileOpen]="sidebarOpen"
+    (logoutEvent)="logout()"
+    (closeMobile)="closeSidebar()"
+  ></app-sidebar>
+
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+    <div class="pointer-events-none absolute inset-0 brand-gradient-soft opacity-60"></div>
+
+    <!-- Mobile top bar -->
+    <header
+      class="relative z-30 flex lg:hidden items-center gap-3 px-4 py-3 bg-white/95 backdrop-blur border-b border-line shrink-0"
+    >
+      <button
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink hover:bg-brand-soft transition"
+        aria-label="Abrir menú"
+        (click)="toggleSidebar()"
+      >
+        <mat-icon fontIcon="menu"></mat-icon>
+      </button>
+      <img src="/logo-clear.png" alt="RISE" class="h-9 w-auto object-contain" />
+      <span class="ml-auto text-sm font-semibold text-muted truncate max-w-[40%]">
+        {{ userName }}
+      </span>
+    </header>
+
+    <main class="relative flex-1 overflow-auto p-4 sm:p-6 md:p-8">
+      <div class="max-w-7xl mx-auto min-h-full page-shell">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
