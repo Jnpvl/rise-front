@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://rise-backend-l8dt.onrender.com/api/v1/',
+  apiUrl: 'https://jp.tail5cbc3e.ts.net:8443/api/v1/',
 };

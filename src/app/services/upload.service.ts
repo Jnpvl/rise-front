@@ -65,11 +65,7 @@ export class UploadService {
   parseUploadUrl(fileUrl: string): { patientId: string; storedName: string } | null {
     try {
       const pathname = new URL(fileUrl, window.location.origin).pathname;
-      const match =
-        pathname.match(/\/uploads\/([^/]+)\/([^/]+)$/) ||
-        pathname.match(
-          /\/storage\/v1\/object\/public\/[^/]+\/([^/]+)\/([^/]+)$/
-        );
+      const match = pathname.match(/\/uploads\/([^/]+)\/([^/]+)$/);
       if (!match) return null;
       return {
         patientId: decodeURIComponent(match[1]),

@@ -184,6 +184,35 @@ export class ConsultationInfoComponent implements OnInit {
     return staff ? staff.name : id;
   }
 
+  private async readErrorMessage(
+    err: unknown,
+    fallback: string
+  ): Promise<string> {
+    const body = (err as { error?: unknown })?.error;
+
+    if (body instanceof Blob) {
+      try {
+        const parsed = JSON.parse(await body.text()) as { message?: string };
+        if (parsed.message) {
+          return parsed.message;
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    if (
+      body &&
+      typeof body === 'object' &&
+      'message' in body &&
+      typeof (body as { message?: unknown }).message === 'string'
+    ) {
+      return (body as { message: string }).message;
+    }
+
+    return fallback;
+  }
+
   async getPrescription() {
     if (this.isPodology) {
       return this.getPodologyReport();
@@ -206,11 +235,11 @@ export class ConsultationInfoComponent implements OnInit {
           confirmButtonColor: '#DC2626',
         });
       }
-    } catch {
+    } catch (err) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Error al obtener receta.',
+        text: await this.readErrorMessage(err, 'Error al obtener receta.'),
         confirmButtonColor: '#DC2626',
       });
     } finally {
@@ -238,11 +267,14 @@ export class ConsultationInfoComponent implements OnInit {
           confirmButtonColor: '#DC2626',
         });
       }
-    } catch {
+    } catch (err) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Error al generar el seguimiento de podología.',
+        text: await this.readErrorMessage(
+          err,
+          'Error al generar el seguimiento de podología.'
+        ),
         confirmButtonColor: '#DC2626',
       });
     } finally {
