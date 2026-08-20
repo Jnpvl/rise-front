@@ -17,6 +17,7 @@ export class PatientInfoComponent implements OnInit {
   patientData: Partial<Patient> = {};
   isEditing = false;
   isLoading = false;
+  isPrinting = false;
 
 
   private patientsService = inject(PatientsService);
@@ -95,8 +96,46 @@ export class PatientInfoComponent implements OnInit {
     this.router.navigate(['/admin/pacientes']);
   }
 
-  getAge(birthDate: string) {
-    const birth = new Date(birthDate);
+  async printRecord() {
+    if (!this.patientId || this.isPrinting) return;
+    this.isPrinting = true;
+    try {
+      const blob = await this.patientsService.getPatientRecordPdf(this.patientId);
+      if (!blob || blob.size === 0) {
+        throw new Error('PDF vacío');
+      }
+      const pdfUrl = window.URL.createObjectURL(blob);
+      window.open(pdfUrl, '_blank');
+    } catch (err: any) {
+      let message = 'No se pudo generar el expediente.';
+      if (err?.error instanceof Blob) {
+        try {
+          const text = await err.error.text();
+          const json = JSON.parse(text);
+          if (json?.message) message = String(json.message);
+        } catch {
+          /* ignore */
+        }
+      } else if (err?.error?.message || err?.message) {
+        message = err?.error?.message || err.message;
+      }
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: message,
+        confirmButtonColor: '#DC2626',
+      });
+    } finally {
+      this.isPrinting = false;
+    }
+  }
+
+  getAge(birthDate: string | undefined | null) {
+    if (!birthDate) return null;
+    const birth = new Date(
+      birthDate.includes('T') ? birthDate : `${birthDate}T12:00:00`
+    );
+    if (isNaN(birth.getTime())) return null;
     const today = new Date();
     let age = today.getFullYear() - birth.getFullYear();
     const m = today.getMonth() - birth.getMonth();

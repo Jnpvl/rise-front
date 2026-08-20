@@ -6,15 +6,29 @@
         <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Información del Paciente</h1>
         <p class="text-sm text-gray-600 mt-1">Datos completos del registro médico</p>
       </div>
-      <button 
-        (click)="toggleEdit()" 
-        class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl shadow-lg w-full sm:w-auto text-sm sm:text-base"
-      >
-        <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-        {{ isEditing ? 'Cancelar Edición' : 'Editar Paciente' }}
-      </button>
+      <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <button
+          *ngIf="!isEditing"
+          type="button"
+          (click)="printRecord()"
+          [disabled]="isPrinting || isLoading"
+          class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl shadow-lg w-full sm:w-auto text-sm sm:text-base disabled:opacity-50"
+        >
+          <ng-container *ngIf="isPrinting; else printLabel">
+            Generando...
+          </ng-container>
+          <ng-template #printLabel>Imprimir expediente</ng-template>
+        </button>
+        <button 
+          (click)="toggleEdit()" 
+          class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-brand to-accent text-white font-medium rounded-xl shadow-lg w-full sm:w-auto text-sm sm:text-base"
+        >
+          <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+          </svg>
+          {{ isEditing ? 'Cancelar Edición' : 'Editar Paciente' }}
+        </button>
+      </div>
     </div>
   </div>
 
@@ -55,6 +69,12 @@
           <div class="space-y-1">
             <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Fecha de nacimiento</label>
             <p class="text-lg text-gray-800">{{ patientData.birthDate }}</p>
+          </div>
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Edad</label>
+            <p class="text-lg text-gray-800">
+              {{ patientData.birthDate ? getAge(patientData.birthDate) + ' años' : 'No especificado' }}
+            </p>
           </div>
           <div class="space-y-1">
             <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Género</label>
@@ -138,6 +158,66 @@
           <div class="space-y-1">
             <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Tipo de sangre</label>
             <p class="text-lg font-bold text-red-600">{{ patientData.bloodType }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos físicos -->
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div class="border-b border-gray-100 px-6 py-4">
+        <div class="flex items-center">
+          <div class="p-2 bg-orange-50 rounded-lg mr-3">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Datos físicos</h2>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Peso</label>
+            <p class="text-lg text-gray-800">{{ patientData.weight ? patientData.weight + ' kg' : 'No especificado' }}</p>
+          </div>
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Estatura</label>
+            <p class="text-lg text-gray-800">{{ patientData.height ? patientData.height + ' m' : 'No especificado' }}</p>
+          </div>
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">No. de calzado</label>
+            <p class="text-lg text-gray-800">{{ patientData.shoeSize || 'No especificado' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contacto de emergencia -->
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div class="border-b border-gray-100 px-6 py-4">
+        <div class="flex items-center">
+          <div class="p-2 bg-amber-50 rounded-lg mr-3">
+            <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Contacto de emergencia</h2>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Nombre</label>
+            <p class="text-lg text-gray-800">{{ patientData.emergencyContactName || 'No especificado' }}</p>
+          </div>
+          <div class="space-y-1">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Teléfono</label>
+            <p class="text-lg text-gray-800 font-mono">{{ patientData.emergencyContactPhone || 'No especificado' }}</p>
+          </div>
+          <div class="space-y-1 lg:col-span-2">
+            <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Dirección</label>
+            <p class="text-lg text-gray-800">{{ patientData.emergencyContactAddress || 'No especificado' }}</p>
           </div>
         </div>
       </div>

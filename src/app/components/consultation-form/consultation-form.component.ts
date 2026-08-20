@@ -57,6 +57,7 @@ interface ConsultationFormModel {
   respiratoryRate: string;
   temperature: string;
   oxygenSaturation: string;
+  capillaryGlucose: string;
   weight: string | number;
   height: string | number;
   bmi: string | number;
@@ -85,6 +86,7 @@ function createEmptyConsultationForm(): ConsultationFormModel {
     respiratoryRate: '',
     temperature: '',
     oxygenSaturation: '',
+    capillaryGlucose: '',
     weight: '',
     height: '',
     bmi: '',
@@ -227,10 +229,34 @@ export class ConsultationFormComponent implements OnInit {
         String(patientId)
       );
       this.showPatientSidebar = !!this.selectedPatient;
+      this.prefillVitalsFromPatient();
     } catch {
       this.selectedPatient = null;
       this.showPatientSidebar = false;
     }
+  }
+
+  /** En alta nueva, toma peso/estatura del expediente al elegir paciente. */
+  private prefillVitalsFromPatient() {
+    if (this.mode !== 'create' || !this.selectedPatient) return;
+
+    const patientWeight = this.selectedPatient.weight;
+    const patientHeight = this.selectedPatient.height;
+
+    this.form.weight =
+      patientWeight !== null &&
+      patientWeight !== undefined &&
+      String(patientWeight).trim() !== ''
+        ? patientWeight
+        : '';
+    this.form.height =
+      patientHeight !== null &&
+      patientHeight !== undefined &&
+      String(patientHeight).trim() !== ''
+        ? patientHeight
+        : '';
+
+    this.onWeightOrHeightChange();
   }
 
   onWeightOrHeightChange() {
@@ -379,6 +405,11 @@ export class ConsultationFormComponent implements OnInit {
     this.selectedPatient = null;
     this.form.patientId = '';
     this.showPatientSidebar = false;
+    if (this.mode === 'create') {
+      this.form.weight = '';
+      this.form.height = '';
+      this.form.bmi = '';
+    }
   }
 
   async onPatientSelected(event: any) {
@@ -582,6 +613,7 @@ export class ConsultationFormComponent implements OnInit {
       'respiratoryRate',
       'temperature',
       'oxygenSaturation',
+      'capillaryGlucose',
       'weight',
       'height',
       'bmi',

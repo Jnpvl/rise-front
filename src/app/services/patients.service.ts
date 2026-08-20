@@ -38,6 +38,10 @@ export class PatientsService {
   async getPatientById(id: string): Promise<Patient> {
     return this.apiClient.get(`patients/${id}`, environment.apiUrl);
   }
+
+  async getPatientRecordPdf(id: string): Promise<Blob> {
+    return this.apiClient.getBlob(`patients/${id}/pdf`, environment.apiUrl);
+  }
   
   async updatePatient(id:string,data: Partial<Patient>): Promise<any> {
     return this.apiClient.patch(`patients/${id}`, data, environment.apiUrl);

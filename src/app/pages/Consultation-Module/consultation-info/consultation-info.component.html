@@ -106,7 +106,12 @@
             <div>
               <label class="text-sm font-medium text-gray-500 uppercase tracking-wide">Fecha</label>
               <p class="text-lg text-gray-800">
-                {{ (podology.followUpDate || consultationData.consultationDate) | date:'mediumDate' }}
+                {{
+                  (isPodology
+                    ? (podology.followUpDate || consultationData.updatedAt || consultationData.consultationDate)
+                    : (consultationData.updatedAt || consultationData.consultationDate)
+                  ) | date:'mediumDate'
+                }}
               </p>
             </div>
             <div>
@@ -224,6 +229,7 @@
               <div><span class="font-medium">FR:</span> {{ consultationData.respiratoryRate || '—' }}</div>
               <div><span class="font-medium">Temp.:</span> {{ consultationData.temperature || '—' }}</div>
               <div><span class="font-medium">SpO₂:</span> {{ consultationData.oxygenSaturation || '—' }}</div>
+              <div><span class="font-medium">DxTx:</span> {{ consultationData.capillaryGlucose || '—' }}</div>
               <div><span class="font-medium">Peso:</span> {{ consultationData.weight || '—' }}</div>
               <div><span class="font-medium">Estatura:</span> {{ consultationData.height || '—' }}</div>
               <div><span class="font-medium">IMC:</span> {{ consultationData.bmi || '—' }}</div>

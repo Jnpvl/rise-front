@@ -20,6 +20,12 @@ export interface Patient {
     maritalStatus: string;
     guardianName: string;
     bloodType: string;
+    weight?: number | string | null;
+    height?: number | string | null;
+    shoeSize?: string | null;
+    emergencyContactName?: string | null;
+    emergencyContactPhone?: string | null;
+    emergencyContactAddress?: string | null;
     allergies: string;
     medicalConditions: string;
     currentMedications: string;

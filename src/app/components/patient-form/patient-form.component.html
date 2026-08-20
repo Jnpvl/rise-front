@@ -119,6 +119,49 @@
     </div>
 
     <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4">Datos físicos</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label for="weight" class="block mb-1">Peso (kg)</label>
+          <input type="number" step="0.01" id="weight" name="weight" [(ngModel)]="form.weight"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="height" class="block mb-1">Estatura (m)</label>
+          <input type="number" step="0.01" id="height" name="height" [(ngModel)]="form.height"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="shoeSize" class="block mb-1">No. de calzado</label>
+          <input id="shoeSize" name="shoeSize" [(ngModel)]="form.shoeSize"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
+      <h3 class="text-lg font-semibold mb-4">Contacto de emergencia</h3>
+      <p class="text-sm text-gray-500 mb-4">Opcional</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="emergencyContactName" class="block mb-1">Nombre</label>
+          <input id="emergencyContactName" name="emergencyContactName" [(ngModel)]="form.emergencyContactName"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="emergencyContactPhone" class="block mb-1">Teléfono</label>
+          <input id="emergencyContactPhone" name="emergencyContactPhone" [(ngModel)]="form.emergencyContactPhone"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div class="md:col-span-2">
+          <label for="emergencyContactAddress" class="block mb-1">Dirección</label>
+          <input id="emergencyContactAddress" name="emergencyContactAddress" [(ngModel)]="form.emergencyContactAddress"
+            class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition p-6">
       <h3 class="text-lg font-semibold mb-4">Información médica</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
