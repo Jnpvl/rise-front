@@ -19,7 +19,7 @@ export const CONSULTATION_TEMPLATES: ConsultationTemplateOption[] = [
     key: 'podology',
     title: 'Podología',
     description:
-      'Seguimiento podológico: exploración por padecimiento, tipo de pie, diagrama, terapéutica y consentimiento.',
+      'Seguimiento podológico: exploración por padecimiento, tipo de pie, diagramas dorsal y plantar, terapéutica y consentimiento.',
     ready: true,
   },
 ];

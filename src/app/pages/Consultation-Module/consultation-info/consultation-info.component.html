@@ -168,9 +168,14 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-3" *ngIf="podology.feetDiagramDataUrl">
-            <h2 class="text-xl font-semibold text-gray-900">Diagrama de los pies</h2>
-            <img [src]="podology.feetDiagramDataUrl" alt="Diagrama marcado" class="max-w-full rounded-xl border border-line bg-white" />
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-3" *ngIf="podology.dorsalDiagramDataUrl">
+            <h2 class="text-xl font-semibold text-gray-900">Diagrama dorsal</h2>
+            <img [src]="podology.dorsalDiagramDataUrl" alt="Diagrama dorsal marcado" class="max-w-full rounded-xl border border-line bg-white" />
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-3" *ngIf="podology.plantarDiagramDataUrl">
+            <h2 class="text-xl font-semibold text-gray-900">Diagrama plantar</h2>
+            <img [src]="podology.plantarDiagramDataUrl" alt="Diagrama plantar marcado" class="max-w-full rounded-xl border border-line bg-white" />
           </div>
 
           <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 space-y-2">

@@ -15,13 +15,16 @@ import { UploadService } from '../../services/upload.service';
 import {
   PODOLOGY_CONDITIONS,
   PODOLOGY_CONSENT_TEXT,
+  PODOLOGY_DIAGRAM_IMAGE_SRC,
   PODOLOGY_FOOT_TYPES,
+  PodologyDiagramKey,
   PodologySpecialtyData,
   createEmptyPodologyData,
   parsePodologySpecialtyData,
 } from '../../constants/podology-form';
 
 type ConsultationTemplateKey = 'general' | 'podology';
+type PodologyCanvasTarget = PodologyDiagramKey | 'patient' | 'podologist';
 
 type PodologyConditionRow = {
   left: (typeof PODOLOGY_CONDITIONS)[number];
@@ -161,7 +164,10 @@ export class ConsultationFormComponent implements OnInit {
   @Output() goBackClicked = new EventEmitter<void>();
   @Output() changeTemplateClicked = new EventEmitter<void>();
 
-  @ViewChild('feetCanvas') feetCanvasRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('dorsalCanvas')
+  dorsalCanvasRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('plantarCanvas')
+  plantarCanvasRef?: ElementRef<HTMLCanvasElement>;
   @ViewChild('patientSignCanvas')
   patientSignCanvasRef?: ElementRef<HTMLCanvasElement>;
   @ViewChild('podologistSignCanvas')
@@ -187,7 +193,7 @@ export class ConsultationFormComponent implements OnInit {
   private patientsService = inject(PatientsService);
   private uploadService = inject(UploadService);
 
-  private drawingTarget: 'feet' | 'patient' | 'podologist' | null = null;
+  private drawingTarget: PodologyCanvasTarget | null = null;
   private drawing = false;
   private canvasInitToken = 0;
 
@@ -423,10 +429,7 @@ export class ConsultationFormComponent implements OnInit {
     }
   }
 
-  startDraw(
-    target: 'feet' | 'patient' | 'podologist',
-    event: MouseEvent | TouchEvent
-  ) {
+  startDraw(target: PodologyCanvasTarget, event: MouseEvent | TouchEvent) {
     event.preventDefault();
     this.drawingTarget = target;
     this.drawing = true;
@@ -452,14 +455,14 @@ export class ConsultationFormComponent implements OnInit {
     this.drawingTarget = null;
   }
 
-  clearCanvas(target: 'feet' | 'patient' | 'podologist') {
+  clearCanvas(target: PodologyCanvasTarget) {
     const canvas = this.getCanvas(target);
     const ctx = this.getCtx(target);
     if (!canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (target === 'feet') {
-      this.podology.feetDiagramDataUrl = '';
-      this.drawFeetBackground(canvas, ctx);
+    if (this.isDiagramTarget(target)) {
+      this.setDiagramDataUrl(target, '');
+      this.drawDiagramBackground(target, canvas, ctx);
     } else if (target === 'patient') {
       this.podology.patientSignatureDataUrl = '';
     } else {
@@ -476,8 +479,9 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   private initPodologyCanvases() {
-    const setups: Array<'feet' | 'patient' | 'podologist'> = [
-      'feet',
+    const setups: PodologyCanvasTarget[] = [
+      'dorsal',
+      'plantar',
       'patient',
       'podologist',
     ];
@@ -488,21 +492,22 @@ export class ConsultationFormComponent implements OnInit {
 
       const rect = canvas.getBoundingClientRect();
       const width = Math.max(320, Math.floor(rect.width || canvas.clientWidth || 640));
-      const height =
-        target === 'feet'
-          ? Math.max(280, Math.floor(width * 0.55))
-          : 160;
+      const isDiagram = this.isDiagramTarget(target);
+      const height = isDiagram
+        ? Math.max(280, Math.floor(width * 0.55))
+        : 160;
       canvas.width = width;
       canvas.height = height;
-      ctx.lineWidth = target === 'feet' ? 2.5 : 2;
+      ctx.lineWidth = isDiagram ? 2.5 : 2;
       ctx.lineCap = 'round';
       ctx.strokeStyle = '#15202b';
 
-      if (target === 'feet') {
-        if (this.podology.feetDiagramDataUrl) {
-          this.restoreImage(canvas, ctx, this.podology.feetDiagramDataUrl);
+      if (isDiagram) {
+        const saved = this.getDiagramDataUrl(target);
+        if (saved) {
+          this.restoreImage(canvas, ctx, saved);
         } else {
-          this.drawFeetBackground(canvas, ctx);
+          this.drawDiagramBackground(target, canvas, ctx);
         }
       } else if (target === 'patient' && this.podology.patientSignatureDataUrl) {
         this.restoreImage(canvas, ctx, this.podology.patientSignatureDataUrl);
@@ -516,10 +521,14 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   private capturePodologyCanvases() {
-    const feet = this.getCanvas('feet');
+    const dorsal = this.getCanvas('dorsal');
+    const plantar = this.getCanvas('plantar');
     const patient = this.getCanvas('patient');
     const podologist = this.getCanvas('podologist');
-    if (feet) this.podology.feetDiagramDataUrl = feet.toDataURL('image/png');
+    if (dorsal) this.podology.dorsalDiagramDataUrl = dorsal.toDataURL('image/png');
+    if (plantar) {
+      this.podology.plantarDiagramDataUrl = plantar.toDataURL('image/png');
+    }
     if (patient) {
       this.podology.patientSignatureDataUrl = patient.toDataURL('image/png');
     }
@@ -529,21 +538,19 @@ export class ConsultationFormComponent implements OnInit {
     }
   }
 
-  private getCanvas(target: 'feet' | 'patient' | 'podologist') {
-    if (target === 'feet') return this.feetCanvasRef?.nativeElement;
+  private getCanvas(target: PodologyCanvasTarget) {
+    if (target === 'dorsal') return this.dorsalCanvasRef?.nativeElement;
+    if (target === 'plantar') return this.plantarCanvasRef?.nativeElement;
     if (target === 'patient') return this.patientSignCanvasRef?.nativeElement;
     return this.podologistSignCanvasRef?.nativeElement;
   }
 
-  private getCtx(target: 'feet' | 'patient' | 'podologist') {
+  private getCtx(target: PodologyCanvasTarget) {
     const canvas = this.getCanvas(target);
     return canvas?.getContext('2d') || null;
   }
 
-  private getPoint(
-    target: 'feet' | 'patient' | 'podologist',
-    event: MouseEvent | TouchEvent
-  ) {
+  private getPoint(target: PodologyCanvasTarget, event: MouseEvent | TouchEvent) {
     const canvas = this.getCanvas(target);
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
@@ -562,7 +569,26 @@ export class ConsultationFormComponent implements OnInit {
     };
   }
 
-  private drawFeetBackground(
+  private isDiagramTarget(target: PodologyCanvasTarget): target is PodologyDiagramKey {
+    return target === 'dorsal' || target === 'plantar';
+  }
+
+  private getDiagramDataUrl(target: PodologyDiagramKey): string {
+    return target === 'dorsal'
+      ? this.podology.dorsalDiagramDataUrl
+      : this.podology.plantarDiagramDataUrl;
+  }
+
+  private setDiagramDataUrl(target: PodologyDiagramKey, value: string) {
+    if (target === 'dorsal') {
+      this.podology.dorsalDiagramDataUrl = value;
+    } else {
+      this.podology.plantarDiagramDataUrl = value;
+    }
+  }
+
+  private drawDiagramBackground(
+    target: PodologyDiagramKey,
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D
   ) {
@@ -579,7 +605,7 @@ export class ConsultationFormComponent implements OnInit {
       const h = img.height * scale;
       ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
     };
-    img.src = '/podology/diagrama-pies.jpeg';
+    img.src = PODOLOGY_DIAGRAM_IMAGE_SRC[target];
   }
 
   private restoreImage(

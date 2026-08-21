@@ -5,13 +5,21 @@ export type FootSideSelection = {
 
 export type FootTypeKey = 'griego' | 'egipcio' | 'polinesio' | '';
 
+export type PodologyDiagramKey = 'dorsal' | 'plantar';
+
+export const PODOLOGY_DIAGRAM_IMAGE_SRC: Record<PodologyDiagramKey, string> = {
+  dorsal: '/podology/diagrama-dorsal.jpeg',
+  plantar: '/podology/diagrama-pies.jpeg',
+};
+
 export interface PodologySpecialtyData {
   followUpDate: string;
   initialObservations: string;
   conditions: Record<string, FootSideSelection>;
   footTypeRight: FootTypeKey;
   footTypeLeft: FootTypeKey;
-  feetDiagramDataUrl: string;
+  dorsalDiagramDataUrl: string;
+  plantarDiagramDataUrl: string;
   explorationNotes: string;
   hasReferral: boolean | null;
   referralTo: string;
@@ -88,7 +96,8 @@ export function createEmptyPodologyData(
     conditions,
     footTypeRight: '',
     footTypeLeft: '',
-    feetDiagramDataUrl: '',
+    dorsalDiagramDataUrl: '',
+    plantarDiagramDataUrl: '',
     explorationNotes: '',
     hasReferral: null,
     referralTo: '',
@@ -134,6 +143,14 @@ export function parsePodologySpecialtyData(
     ...base,
     ...parsed,
     conditions,
+    dorsalDiagramDataUrl:
+      typeof parsed.dorsalDiagramDataUrl === 'string'
+        ? parsed.dorsalDiagramDataUrl
+        : '',
+    plantarDiagramDataUrl:
+      typeof parsed.plantarDiagramDataUrl === 'string'
+        ? parsed.plantarDiagramDataUrl
+        : '',
     hasReferral:
       parsed.hasReferral === true
         ? true

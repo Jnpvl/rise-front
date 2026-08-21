@@ -187,26 +187,52 @@
         </div>
       </section>
 
-      <!-- Diagrama de los pies -->
+      <!-- Diagrama dorsal -->
       <section class="bg-white border border-gray-100 rounded-xl shadow-sm p-4 sm:p-6 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 class="font-display text-lg font-semibold text-ink">Diagrama de los pies</h3>
-            <p class="text-sm text-muted">Marca hallazgos sobre las siluetas (dedo o mouse)</p>
+            <h3 class="font-display text-lg font-semibold text-ink">Diagrama dorsal</h3>
+            <p class="text-sm text-muted">Marca hallazgos en el dorso de los pies (dedo o mouse)</p>
           </div>
-          <button type="button" class="btn-brand-outline text-sm" (click)="clearCanvas('feet')">
+          <button type="button" class="btn-brand-outline text-sm" (click)="clearCanvas('dorsal')">
             Limpiar marcas
           </button>
         </div>
         <div class="border border-line rounded-xl overflow-hidden bg-white touch-none">
           <canvas
-            #feetCanvas
+            #dorsalCanvas
             class="w-full block cursor-crosshair"
-            (mousedown)="startDraw('feet', $event)"
+            (mousedown)="startDraw('dorsal', $event)"
             (mousemove)="moveDraw($event)"
             (mouseup)="endDraw()"
             (mouseleave)="endDraw()"
-            (touchstart)="startDraw('feet', $event)"
+            (touchstart)="startDraw('dorsal', $event)"
+            (touchmove)="moveDraw($event)"
+            (touchend)="endDraw()"
+          ></canvas>
+        </div>
+      </section>
+
+      <!-- Diagrama plantar -->
+      <section class="bg-white border border-gray-100 rounded-xl shadow-sm p-4 sm:p-6 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="font-display text-lg font-semibold text-ink">Diagrama plantar</h3>
+            <p class="text-sm text-muted">Marca hallazgos en la planta de los pies (dedo o mouse)</p>
+          </div>
+          <button type="button" class="btn-brand-outline text-sm" (click)="clearCanvas('plantar')">
+            Limpiar marcas
+          </button>
+        </div>
+        <div class="border border-line rounded-xl overflow-hidden bg-white touch-none">
+          <canvas
+            #plantarCanvas
+            class="w-full block cursor-crosshair"
+            (mousedown)="startDraw('plantar', $event)"
+            (mousemove)="moveDraw($event)"
+            (mouseup)="endDraw()"
+            (mouseleave)="endDraw()"
+            (touchstart)="startDraw('plantar', $event)"
             (touchmove)="moveDraw($event)"
             (touchend)="endDraw()"
           ></canvas>
