@@ -25,23 +25,23 @@
   "rewrites": [
     {
       "source": "/admin",
-      "destination": "/index.csr.html"
+      "destination": "/index.csr"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/index.csr.html"
+      "destination": "/index.csr"
     },
     {
       "source": "/experiencia",
-      "destination": "/index.csr.html"
+      "destination": "/index.csr"
     },
     {
       "source": "/agenda",
-      "destination": "/index.csr.html"
+      "destination": "/index.csr"
     },
     {
       "source": "/contacto",
-      "destination": "/index.csr.html"
+      "destination": "/index.csr"
     }
   ],
   "redirects": [
