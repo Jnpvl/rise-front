@@ -75,6 +75,14 @@ export class SeoService {
       title: 'Servicios médicos en Hermosillo | Servicios RISE',
       description: 'Consulta general, podología, curaciones, análisis clínicos, antidoping y más en Servicios Médicos RISE, Hermosillo. Escríbenos por WhatsApp.',
       canonicalPath: '/servicios',
+      jsonLd: [{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${SITE_URL}/servicios` },
+        ],
+      }],
     };
   }
 
