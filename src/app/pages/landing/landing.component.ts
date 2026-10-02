@@ -1,8 +1,9 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   inject,
+  PLATFORM_ID,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -12,8 +13,10 @@ import {
   ClinicSettingsService,
 } from '../../services/clinic-settings.service';
 import { WebInquiryService } from '../../services/web-inquiry.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { seoCopy } from '../../data/servicios-data';
+import { CLINIC_DEFAULTS, CLINIC_EMAIL, CLINIC_INSTAGRAM } from '../../core/clinic-defaults';
 
 const LANDING_SECTIONS = ['servicios', 'experiencia', 'agenda', 'contacto'] as const;
 type LandingSection = (typeof LANDING_SECTIONS)[number];
@@ -21,26 +24,26 @@ type LandingSection = (typeof LANDING_SECTIONS)[number];
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './landing.component.html',
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly location = inject(Location);
   private readonly router = inject(Router);
   private readonly clinicSettingsService = inject(ClinicSettingsService);
+  private readonly platformId = inject(PLATFORM_ID);
   private readonly webInquiryService = inject(WebInquiryService);
 
-  readonly currentYear = 2025;
+  readonly currentYear = new Date().getFullYear();
+  readonly homeCopy = seoCopy.home;
+  readonly servicePages = seoCopy.pages;
+  readonly whereWhenHtml = seoCopy.donde_cuando_html;
+  readonly clinicEmail = CLINIC_EMAIL;
+  readonly clinicInstagram = CLINIC_INSTAGRAM;
   submittingAppointment = false;
   submittingContact = false;
 
-  clinic: ClinicSettings = {
-    horario: '',
-    telefono: '',
-    whatsapp: '',
-    ubicacion: '',
-    facebookUrl: '',
-  };
+  clinic: ClinicSettings = { ...CLINIC_DEFAULTS };
 
   contactForm = {
     name: '',
@@ -58,7 +61,13 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   get whatsappHref(): string {
     const digits = this.clinic.whatsapp.replace(/\D/g, '');
-    return digits ? `https://wa.me/${digits}` : '';
+    if (!digits) return '';
+    return `https://wa.me/${digits.startsWith('52') ? digits : `52${digits}`}`;
+  }
+
+  serviceSummary(bodyHtml: string): string {
+    const firstParagraph = bodyHtml.match(/<p>([\s\S]*?)<\/p>/i)?.[1] ?? bodyHtml;
+    return firstParagraph.replace(/<[^>]+>/g, '').trim();
   }
 
   get facebookHref(): string {
@@ -73,10 +82,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private ignoreObserverUntil = 0;
 
   ngOnInit() {
-    void this.loadClinicSettings();
+    if (isPlatformBrowser(this.platformId)) void this.loadClinicSettings();
   }
 
   ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.currentPath = this.normalizePath(this.router.url);
     this.setupScrollSpy();
     queueMicrotask(() => this.scrollToPath(this.currentPath, false));
@@ -170,11 +180,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     try {
       const settings: ClinicSettings = await this.clinicSettingsService.get();
       this.clinic = {
-        horario: settings.horario ?? '',
-        telefono: settings.telefono ?? '',
-        whatsapp: settings.whatsapp ?? '',
-        ubicacion: settings.ubicacion ?? '',
-        facebookUrl: settings.facebookUrl ?? '',
+        horario: settings.horario || CLINIC_DEFAULTS.horario,
+        telefono: settings.telefono || CLINIC_DEFAULTS.telefono,
+        whatsapp: settings.whatsapp || CLINIC_DEFAULTS.whatsapp,
+        ubicacion: settings.ubicacion || CLINIC_DEFAULTS.ubicacion,
+        facebookUrl: settings.facebookUrl || CLINIC_DEFAULTS.facebookUrl,
       };
     } catch {
       // Keep empty placeholders if API is unavailable
@@ -182,6 +192,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setupScrollSpy() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const hero = document.getElementById('inicio');
     const sections = LANDING_SECTIONS.map((id) =>
       document.getElementById(id)
@@ -234,6 +245,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private scrollToPath(path: string, smooth: boolean) {
+    if (!isPlatformBrowser(this.platformId)) return;
     const id = path === '/' ? 'inicio' : path.replace(/^\//, '');
     const el = document.getElementById(id);
     if (!el) return;

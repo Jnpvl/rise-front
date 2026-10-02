@@ -1,0 +1,21 @@
+<main class="bg-canvas text-ink min-h-screen px-5 py-16 md:py-24">
+  <div class="max-w-5xl mx-auto">
+    <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted">
+      <a href="/" class="hover:text-accent-dark">Inicio</a> <span aria-hidden="true">›</span> Servicios
+    </nav>
+    <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Servicios médicos en Hermosillo</h1>
+    <p class="text-muted text-lg leading-relaxed max-w-3xl mb-10">
+      Conoce los servicios de Servicios Médicos RISE y escríbenos por WhatsApp para recibir información detallada.
+    </p>
+    <section aria-labelledby="servicios-disponibles">
+      <h2 id="servicios-disponibles" class="font-display text-2xl md:text-3xl font-bold mb-6">Servicios disponibles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a *ngFor="let page of pages" [routerLink]="page.slug" [href]="page.slug" class="block rounded-2xl border border-line bg-white p-6 no-underline hover:border-brand transition">
+          <h3 class="font-display text-xl font-bold text-ink mb-2">{{ page.name }}</h3>
+          <p class="text-muted leading-relaxed m-0">{{ summary(page.body_html) }}</p>
+        </a>
+      </div>
+    </section>
+    <aside class="mt-12" [innerHTML]="whereWhenHtml"></aside>
+  </div>
+</main>

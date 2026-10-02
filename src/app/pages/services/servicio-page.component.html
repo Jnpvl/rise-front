@@ -1,0 +1,35 @@
+<main class="bg-canvas text-ink min-h-screen px-5 py-12 md:py-20">
+  <div class="max-w-4xl mx-auto">
+    <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted">
+      <a href="/" routerLink="/" class="hover:text-accent-dark">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <a href="/servicios" routerLink="/servicios" class="hover:text-accent-dark">Servicios</a>
+      <span aria-hidden="true">›</span>
+      <span>{{ page.name }}</span>
+    </nav>
+
+    <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">{{ page.h1 }}</h1>
+    <a class="btn-brand inline-flex mb-8" [href]="page.cta.wa_url" target="_blank" rel="noopener">{{ page.cta.text }}</a>
+
+    <section aria-label="Información del servicio" class="prose-rise leading-relaxed" [innerHTML]="firstBlockHtml"></section>
+    <a class="btn-brand inline-flex my-8" [href]="page.cta.wa_url" target="_blank" rel="noopener">{{ page.cta.text }}</a>
+    <section class="prose-rise leading-relaxed" [innerHTML]="remainingBodyHtml"></section>
+
+    <section aria-labelledby="preguntas-frecuentes" class="mt-12">
+      <h2 id="preguntas-frecuentes" class="font-display text-2xl md:text-3xl font-bold mb-5">Preguntas frecuentes</h2>
+      <details *ngFor="let faq of page.faqs" class="border-b border-line py-4">
+        <summary class="font-semibold cursor-pointer">{{ faq.q }}</summary>
+        <p class="text-muted leading-relaxed mt-3 mb-0">{{ faq.a }}</p>
+      </details>
+    </section>
+
+    <section *ngIf="relatedPages.length" aria-labelledby="tambien-te-puede-interesar" class="mt-12">
+      <h2 id="tambien-te-puede-interesar" class="font-display text-2xl font-bold mb-4">También te puede interesar</h2>
+      <ul class="list-disc pl-5 space-y-2">
+        <li *ngFor="let related of relatedPages"><a [href]="related.slug" [routerLink]="related.slug">{{ related.name }}</a></li>
+      </ul>
+    </section>
+
+    <aside class="mt-12" [innerHTML]="whereWhenHtml"></aside>
+  </div>
+</main>

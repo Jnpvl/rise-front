@@ -4,6 +4,12 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 
 const loadLanding = () =>
   import('./pages/landing/landing.component').then((m) => m.LandingComponent);
+const loadServicesHub = () =>
+  import('./pages/services/services-hub.component').then((m) => m.ServicesHubComponent);
+const loadServicePage = () =>
+  import('./pages/services/servicio-page.component').then((m) => m.ServicioPageComponent);
+const loadNotFound = () =>
+  import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent);
 
 export const routes: Routes = [
   {
@@ -12,7 +18,11 @@ export const routes: Routes = [
   },
   {
     path: 'servicios',
-    loadComponent: loadLanding,
+    loadComponent: loadServicesHub,
+  },
+  {
+    path: 'servicios/:slug',
+    loadComponent: loadServicePage,
   },
   {
     path: 'experiencia',
@@ -187,5 +197,5 @@ export const routes: Routes = [
   { path: 'schedule', redirectTo: 'admin/schedule' },
   { path: 'consultation', redirectTo: 'admin/consultation' },
   { path: 'staff', redirectTo: 'admin/staff' },
-  { path: '**', redirectTo: '' },
+  { path: '**', loadComponent: loadNotFound },
 ];

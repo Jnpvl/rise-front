@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ApiclientService } from './apiclient.service';
 import { environment } from '../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
@@ -10,9 +11,12 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   getToken(): string | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
     const token = localStorage.getItem('token');
     return token && !this.isTokenExpired(token) ? token : null;
   }
+
+  private readonly platformId = inject(PLATFORM_ID);
 
   constructor(
     private apiClient :  ApiclientService
@@ -21,7 +25,7 @@ export class AuthService {
   public async login(credentials: { email: string, password: string }): Promise<any> {
     const response = await this.apiClient.post<any>('staff/login', credentials, environment.apiUrl);
   
-    localStorage.setItem('token', response.token);
+    if (isPlatformBrowser(this.platformId)) localStorage.setItem('token', response.token);
   
     return response;
   }
@@ -40,11 +44,13 @@ export class AuthService {
   }
 
   getUser(): any | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
   
   logout(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }

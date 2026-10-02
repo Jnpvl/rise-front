@@ -1,0 +1,950 @@
+{
+  "meta": {
+    "brand": "Servicios Médicos RISE",
+    "lang": "es-MX",
+    "base_url": "https://serviciosmedicosrise.com",
+    "generated": "2026-10-02",
+    "version": "v2 (menos específico, más informativo)",
+    "note": "Sin cifras de costo. Sin datos de volumen de búsqueda. Contenido sujeto a confirmación de JP en los puntos marcados."
+  },
+  "donde_cuando_html": "<aside class=\"donde-cuando\">\n  <h3>Dónde y cuándo</h3>\n  <p><strong>Servicios Médicos RISE</strong><br>\n  C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo, Sonora.<br>\n  Lunes a viernes de 9:00 a 13:00.<br>\n  WhatsApp y teléfono: <a href=\"tel:+526623533813\">662 353 3813</a><br>\n  Correo: <a href=\"mailto:serviciomedicorise@gmail.com\">serviciomedicorise@gmail.com</a></p>\n  <p><a class=\"btn-wa\" href=\"https://wa.me/526623533813\" target=\"_blank\" rel=\"noopener\">Escríbenos por WhatsApp</a></p>\n</aside>",
+  "home": {
+    "title": "Servicios Médicos RISE | Consultorio en Hermosillo, Sonora",
+    "meta": "Consultorio en Hermosillo: consulta general, podología, curaciones, análisis clínicos y más. Lunes a viernes de 9:00 a 13:00. Escríbenos por WhatsApp.",
+    "h1": "Servicios Médicos RISE, tu consultorio en Hermosillo",
+    "intro": [
+      "Levántate, recupérate, mejora. En Servicios Médicos RISE te recibimos con atención cercana, clara y profesional, con tiempo para escucharte y resolver tus dudas.",
+      "Ofrecemos consulta de medicina general, podología y revisión de pie diabético, curaciones, análisis clínicos, antidoping, yesos e inmovilización, y suturas y retiro de puntos. En cada caso, el médico valora y decide qué procede.",
+      "Estamos en la Col. Constitución, en Hermosillo, de lunes a viernes de 9:00 a 13:00. Para información detallada de cualquier servicio, escríbenos por WhatsApp al 662 353 3813. Ante una urgencia grave, acude a urgencias o llama al 911."
+    ],
+    "h2s": [
+      "Servicios en Hermosillo (conserva «Servicios pensados para tu consulta» si prefieres el texto actual)",
+      "Una visita simple, de principio a fin (texto actual, se conserva)",
+      "Preguntas frecuentes (opcional: 4 preguntas generales, ver nota)",
+      "Dónde y cuándo",
+      "Solicita tu cita (texto actual, se conserva)",
+      "¿Tienes dudas? Escríbenos (texto actual, se conserva)"
+    ],
+    "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20los%20servicios%20de%20Servicios%20M%C3%A9dicos%20RISE.",
+    "jsonld_medicalclinic": {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "@id": "https://serviciosmedicosrise.com/#clinica",
+      "name": "Servicios Médicos RISE",
+      "url": "https://serviciosmedicosrise.com/",
+      "logo": "https://serviciosmedicosrise.com/logo-clear.png",
+      "slogan": "Levántate, recupérate, mejora.",
+      "description": "Consultorio en Hermosillo, Sonora: consulta de medicina general, podología y pie diabético, curaciones, análisis clínicos, antidoping, yesos y retiro de puntos.",
+      "telephone": "+52 662 353 3813",
+      "email": "serviciomedicorise@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C. Benito Juárez 177, Col. Constitución",
+        "addressLocality": "Hermosillo",
+        "addressRegion": "Sonora",
+        "postalCode": "83150",
+        "addressCountry": "MX"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Hermosillo"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61578185986868",
+        "https://www.instagram.com/serviciosmedicos_rise"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "key": "podologia",
+      "name": "Podología y pie diabético",
+      "slug": "/servicios/podologia-pie-diabetico",
+      "url": "https://serviciosmedicosrise.com/servicios/podologia-pie-diabetico",
+      "title": "Podología y pie diabético en Hermosillo | Servicios RISE",
+      "meta": "Atención podológica y revisión de pie diabético en Hermosillo, con valoración según tu caso. Escríbenos por WhatsApp 662 353 3813 y te orientamos.",
+      "h1": "Podología y pie diabético en Hermosillo",
+      "h2": [
+        "Cuidado de pies y uñas",
+        "Pie diabético: revisión y prevención",
+        "Qué esperar en el consultorio"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE ofrecemos atención podológica en Hermosillo: revisamos tus pies y uñas y, según tu caso, te orientamos sobre el cuidado que corresponde. Si vives con diabetes, también damos revisión y cuidado preventivo del pie, con indicaciones claras para el día a día.</p>\n<h2>Cuidado de pies y uñas</h2>\n<p>Es una opción para quienes tienen molestias en los pies o las uñas, o simplemente quieren una revisión. En la valoración, el médico decide qué procede en cada situación.</p>\n<h2>Pie diabético: revisión y prevención</h2>\n<p>Revisar los pies con regularidad ayuda a notar cambios a tiempo. Consúltanos si observas:</p>\n<ul>\n<li>heridas o ampollas que tardan en sanar;</li>\n<li>enrojecimiento, hinchazón o calor en la zona;</li>\n<li>cambios de color, mal olor o secreción;</li>\n<li>hormigueo o pérdida de sensibilidad.</li>\n</ul>\n<h2>Qué esperar en el consultorio</h2>\n<p>Te recibimos con calma, revisamos la zona, escuchamos tus dudas y te explicamos los cuidados y los siguientes pasos. Si tienes fiebre, dolor intenso o una herida que empeora rápido, acude a urgencias o llama al 911.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20podolog%C3%ADa%20o%20revisi%C3%B3n%20de%20pie%20diab%C3%A9tico%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 178,
+      "faqs": [
+        {
+          "q": "¿Qué incluye la atención de podología?",
+          "a": "Incluye la revisión de tus pies y uñas y orientación sobre su cuidado. Lo que se realiza depende de tu caso y de la valoración del médico. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Atienden pie diabético?",
+          "a": "Ofrecemos revisión y cuidado preventivo del pie en personas con diabetes. No sustituye el control médico de tu diabetes. Si tienes una herida o signos de alarma, escríbenos cuanto antes. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Cada cuánto debo revisar mis pies si tengo diabetes?",
+          "a": "Depende de tu caso, y el médico te indica la frecuencia adecuada. Como hábito, observa tus pies a diario en casa y consulta si notas cambios. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Pide información por WhatsApp",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20podolog%C3%ADa%20o%20revisi%C3%B3n%20de%20pie%20diab%C3%A9tico%20en%20Servicios%20M%C3%A9dicos%20RISE."
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué incluye la atención de podología?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Incluye la revisión de tus pies y uñas y orientación sobre su cuidado. Lo que se realiza depende de tu caso y de la valoración del médico. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Atienden pie diabético?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrecemos revisión y cuidado preventivo del pie en personas con diabetes. No sustituye el control médico de tu diabetes. Si tienes una herida o signos de alarma, escríbenos cuanto antes. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cada cuánto debo revisar mis pies si tengo diabetes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende de tu caso, y el médico te indica la frecuencia adecuada. Como hábito, observa tus pies a diario en casa y consulta si notas cambios. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Podología y pie diabético",
+            "item": "https://serviciosmedicosrise.com/servicios/podologia-pie-diabetico"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Podología y revisión de pie diabético». Sin medicalSpecialty hasta confirmar quién atiende.",
+      "related": [
+        "curaciones",
+        "consulta-medicina-general",
+        "analisis-clinicos"
+      ]
+    },
+    {
+      "key": "curaciones",
+      "name": "Curaciones",
+      "slug": "/servicios/curaciones",
+      "url": "https://serviciosmedicosrise.com/servicios/curaciones",
+      "title": "Curaciones de heridas en Hermosillo | Servicios Médicos RISE",
+      "meta": "Curaciones de heridas menores en Hermosillo, con valoración médica e indicaciones claras. Lunes a viernes. Escríbenos por WhatsApp y te orientamos.",
+      "h1": "Curaciones en Hermosillo",
+      "h2": [
+        "Qué puedes consultar",
+        "Qué esperar en el consultorio",
+        "Señales para consultar pronto"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE realizamos curaciones en Hermosillo: limpieza y cuidado de heridas menores y cambio de vendajes o apósitos, siempre con valoración del médico. Es un servicio pensado para quien necesita atender una herida o darle seguimiento con indicaciones claras.</p>\n<h2>Qué puedes consultar</h2>\n<p>Heridas menores o el seguimiento de una herida que ya fue atendida. El médico valora cada caso y decide qué procede.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Revisamos la zona, realizamos el cuidado que corresponda y te explicamos cómo mantenerla limpia y protegida en casa. Si tienes diabetes, consúltanos pronto cualquier herida, sobre todo en los pies.</p>\n<h2>Señales para consultar pronto</h2>\n<ul>\n<li>enrojecimiento que aumenta o hinchazón;</li>\n<li>calor, secreción o mal olor;</li>\n<li>fiebre o dolor que va en aumento.</li>\n</ul>\n<p>Heridas profundas, sangrado que no se detiene o lesiones graves requieren urgencias: acude o llama al 911.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20curaciones%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 150,
+      "faqs": [
+        {
+          "q": "¿Qué heridas atienden?",
+          "a": "Atendemos curaciones de heridas menores y seguimiento de heridas ya atendidas. Las lesiones graves, profundas o con sangrado abundante deben ir a urgencias o al 911. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Cuántas curaciones voy a necesitar?",
+          "a": "Depende de tu caso: del tipo de herida y de cómo evolucione. El médico te indicará si necesitas volver a revisión. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Puedo ir si tengo diabetes?",
+          "a": "Sí, y te recomendamos consultar pronto cualquier herida, especialmente en los pies, para que sea valorada. Te orientamos sobre cómo atenderte. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Pide información por WhatsApp",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20curaciones%20en%20Servicios%20M%C3%A9dicos%20RISE."
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué heridas atienden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Atendemos curaciones de heridas menores y seguimiento de heridas ya atendidas. Las lesiones graves, profundas o con sangrado abundante deben ir a urgencias o al 911. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuántas curaciones voy a necesitar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende de tu caso: del tipo de herida y de cómo evolucione. El médico te indicará si necesitas volver a revisión. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo ir si tengo diabetes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, y te recomendamos consultar pronto cualquier herida, especialmente en los pies, para que sea valorada. Te orientamos sobre cómo atenderte. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Curaciones",
+            "item": "https://serviciosmedicosrise.com/servicios/curaciones"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Curaciones de heridas menores».",
+      "related": [
+        "podologia-pie-diabetico",
+        "yesos-puntos",
+        "consulta-medicina-general"
+      ]
+    },
+    {
+      "key": "analisis",
+      "name": "Análisis clínicos",
+      "slug": "/servicios/analisis-clinicos",
+      "url": "https://serviciosmedicosrise.com/servicios/analisis-clinicos",
+      "title": "Análisis clínicos en Hermosillo | Servicios Médicos RISE",
+      "meta": "Análisis clínicos en Hermosillo: una variedad de estudios para apoyar tu valoración. Pide información detallada por WhatsApp 662 353 3813.",
+      "h1": "Análisis clínicos en Hermosillo",
+      "h2": [
+        "¿A quién le puede servir?",
+        "Qué esperar en el consultorio",
+        "Pregunta por el estudio que necesitas"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE puedes consultar por análisis clínicos en Hermosillo. Son estudios que ayudan al médico a conocer mejor tu estado de salud y a dar seguimiento a tu caso. Ofrecemos una variedad de estudios, y el médico te orienta sobre cuáles convienen según tu situación.</p>\n<h2>¿A quién le puede servir?</h2>\n<p>A personas que cuentan con una orden médica, que quieren dar seguimiento a su salud o que no saben qué estudio necesitan. Si tienes dudas, puedes comentarlo en una consulta de medicina general.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Te explicamos cómo agendar y qué hacer antes de tu visita, porque algunos estudios requieren preparación previa. Después te indicamos los siguientes pasos para continuar con tu atención.</p>\n<h2>Pregunta por el estudio que necesitas</h2>\n<p>Escríbenos con el nombre del estudio, o con tu orden médica si la tienes, y te decimos cómo agendar.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20an%C3%A1lisis%20cl%C3%ADnicos%20en%20Servicios%20M%C3%A9dicos%20RISE.%20Me%20interesa%20el%20estudio%3A%20\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 155,
+      "faqs": [
+        {
+          "q": "¿Qué análisis clínicos ofrecen?",
+          "a": "Ofrecemos una variedad de estudios para apoyar la valoración y el seguimiento de tu salud. Cuáles convienen depende de tu caso. Pregunta por el estudio que necesitas. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito orden médica?",
+          "a": "Depende del estudio y de tu caso. Si tienes una orden, compártela; si no, el médico puede orientarte en consulta sobre qué estudios convienen. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Hay que prepararse antes de un estudio?",
+          "a": "Algunos estudios requieren preparación previa y otros no; depende de cada caso. Te indicamos qué hacer antes de venir. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Pregunta por el estudio que necesitas",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20an%C3%A1lisis%20cl%C3%ADnicos%20en%20Servicios%20M%C3%A9dicos%20RISE.%20Me%20interesa%20el%20estudio%3A%20"
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué análisis clínicos ofrecen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrecemos una variedad de estudios para apoyar la valoración y el seguimiento de tu salud. Cuáles convienen depende de tu caso. Pregunta por el estudio que necesitas. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito orden médica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende del estudio y de tu caso. Si tienes una orden, compártela; si no, el médico puede orientarte en consulta sobre qué estudios convienen. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay que prepararse antes de un estudio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Algunos estudios requieren preparación previa y otros no; depende de cada caso. Te indicamos qué hacer antes de venir. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Análisis clínicos",
+            "item": "https://serviciosmedicosrise.com/servicios/analisis-clinicos"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Análisis clínicos». No se publica nombre de laboratorio, lista de estudios ni plazos.",
+      "related": [
+        "consulta-medicina-general",
+        "podologia-pie-diabetico",
+        "antidoping"
+      ]
+    },
+    {
+      "key": "antidoping",
+      "name": "Antidoping",
+      "slug": "/servicios/antidoping",
+      "url": "https://serviciosmedicosrise.com/servicios/antidoping",
+      "title": "Prueba antidoping en Hermosillo | Servicios Médicos RISE",
+      "meta": "Servicio de antidoping en Hermosillo. Resolvemos tus dudas con atención clara; pide información detallada por WhatsApp 662 353 3813.",
+      "h1": "Prueba antidoping en Hermosillo",
+      "h2": [
+        "¿Para quién es?",
+        "Qué esperar en el consultorio",
+        "Antes de venir"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE ofrecemos el servicio de antidoping en Hermosillo. Es una prueba que algunas empresas, escuelas o trámites piden como parte de un proceso, y aquí puedes resolver tus dudas con atención cercana y clara.</p>\n<h2>¿Para quién es?</h2>\n<p>Para personas que necesitan realizarse una prueba antidoping para un trámite, un trabajo u otro proceso y quieren saber cómo se atiende en el consultorio.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Te atendemos en horario de consulta, resolvemos tus dudas y te explicamos cómo continuar. Conviene escribirnos antes de venir para confirmar disponibilidad y evitar esperas innecesarias.</p>\n<h2>Antes de venir</h2>\n<p>Cuéntanos por WhatsApp para qué necesitas la prueba y con gusto te damos la información del servicio según tu caso.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20el%20servicio%20de%20antidoping%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 131,
+      "faqs": [
+        {
+          "q": "¿Ofrecen pruebas antidoping?",
+          "a": "Sí, contamos con el servicio de antidoping en nuestro consultorio de Hermosillo. Los detalles dependen de lo que necesites, por eso te los compartimos de forma personalizada. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Qué necesito para hacerme la prueba?",
+          "a": "Depende de tu caso y de para qué la necesites. Te lo explicamos de forma personalizada antes de que vengas, para que llegues con la información correcta. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Puedo preguntar antes de ir?",
+          "a": "Sí. Escríbenos, cuéntanos para qué necesitas la prueba y te orientamos antes de que vengas. Atendemos de lunes a viernes de 9:00 a 13:00. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Pide información por WhatsApp",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20el%20servicio%20de%20antidoping%20en%20Servicios%20M%C3%A9dicos%20RISE."
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Ofrecen pruebas antidoping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, contamos con el servicio de antidoping en nuestro consultorio de Hermosillo. Los detalles dependen de lo que necesites, por eso te los compartimos de forma personalizada. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué necesito para hacerme la prueba?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende de tu caso y de para qué la necesites. Te lo explicamos de forma personalizada antes de que vengas, para que llegues con la información correcta. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo preguntar antes de ir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Escríbenos, cuéntanos para qué necesitas la prueba y te orientamos antes de que vengas. Atendemos de lunes a viernes de 9:00 a 13:00. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Antidoping",
+            "item": "https://serviciosmedicosrise.com/servicios/antidoping"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Prueba antidoping». No se publican detalles de la prueba.",
+      "related": [
+        "analisis-clinicos",
+        "consulta-medicina-general"
+      ]
+    },
+    {
+      "key": "yesos",
+      "name": "Yesos, férulas y retiro de puntos",
+      "slug": "/servicios/yesos-puntos",
+      "url": "https://serviciosmedicosrise.com/servicios/yesos-puntos",
+      "title": "Yesos, férulas y retiro de puntos en Hermosillo | RISE",
+      "meta": "Colocación de yeso o férula y retiro de puntos en Hermosillo, con valoración del médico. Escríbenos por WhatsApp 662 353 3813 y te orientamos.",
+      "h1": "Yesos, férulas y retiro de puntos en Hermosillo",
+      "h2": [
+        "Yesos y férulas",
+        "Suturas y retiro de puntos",
+        "Qué esperar en el consultorio"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE te atendemos en Hermosillo cuando necesitas inmovilización con yeso o férula, suturas (puntos) en heridas menores o retiro de puntos. Todo parte de una valoración del médico, quien decide qué procede según tu situación.</p>\n<h2>Yesos y férulas</h2>\n<p>La inmovilización ayuda a mantener estable la zona lesionada. El médico valora si es adecuada en tu caso y te da indicaciones de cuidado. Si sospechas una lesión grave, acude a urgencias o llama al 911.</p>\n<h2>Suturas y retiro de puntos</h2>\n<p>Valoramos heridas menores para saber si requieren puntos y, cuando corresponde, realizamos el retiro de puntos o suturas. Cada herida evoluciona distinto, por eso el médico te indica cuándo es el momento adecuado.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Revisamos tu caso, te explicamos lo que procede y te damos indicaciones claras. Sangrado abundante, deformidad o dolor intenso son motivo de urgencias.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20yesos%2C%20f%C3%A9rulas%20o%20retiro%20de%20puntos%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 155,
+      "faqs": [
+        {
+          "q": "¿Ponen yesos o férulas?",
+          "a": "Ofrecemos colocación de yeso o férula para inmovilización, siempre tras la valoración del médico, quien decide si es adecuada en tu caso. En lesiones graves acude a urgencias o llama al 911. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Pueden retirar mis puntos?",
+          "a": "Ofrecemos retiro de puntos o suturas. El médico valora la herida y decide si es el momento de retirarlos, según tu caso. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Atienden heridas que necesitan puntos?",
+          "a": "Valoramos heridas menores para determinar si requieren suturas. Las heridas profundas, con sangrado abundante o de gravedad deben atenderse en urgencias o llamando al 911. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Pide información por WhatsApp",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20yesos%2C%20f%C3%A9rulas%20o%20retiro%20de%20puntos%20en%20Servicios%20M%C3%A9dicos%20RISE."
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Ponen yesos o férulas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrecemos colocación de yeso o férula para inmovilización, siempre tras la valoración del médico, quien decide si es adecuada en tu caso. En lesiones graves acude a urgencias o llama al 911. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Pueden retirar mis puntos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrecemos retiro de puntos o suturas. El médico valora la herida y decide si es el momento de retirarlos, según tu caso. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Atienden heridas que necesitan puntos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Valoramos heridas menores para determinar si requieren suturas. Las heridas profundas, con sangrado abundante o de gravedad deben atenderse en urgencias o llamando al 911. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Yesos, férulas y retiro de puntos",
+            "item": "https://serviciosmedicosrise.com/servicios/yesos-puntos"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Inmovilización con yeso o férula; suturas y retiro de puntos». Valoración médica siempre.",
+      "related": [
+        "curaciones",
+        "consulta-medicina-general"
+      ]
+    },
+    {
+      "key": "consulta",
+      "name": "Consulta de medicina general",
+      "slug": "/servicios/consulta-medicina-general",
+      "url": "https://serviciosmedicosrise.com/servicios/consulta-medicina-general",
+      "title": "Médico general en Hermosillo | Servicios Médicos RISE",
+      "meta": "Consulta de medicina general en Hermosillo con atención cercana y clara. Lunes a viernes de 9:00 a 13:00. Escríbenos por WhatsApp para agendar.",
+      "h1": "Consulta de medicina general en Hermosillo",
+      "h2": [
+        "Qué puedes platicar en tu consulta",
+        "Una visita clara y ordenada",
+        "Importante"
+      ],
+      "body_html": "<p>En Servicios Médicos RISE te atendemos en consulta de medicina general en Hermosillo, con tiempo para escucharte y resolver tus dudas. Es un buen punto de partida cuando no sabes con quién acudir o quieres una valoración de tu salud.</p>\n<h2>Qué puedes platicar en tu consulta</h2>\n<p>Puedes consultar por molestias, dudas sobre tu salud, seguimiento de indicaciones previas y orientación sobre estudios. El médico te explica y define el plan según tu caso. Cuando es necesario, te orientamos para acudir con otro especialista o servicio.</p>\n<h2>Una visita clara y ordenada</h2>\n<p>Agenda por WhatsApp, acude en horario de consulta y recibe indicaciones claras. Si necesitas curaciones, análisis clínicos o podología, también puedes preguntar por ellos en la misma conversación.</p>\n<h2>Importante</h2>\n<p>La consulta no sustituye la atención de urgencias. Ante una urgencia grave, acude a urgencias o llama al 911.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20agendar%20una%20consulta%20de%20medicina%20general%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 150,
+      "faqs": [
+        {
+          "q": "¿Qué atiende el médico general?",
+          "a": "Atiende consultas de salud general: molestias, dudas y seguimiento. Si tu caso requiere otro especialista o estudios, te orientamos. El médico decide el plan según tu valoración. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Necesito cita?",
+          "a": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+        },
+        {
+          "q": "¿Qué debo llevar a la consulta?",
+          "a": "Si los tienes, lleva estudios previos, recetas o la lista de medicamentos que tomas, para que el médico cuente con más información. Si no los tienes, igual puedes escribirnos. Pide información detallada por WhatsApp al 662 353 3813."
+        },
+        {
+          "q": "¿Atienden urgencias?",
+          "a": "No somos un hospital ni un servicio de urgencias. Si tienes una urgencia grave, como dificultad para respirar o dolor fuerte en el pecho, acude a urgencias o llama al 911. Pide información detallada por WhatsApp al 662 353 3813."
+        }
+      ],
+      "cta": {
+        "text": "Agenda tu consulta por WhatsApp",
+        "wa_url": "https://wa.me/526623533813?text=Hola%2C%20quiero%20agendar%20una%20consulta%20de%20medicina%20general%20en%20Servicios%20M%C3%A9dicos%20RISE."
+      },
+      "jsonld_faqpage": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué atiende el médico general?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Atiende consultas de salud general: molestias, dudas y seguimiento. Si tu caso requiere otro especialista o estudios, te orientamos. El médico decide el plan según tu valoración. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito cita?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te recomendamos escribirnos por WhatsApp para confirmar disponibilidad antes de venir. Atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Pide información detallada al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué debo llevar a la consulta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si los tienes, lleva estudios previos, recetas o la lista de medicamentos que tomas, para que el médico cuente con más información. Si no los tienes, igual puedes escribirnos. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Atienden urgencias?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No somos un hospital ni un servicio de urgencias. Si tienes una urgencia grave, como dificultad para respirar o dolor fuerte en el pecho, acude a urgencias o llama al 911. Pide información detallada por WhatsApp al 662 353 3813."
+            }
+          }
+        ]
+      },
+      "jsonld_breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://serviciosmedicosrise.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Servicios",
+            "item": "https://serviciosmedicosrise.com/servicios"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Consulta de medicina general",
+            "item": "https://serviciosmedicosrise.com/servicios/consulta-medicina-general"
+          }
+        ]
+      },
+      "schema_note": "Service: serviceType «Consulta de medicina general».",
+      "related": [
+        "podologia-pie-diabetico",
+        "curaciones",
+        "analisis-clinicos",
+        "antidoping",
+        "yesos-puntos"
+      ]
+    }
+  ],
+  "gbp": {
+    "description": "Servicios Médicos RISE es un consultorio en Hermosillo, Sonora, donde te recibimos con atención cercana y clara, con tiempo para escuchar tus dudas. Ofrecemos consulta de medicina general, podología y revisión de pie diabético, curaciones, análisis clínicos, antidoping, yesos e inmovilización, suturas y retiro de puntos, sueros y procedimientos menores, según valoración del médico. Estamos en C. Benito Juárez 177, Col. Constitución. Atendemos de lunes a viernes de 9:00 a 13:00. Para información detallada de cada servicio, escríbenos por WhatsApp al 662 353 3813: resolvemos tus dudas antes de tu visita. Levántate, recupérate, mejora. En urgencias graves, acude a urgencias o llama al 911.",
+    "description_length": 695,
+    "services": [
+      {
+        "name": "Consulta de medicina general",
+        "description": "Consulta médica con tiempo para escucharte. El médico te valora y define el plan según tu caso. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 147
+      },
+      {
+        "name": "Podología",
+        "description": "Revisión y cuidado de pies y uñas, según tu caso. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 101
+      },
+      {
+        "name": "Revisión de pie diabético",
+        "description": "Revisión y cuidado preventivo del pie para personas con diabetes. Complementa, no sustituye, tu control médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 163
+      },
+      {
+        "name": "Curaciones",
+        "description": "Cuidado de heridas menores y cambio de vendajes o apósitos, con valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 138
+      },
+      {
+        "name": "Análisis clínicos",
+        "description": "Una variedad de estudios que apoyan la valoración y el seguimiento de tu salud. Pregunta por el estudio que necesitas por WhatsApp al 662 353 3813.",
+        "length": 147
+      },
+      {
+        "name": "Prueba antidoping",
+        "description": "Servicio de antidoping para trámites y procesos que lo solicitan. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 117
+      },
+      {
+        "name": "Yesos y férulas",
+        "description": "Colocación de yeso o férula para inmovilización, tras la valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 131
+      },
+      {
+        "name": "Suturas y retiro de puntos",
+        "description": "Valoración de heridas menores, suturas cuando el médico lo indique y retiro de puntos. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 138
+      },
+      {
+        "name": "Sueros [verificar con JP antes de publicar]",
+        "description": "Aplicación de sueros según valoración y criterio del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 112
+      },
+      {
+        "name": "Procedimientos menores [verificar con JP antes de publicar]",
+        "description": "Procedimientos menores realizados tras la valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 116
+      }
+    ],
+    "categories": [
+      {
+        "tipo": "Primaria (sugerida)",
+        "categoria": "Médico general (en inglés: General practitioner)",
+        "nota": "Verificar en GBP. El instructivo de JP propone «Consultorio médico». Elegir la que GBP ofrezca y que mejor describa el consultorio; la ficha hoy muestra «Healthcare Clinic»."
+      },
+      {
+        "tipo": "Adicional",
+        "categoria": "Podólogo (Podiatrist)",
+        "nota": "Verificar en GBP. Solo si la atención podológica es parte estable del servicio."
+      },
+      {
+        "tipo": "Adicional",
+        "categoria": "Clínica médica / Centro médico",
+        "nota": "Verificar en GBP."
+      },
+      {
+        "tipo": "Adicional",
+        "categoria": "Laboratorio de análisis clínicos (Medical laboratory)",
+        "nota": "Verificar en GBP y NO usar a menos que JP confirme que aplica; puede generar expectativas de lo que el consultorio no es."
+      },
+      {
+        "tipo": "Adicional",
+        "categoria": "Servicio de curaciones / Servicio de enfermería",
+        "nota": "Probablemente no existan como categoría exacta. Verificar en GBP; si no existen, listar «Curaciones» solo como servicio."
+      }
+    ],
+    "qa": [
+      {
+        "q": "¿Cuál es el horario de atención?",
+        "a": "Atendemos de lunes a viernes de 9:00 a 13:00. Te recomendamos escribirnos por WhatsApp al 662 353 3813 para confirmar disponibilidad antes de venir."
+      },
+      {
+        "q": "¿Dónde están ubicados?",
+        "a": "Estamos en C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo, Sonora. Para información detallada, escríbenos por WhatsApp al 662 353 3813."
+      },
+      {
+        "q": "¿Atienden pie diabético?",
+        "a": "Sí, ofrecemos revisión y cuidado preventivo del pie, según tu caso. Pide información detallada por WhatsApp al 662 353 3813. Si tienes fiebre o una herida que empeora, acude a urgencias."
+      },
+      {
+        "q": "¿Hacen pruebas antidoping?",
+        "a": "Sí, contamos con el servicio de antidoping. Los detalles se comparten de forma personalizada: pide información detallada por WhatsApp al 662 353 3813."
+      },
+      {
+        "q": "¿Hacen análisis clínicos?",
+        "a": "Sí, ofrecemos una variedad de estudios. Pregunta por el estudio que necesitas y pide información detallada por WhatsApp al 662 353 3813."
+      }
+    ],
+    "posts": [
+      {
+        "tema": "Horario y WhatsApp",
+        "texto": "Levántate, recupérate, mejora. Te atendemos de lunes a viernes de 9:00 a 13:00 en C. Benito Juárez 177, Col. Constitución, Hermosillo. Para información detallada, escríbenos por WhatsApp al 662 353 3813.",
+        "boton": "Botón: «Enviar mensaje» / «Más información» (a WhatsApp)"
+      },
+      {
+        "tema": "Cuidado de tus pies",
+        "texto": "¿Vives con diabetes? Revisar tus pies con regularidad ayuda a notar cambios a tiempo. En Servicios Médicos RISE ofrecemos revisión y cuidado preventivo. Pide información detallada por WhatsApp al 662 353 3813.",
+        "boton": "Botón: «Más información» (a /servicios/podologia-pie-diabetico)"
+      },
+      {
+        "tema": "Análisis clínicos",
+        "texto": "¿Necesitas un análisis clínico? Ofrecemos una variedad de estudios. Pregunta por el estudio que necesitas y pide información detallada por WhatsApp al 662 353 3813. Lunes a viernes de 9:00 a 13:00.",
+        "boton": "Botón: «Más información» (a /servicios/analisis-clinicos)"
+      }
+    ]
+  },
+  "pendientes": [
+    {
+      "estado": "resuelto",
+      "texto": "1. Antidoping (detalle): RESUELTO — no se publica el detalle. El copy solo dice que el servicio existe y que se pide información por WhatsApp al 662 353 3813."
+    },
+    {
+      "estado": "resuelto",
+      "texto": "2. Laboratorio y plazos de análisis clínicos: RESUELTO — no se publica el detalle. Sin nombre de laboratorio, sin plazos y sin lista concreta de estudios."
+    },
+    {
+      "estado": "abierto",
+      "texto": "3. Sueros y procedimientos menores: ¿se listan públicamente? Hoy solo aparecen en GBP (marcados «verificar») y en la descripción de GBP. No tienen página propia."
+    },
+    {
+      "estado": "abierto",
+      "texto": "4. Medicamentos / entrega a domicilio: no se mencionan en ninguna página. Si JP quiere publicarlo, indicar el alcance exacto (sin costos ni plazos) y se agrega una pregunta al FAQ de consulta y a GBP."
+    },
+    {
+      "estado": "abierto",
+      "texto": "5. Quién atiende podología: si es un podólogo titulado, se puede usar «podólogo Hermosillo» en el texto; hoy el copy dice «atención podológica». Idem nombre y cédula del médico si se quieren mostrar (ayuda a la confianza)."
+    },
+    {
+      "estado": "abierto",
+      "texto": "6. Curaciones: el copy incluye «heridas menores» y «cambio de vendajes o apósitos» como descripción del servicio. Confirmar que encaja."
+    },
+    {
+      "estado": "abierto",
+      "texto": "7. Horario: confirmar 9:00 a 13:00 también en GBP (hoy dice 9:00–16:00). El sitio indica «mayor disponibilidad agendando cita»; el copy usa «confirma disponibilidad por WhatsApp»."
+    },
+    {
+      "estado": "abierto",
+      "texto": "8. Facebook oficial: el sitio y `profile.php?id=61578185986868` coinciden; la ficha de Maps usaba otro ID. Confirmar cuál es."
+    },
+    {
+      "estado": "abierto",
+      "texto": "9. Categorías de GBP: elegir las que GBP ofrezca realmente (marcadas «verificar en GBP»)."
+    },
+    {
+      "estado": "abierto",
+      "texto": "10. Geo / coordenadas: añadir al JSON-LD solo tras verificar el pin en Google Maps."
+    },
+    {
+      "estado": "abierto",
+      "texto": "11. Imagen OG (1200×630) y fotos reales (consultorio, fachada) para la ficha y el sitio."
+    }
+  ],
+  "keywords": [
+    {
+      "query": "servicios médicos Hermosillo",
+      "page": "Home /",
+      "note": "Consulta genérica de marca/categoría."
+    },
+    {
+      "query": "consultorio médico colonia Constitución Hermosillo",
+      "page": "Home /",
+      "note": "Intención local; reforzar con GBP y NAP idéntico."
+    },
+    {
+      "query": "médico general Hermosillo",
+      "page": "/servicios/consulta-medicina-general",
+      "note": ""
+    },
+    {
+      "query": "podología Hermosillo",
+      "page": "/servicios/podologia-pie-diabetico",
+      "note": "Competencia alta."
+    },
+    {
+      "query": "podólogo Hermosillo",
+      "page": "/servicios/podologia-pie-diabetico",
+      "note": "Usar «podólogo» en texto solo si JP confirma el perfil de quien atiende."
+    },
+    {
+      "query": "pie diabético Hermosillo",
+      "page": "/servicios/podologia-pie-diabetico",
+      "note": ""
+    },
+    {
+      "query": "curaciones Hermosillo",
+      "page": "/servicios/curaciones",
+      "note": ""
+    },
+    {
+      "query": "curación de heridas Hermosillo",
+      "page": "/servicios/curaciones",
+      "note": ""
+    },
+    {
+      "query": "análisis clínicos Hermosillo",
+      "page": "/servicios/analisis-clinicos",
+      "note": ""
+    },
+    {
+      "query": "estudios de laboratorio Hermosillo",
+      "page": "/servicios/analisis-clinicos",
+      "note": "Muy competida; no presentar el consultorio como laboratorio."
+    },
+    {
+      "query": "antidoping Hermosillo",
+      "page": "/servicios/antidoping",
+      "note": ""
+    },
+    {
+      "query": "prueba antidoping Hermosillo",
+      "page": "/servicios/antidoping",
+      "note": ""
+    },
+    {
+      "query": "yeso o férula Hermosillo",
+      "page": "/servicios/yesos-puntos",
+      "note": ""
+    },
+    {
+      "query": "retiro de puntos Hermosillo",
+      "page": "/servicios/yesos-puntos",
+      "note": ""
+    }
+  ]
+}

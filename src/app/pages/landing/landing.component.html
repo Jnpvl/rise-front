@@ -22,11 +22,11 @@
         class="w-48 sm:w-60 h-auto mx-auto mb-6 drop-shadow-2xl float-soft"
       />
       <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-3">
-        Atención médica cercana y ordenada
+        {{ homeCopy.h1 }}
       </h1>
-      <p class="mx-auto max-w-xl text-base sm:text-lg leading-relaxed text-white/90 mb-8">
-        Consulta, seguimiento y acompañamiento clínico con el cuidado que mereces.
-      </p>
+      <div class="mx-auto max-w-xl text-base sm:text-lg leading-relaxed text-white/90 mb-8">
+        <p *ngFor="let paragraph of homeCopy.intro" class="mb-3 last:mb-0">{{ paragraph }}</p>
+      </div>
       <div class="flex flex-wrap gap-3 justify-center">
         <a href="/agenda" class="btn-brand" (click)="goToSection($event, 'agenda')">Agendar cita</a>
         <a
@@ -61,31 +61,10 @@
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 border-t border-line">
-        <article class="py-6 pr-0 md:pr-6 border-b border-line">
-          <h3 class="font-display text-lg font-semibold mb-2">Consulta general</h3>
-          <p class="text-muted leading-relaxed">
-            Valoración médica, diagnóstico y plan de tratamiento con indicaciones claras.
-          </p>
-        </article>
-        <article class="py-6 md:pl-6 border-b border-line md:border-l border-line">
-          <h3 class="font-display text-lg font-semibold mb-2">Podología</h3>
-          <p class="text-muted leading-relaxed">
-            Cuidado de pies y uñas: valoración, seguimiento y tratamiento de micosis,
-            uña encarnada y otras alteraciones podológicas.
-          </p>
-        </article>
-        <article class="py-6 pr-0 md:pr-6 border-b border-line">
-          <h3 class="font-display text-lg font-semibold mb-2">Recetas e indicaciones</h3>
-          <p class="text-muted leading-relaxed">
-            Prescripción documentada y recomendaciones para que sepas qué hacer en casa.
-          </p>
-        </article>
-        <article class="py-6 md:pl-6 border-b border-line md:border-l border-line">
-          <h3 class="font-display text-lg font-semibold mb-2">Estudios y referencias</h3>
-          <p class="text-muted leading-relaxed">
-            Orientación sobre estudios necesarios y canalización cuando el caso lo requiere.
-          </p>
-        </article>
+        <a *ngFor="let page of servicePages" [href]="page.slug" [routerLink]="page.slug" class="block py-6 pr-0 md:pr-6 border-b border-line no-underline hover:bg-brand-soft/40 transition">
+          <h3 class="font-display text-lg font-semibold mb-2 text-ink">{{ page.name }}</h3>
+          <p class="text-muted leading-relaxed m-0">{{ serviceSummary(page.body_html) }}</p>
+        </a>
       </div>
     </div>
   </section>
@@ -189,7 +168,7 @@
           </li>
           <li class="flex flex-col gap-0.5" *ngIf="clinic.telefono">
             <strong class="text-xs tracking-wider uppercase text-accent">Teléfono</strong>
-            <a [href]="'tel:' + clinic.telefono" class="font-semibold text-ink no-underline hover:text-accent-dark transition">{{ clinic.telefono }}</a>
+            <a [href]="'tel:+526623533813'" class="font-semibold text-ink no-underline hover:text-accent-dark transition">{{ clinic.telefono }}</a>
           </li>
           <li class="flex flex-col gap-0.5" *ngIf="clinic.whatsapp">
             <strong class="text-xs tracking-wider uppercase text-accent">WhatsApp</strong>
@@ -266,6 +245,11 @@
           </svg>
           Facebook
         </a>
+      </div>
+      <div class="w-full" [innerHTML]="whereWhenHtml"></div>
+      <div class="flex flex-wrap items-center gap-4 text-sm">
+        <a [href]="'mailto:' + clinicEmail" class="font-semibold text-muted hover:text-accent-dark transition">{{ clinicEmail }}</a>
+        <a [href]="clinicInstagram" target="_blank" rel="noopener noreferrer" class="font-semibold text-muted hover:text-accent-dark transition">Instagram</a>
       </div>
       <p class="text-xs text-muted m-0">
         © {{ currentYear }} RISE. Todos los derechos reservados.
