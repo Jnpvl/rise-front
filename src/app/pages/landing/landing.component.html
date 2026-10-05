@@ -87,7 +87,7 @@
           <h3>Solicita tu cita</h3>
           <div class="form-two">
             <label class="form-label"><span>Nombre completo</span><input class="input-brand" name="apptName" [(ngModel)]="appointmentForm.name" required placeholder="Tu nombre" /></label>
-            <label class="form-label"><span>Teléfono</span><input class="input-brand" name="apptPhone" [(ngModel)]="appointmentForm.phone" (input)="formatPhone($event)" inputmode="numeric" autocomplete="tel" maxlength="12" required placeholder="662 000 0000" /></label>
+            <label class="form-label"><span>Teléfono</span><input class="input-brand" type="tel" name="apptPhone" [(ngModel)]="appointmentForm.phone" (input)="formatPhone($event)" inputmode="numeric" autocomplete="tel" maxlength="12" required placeholder="662 000 0000" /></label>
           </div>
           <div class="form-two">
             <label class="form-label"><span>Fecha preferida</span><input class="input-brand" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" [min]="today" /></label>
