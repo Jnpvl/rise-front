@@ -25,11 +25,11 @@
   "rewrites": [
     {
       "source": "/admin",
-      "destination": "/index.csr"
+      "destination": "/admin.html"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/index.csr"
+      "destination": "/admin.html"
     },
     {
       "source": "/experiencia",

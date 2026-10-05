@@ -10,8 +10,8 @@ const OG_IMAGE = `${SITE_URL}/logo-clear.png`;
 
 export interface RouteSeo {
   title: string;
-  description: string;
-  canonicalPath: string;
+  description?: string;
+  canonicalPath?: string | null;
   jsonLd?: unknown[];
   noindex?: boolean;
 }
@@ -29,9 +29,8 @@ export class SeoService {
     const routeSeo = cleanPath === '/admin' || cleanPath.startsWith('/admin/')
       ? {
           title: 'Administración | Servicios Médicos RISE',
-          description: 'Área privada de administración de Servicios Médicos RISE.',
-          canonicalPath: '/',
           noindex: true,
+          canonicalPath: null,
         }
       : legal
         ? this.legalSeo(legal)
@@ -46,20 +45,44 @@ export class SeoService {
 
   set(routeSeo: RouteSeo): void {
     this.title.setTitle(routeSeo.title);
-    this.updateMeta('description', routeSeo.description);
     this.updateMeta('robots', routeSeo.noindex ? 'noindex, nofollow' : 'index, follow');
+
+    if (routeSeo.noindex && routeSeo.canonicalPath == null) {
+      this.removeCanonical();
+      this.removeMetaName('description');
+      this.removeMetaName('google-site-verification');
+      this.removeMetaName('twitter:card');
+      this.removeMetaName('twitter:title');
+      this.removeMetaName('twitter:description');
+      this.removeMetaName('twitter:image');
+      for (const property of [
+        'og:type',
+        'og:locale',
+        'og:site_name',
+        'og:title',
+        'og:description',
+        'og:url',
+        'og:image',
+      ]) {
+        this.removeMetaProperty(property);
+      }
+      this.setJsonLd([]);
+      return;
+    }
+
+    this.updateMeta('description', routeSeo.description ?? '');
     this.updateProperty('og:type', 'website');
     this.updateProperty('og:locale', 'es_MX');
     this.updateProperty('og:site_name', 'Servicios Médicos RISE');
     this.updateProperty('og:title', routeSeo.title);
-    this.updateProperty('og:description', routeSeo.description);
+    this.updateProperty('og:description', routeSeo.description ?? '');
     this.updateProperty('og:url', `${SITE_URL}${routeSeo.canonicalPath === '/' ? '/' : routeSeo.canonicalPath}`);
     this.updateProperty('og:image', OG_IMAGE);
     this.updateMeta('twitter:card', 'summary');
     this.updateMeta('twitter:title', routeSeo.title);
-    this.updateMeta('twitter:description', routeSeo.description);
+    this.updateMeta('twitter:description', routeSeo.description ?? '');
     this.updateMeta('twitter:image', OG_IMAGE);
-    this.setCanonical(routeSeo.canonicalPath);
+    this.setCanonical(routeSeo.canonicalPath ?? '/');
     this.setJsonLd(routeSeo.jsonLd ?? []);
   }
 
@@ -115,6 +138,14 @@ export class SeoService {
     this.meta.updateTag({ property, content }, `property='${property}'`);
   }
 
+  private removeMetaName(name: string): void {
+    this.meta.removeTag(`name='${name}'`);
+  }
+
+  private removeMetaProperty(property: string): void {
+    this.meta.removeTag(`property='${property}'`);
+  }
+
   private setCanonical(path: string): void {
     const canonical = `${SITE_URL}${path === '/' ? '/' : path}`;
     const links = Array.from(this.document.head.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]'));
@@ -123,6 +154,12 @@ export class SeoService {
     link.setAttribute('href', canonical);
     if (!link.parentNode) this.document.head.appendChild(link);
     for (const duplicate of links.slice(1)) duplicate.remove();
+  }
+
+  private removeCanonical(): void {
+    this.document.head
+      .querySelectorAll<HTMLLinkElement>('link[rel="canonical"]')
+      .forEach((link) => link.remove());
   }
 
   private setJsonLd(values: unknown[]): void {
