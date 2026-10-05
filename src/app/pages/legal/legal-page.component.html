@@ -1,0 +1,16 @@
+<main class="bg-canvas text-ink min-h-screen px-5 py-12 md:py-20">
+  <div class="max-w-4xl mx-auto">
+    <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted">
+      <a href="/" routerLink="/" class="hover:text-accent-dark">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>{{ page.navLabel }}</span>
+    </nav>
+    <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8">{{ page.heading }}</h1>
+    <article class="prose-rise leading-relaxed" [innerHTML]="safeBodyHtml"></article>
+    <footer class="mt-12 border-t border-line pt-6">
+      <nav aria-label="Páginas legales" class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+        <a *ngFor="let legal of legalPages" [href]="legal.path" [routerLink]="legal.path" class="text-muted hover:text-accent-dark">{{ legal.navLabel }}</a>
+      </nav>
+    </footer>
+  </div>
+</main>

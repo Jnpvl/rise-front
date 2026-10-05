@@ -10,6 +10,8 @@ const loadServicePage = () =>
   import('./pages/services/servicio-page.component').then((m) => m.ServicioPageComponent);
 const loadNotFound = () =>
   import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent);
+const loadLegalPage = () =>
+  import('./pages/legal/legal-page.component').then((m) => m.LegalPageComponent);
 
 export const routes: Routes = [
   {
@@ -35,6 +37,16 @@ export const routes: Routes = [
   {
     path: 'contacto',
     loadComponent: loadLanding,
+  },
+  {
+    path: 'aviso-de-privacidad',
+    loadComponent: loadLegalPage,
+    data: { legalKey: 'privacy' },
+  },
+  {
+    path: 'terminos',
+    loadComponent: loadLegalPage,
+    data: { legalKey: 'terms' },
   },
   {
     path: 'admin',

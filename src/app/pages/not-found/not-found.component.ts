@@ -11,6 +11,10 @@ import { SeoService } from '../../core/seo.service';
       <h1 class="font-display text-4xl font-bold mb-4">Página no encontrada</h1>
       <p class="text-muted mb-6">La dirección que buscas no existe.</p>
       <a routerLink="/" href="/" class="btn-brand">Volver al inicio</a>
+      <nav aria-label="Páginas legales" class="mt-8 flex gap-4 text-sm">
+        <a href="/aviso-de-privacidad">Aviso de privacidad</a>
+        <a href="/terminos">Términos y condiciones</a>
+      </nav>
     </main>
   `,
 })

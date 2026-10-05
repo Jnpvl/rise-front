@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { seoCopy, ServicePage } from '../data/servicios-data';
 import { CLINIC_FACEBOOK, CLINIC_INSTAGRAM } from './clinic-defaults';
+import { LEGAL_PAGES, LegalPage } from '../data/legal-pages';
 
 const SITE_URL = 'https://serviciosmedicosrise.com';
 const OG_IMAGE = `${SITE_URL}/logo-clear.png`;
@@ -24,6 +25,7 @@ export class SeoService {
   updateForPath(path: string): void {
     const cleanPath = path.split('?')[0].split('#')[0].replace(/\/$/, '') || '/';
     const service = seoCopy.pages.find((page) => page.slug === cleanPath);
+    const legal = LEGAL_PAGES.find((page) => page.path === cleanPath);
     const routeSeo = cleanPath === '/admin' || cleanPath.startsWith('/admin/')
       ? {
           title: 'Administración | Servicios Médicos RISE',
@@ -31,8 +33,10 @@ export class SeoService {
           canonicalPath: '/',
           noindex: true,
         }
-      : service
-        ? this.serviceSeo(service)
+      : legal
+        ? this.legalSeo(legal)
+        : service
+          ? this.serviceSeo(service)
         : cleanPath === '/servicios'
           ? this.hubSeo()
           : this.homeSeo(cleanPath === '/');
@@ -83,6 +87,14 @@ export class SeoService {
           { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${SITE_URL}/servicios` },
         ],
       }],
+    };
+  }
+
+  private legalSeo(page: LegalPage): RouteSeo {
+    return {
+      title: page.title,
+      description: page.description,
+      canonicalPath: page.path,
     };
   }
 

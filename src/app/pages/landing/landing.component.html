@@ -145,6 +145,7 @@
         <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingAppointment">
           {{ submittingAppointment ? 'Enviando...' : 'Enviar solicitud' }}
         </button>
+        <p class="text-xs text-muted m-0">Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
       </form>
     </div>
   </section>
@@ -214,6 +215,7 @@
         <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingContact">
           {{ submittingContact ? 'Enviando...' : 'Enviar mensaje' }}
         </button>
+        <p class="text-xs text-muted m-0">Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
       </form>
     </div>
   </section>
@@ -230,6 +232,8 @@
         <a href="/experiencia" (click)="goToSection($event, 'experiencia')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Experiencia</a>
         <a href="/agenda" (click)="goToSection($event, 'agenda')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Agenda</a>
         <a href="/contacto" (click)="goToSection($event, 'contacto')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Contacto</a>
+        <a href="/aviso-de-privacidad" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Aviso de privacidad</a>
+        <a href="/terminos" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Términos y condiciones</a>
       </nav>
       <div class="flex flex-wrap items-center gap-4">
         <a

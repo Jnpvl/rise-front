@@ -14,7 +14,7 @@
     "h1": "Servicios Médicos RISE, tu consultorio en Hermosillo",
     "intro": [
       "Levántate, recupérate, mejora. En Servicios Médicos RISE te recibimos con atención cercana, clara y profesional, con tiempo para escucharte y resolver tus dudas.",
-      "Ofrecemos consulta de medicina general, podología y revisión de pie diabético, curaciones, análisis clínicos, antidoping, yesos e inmovilización, y suturas y retiro de puntos. En cada caso, el médico valora y decide qué procede.",
+      "Ofrecemos consulta de medicina general, podología y revisión de pie diabético, curaciones, análisis clínicos, antidoping, yesos e inmovilización, y suturas y retiro de puntos, además de sueros y procedimientos menores. En cada caso, el médico valora y decide qué procede.",
       "Estamos en la Col. Constitución, en Hermosillo, de lunes a viernes de 9:00 a 13:00. Para información detallada de cualquier servicio, escríbenos por WhatsApp al 662 353 3813. Ante una urgencia grave, acude a urgencias o llama al 911."
     ],
     "h2s": [
@@ -189,8 +189,8 @@
         "Qué esperar en el consultorio",
         "Señales para consultar pronto"
       ],
-      "body_html": "<p>En Servicios Médicos RISE realizamos curaciones en Hermosillo: limpieza y cuidado de heridas menores y cambio de vendajes o apósitos, siempre con valoración del médico. Es un servicio pensado para quien necesita atender una herida o darle seguimiento con indicaciones claras.</p>\n<h2>Qué puedes consultar</h2>\n<p>Heridas menores o el seguimiento de una herida que ya fue atendida. El médico valora cada caso y decide qué procede.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Revisamos la zona, realizamos el cuidado que corresponda y te explicamos cómo mantenerla limpia y protegida en casa. Si tienes diabetes, consúltanos pronto cualquier herida, sobre todo en los pies.</p>\n<h2>Señales para consultar pronto</h2>\n<ul>\n<li>enrojecimiento que aumenta o hinchazón;</li>\n<li>calor, secreción o mal olor;</li>\n<li>fiebre o dolor que va en aumento.</li>\n</ul>\n<p>Heridas profundas, sangrado que no se detiene o lesiones graves requieren urgencias: acude o llama al 911.</p>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20curaciones%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
-      "body_words": 150,
+      "body_html": "<p>En Servicios Médicos RISE realizamos curaciones en Hermosillo: limpieza y cuidado de heridas menores y cambio de vendajes o apósitos, siempre con valoración del médico. Es un servicio pensado para quien necesita atender una herida o darle seguimiento con indicaciones claras.</p>\n<h2>Qué puedes consultar</h2>\n<p>Heridas menores o el seguimiento de una herida que ya fue atendida. El médico valora cada caso y decide qué procede.</p>\n<h2>Qué esperar en el consultorio</h2>\n<p>Revisamos la zona, realizamos el cuidado que corresponda y te explicamos cómo mantenerla limpia y protegida en casa. Si tienes diabetes, consúltanos pronto cualquier herida, sobre todo en los pies.</p>\n<h2>Señales para consultar pronto</h2>\n<ul>\n<li>enrojecimiento que aumenta o hinchazón;</li>\n<li>calor, secreción o mal olor;</li>\n<li>fiebre o dolor que va en aumento.</li>\n</ul>\n<p>Heridas profundas, sangrado que no se detiene o lesiones graves requieren urgencias: acude o llama al 911.</p>\n<div class=\"tambien-realizamos\">\n<h3>También realizamos</h3>\n<ul>\n<li>Sueros</li>\n<li>Procedimientos menores</li>\n</ul>\n<p>Siempre según la valoración del médico.</p>\n</div>\n<p>Para recibir información detallada, escríbenos por WhatsApp al <a href=\"https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20curaciones%20en%20Servicios%20M%C3%A9dicos%20RISE.\" target=\"_blank\" rel=\"noopener\">662 353 3813</a>.</p>",
+      "body_words": 161,
       "faqs": [
         {
           "q": "¿Qué heridas atienden?",
@@ -752,14 +752,14 @@
         "length": 138
       },
       {
-        "name": "Sueros [verificar con JP antes de publicar]",
-        "description": "Aplicación de sueros según valoración y criterio del médico. Información detallada por WhatsApp al 662 353 3813.",
-        "length": 112
+        "name": "Sueros",
+        "description": "Servicio de sueros, según la valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 103
       },
       {
-        "name": "Procedimientos menores [verificar con JP antes de publicar]",
-        "description": "Procedimientos menores realizados tras la valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
-        "length": 116
+        "name": "Procedimientos menores",
+        "description": "Procedimientos menores, siempre tras la valoración del médico. Información detallada por WhatsApp al 662 353 3813.",
+        "length": 114
       }
     ],
     "categories": [
@@ -839,8 +839,8 @@
       "texto": "2. Laboratorio y plazos de análisis clínicos: RESUELTO — no se publica el detalle. Sin nombre de laboratorio, sin plazos y sin lista concreta de estudios."
     },
     {
-      "estado": "abierto",
-      "texto": "3. Sueros y procedimientos menores: ¿se listan públicamente? Hoy solo aparecen en GBP (marcados «verificar») y en la descripción de GBP. No tienen página propia."
+      "estado": "resuelto",
+      "texto": "3. Sueros y procedimientos menores: RESUELTO — se publican en GBP (descripción y lista de servicios) y en el sitio solo como lista breve «También realizamos» dentro de `/servicios/curaciones` (y una mención en la intro de la home). Sin página propia, sin detalle, sin afirmaciones."
     },
     {
       "estado": "abierto",
@@ -935,6 +935,11 @@
       "query": "prueba antidoping Hermosillo",
       "page": "/servicios/antidoping",
       "note": ""
+    },
+    {
+      "query": "sueros y procedimientos menores Hermosillo",
+      "page": "GBP (servicios) y bloque «También realizamos» en /servicios/curaciones",
+      "note": "Sin página propia; posicionamiento secundario."
     },
     {
       "query": "yeso o férula Hermosillo",

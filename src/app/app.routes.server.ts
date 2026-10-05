@@ -22,6 +22,8 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'experiencia', renderMode: RenderMode.Client },
   { path: 'agenda', renderMode: RenderMode.Client },
   { path: 'contacto', renderMode: RenderMode.Client },
+  { path: 'aviso-de-privacidad', renderMode: RenderMode.Prerender },
+  { path: 'terminos', renderMode: RenderMode.Prerender },
   { path: 'admin', renderMode: RenderMode.Client },
   { path: 'admin/**', renderMode: RenderMode.Client },
   { path: '**', renderMode: RenderMode.Client },
