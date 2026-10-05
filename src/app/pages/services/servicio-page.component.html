@@ -1,41 +1,16 @@
-<main class="bg-canvas text-ink min-h-screen px-5 py-12 md:py-20">
-  <div class="max-w-4xl mx-auto">
-    <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted">
-      <a href="/" routerLink="/" class="hover:text-accent-dark">Inicio</a>
-      <span aria-hidden="true">›</span>
-      <a href="/servicios" routerLink="/servicios" class="hover:text-accent-dark">Servicios</a>
-      <span aria-hidden="true">›</span>
-      <span>{{ page.name }}</span>
-    </nav>
-
-    <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">{{ page.h1 }}</h1>
-    <a class="btn-brand inline-flex mb-8" [href]="page.cta.wa_url" target="_blank" rel="noopener">{{ page.cta.text }}</a>
-
-    <section aria-label="Información del servicio" class="prose-rise leading-relaxed" [innerHTML]="firstBlockHtml"></section>
-    <a class="btn-brand inline-flex my-8" [href]="page.cta.wa_url" target="_blank" rel="noopener">{{ page.cta.text }}</a>
-    <section class="prose-rise leading-relaxed" [innerHTML]="remainingBodyHtml"></section>
-
-    <section aria-labelledby="preguntas-frecuentes" class="mt-12">
-      <h2 id="preguntas-frecuentes" class="font-display text-2xl md:text-3xl font-bold mb-5">Preguntas frecuentes</h2>
-      <details *ngFor="let faq of page.faqs" class="border-b border-line py-4">
-        <summary class="font-semibold cursor-pointer">{{ faq.q }}</summary>
-        <p class="text-muted leading-relaxed mt-3 mb-0">{{ faq.a }}</p>
-      </details>
-    </section>
-
-    <section *ngIf="relatedPages.length" aria-labelledby="tambien-te-puede-interesar" class="mt-12">
-      <h2 id="tambien-te-puede-interesar" class="font-display text-2xl font-bold mb-4">También te puede interesar</h2>
-      <ul class="list-disc pl-5 space-y-2">
-        <li *ngFor="let related of relatedPages"><a [href]="related.slug" [routerLink]="related.slug">{{ related.name }}</a></li>
-      </ul>
-    </section>
-
-    <aside class="mt-12" [innerHTML]="whereWhenHtml"></aside>
-    <footer class="mt-10 border-t border-line pt-6">
-      <nav aria-label="Páginas legales" class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
-        <a href="/aviso-de-privacidad" class="text-muted hover:text-accent-dark">Aviso de privacidad</a>
-        <a href="/terminos" class="text-muted hover:text-accent-dark">Términos y condiciones</a>
-      </nav>
-    </footer>
+<main class="service-layout" aria-labelledby="service-h1">
+  <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted"><a href="/" routerLink="/" class="hover:text-brand-dark">Inicio</a><span aria-hidden="true"> › </span><a href="/servicios" routerLink="/servicios" class="hover:text-brand-dark">Servicios</a><span aria-hidden="true"> › </span><span>{{ page.name }}</span></nav>
+  <header class="service-header">
+    <div><p class="rise-eyebrow">Servicios Médicos RISE</p><div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="10"/><path d="M11 16h10M16 11v10" stroke="#e540ae"/></svg></div><h1 id="service-h1">{{ page.h1 }}</h1><a class="btn-primary" [href]="page.cta.wa_url" target="_blank" rel="noopener">{{ page.cta.text }}</a></div>
+    <img class="service-photo" src="/fondo.webp" width="1280" height="960" alt="Consultorio de Servicios Médicos RISE" />
+  </header>
+  <div class="service-main-grid">
+    <div>
+      <section aria-label="Información del servicio" class="contenido" [innerHTML]="page.body_html"></section>
+      <section class="service-faq" aria-labelledby="preguntas-frecuentes"><h2 id="preguntas-frecuentes">Preguntas frecuentes</h2><details *ngFor="let faq of page.faqs"><summary>{{ faq.q }}</summary><p>{{ faq.a }}</p></details></section>
+      <section *ngIf="relatedPages.length" class="contenido mt-12" aria-labelledby="tambien-te-puede-interesar"><h2 id="tambien-te-puede-interesar">También te puede interesar</h2><div class="tambien-realizamos"><ul><li *ngFor="let related of relatedPages"><a [href]="related.slug" [routerLink]="related.slug">{{ related.name }}</a></li></ul></div></section>
+    </div>
+    <aside class="service-sidebar"><h3>Dónde y cuándo</h3><p>Servicios Médicos RISE<br />C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo, Sonora.<br />Lunes a viernes de 9:00 a 13:00.</p><p>Teléfono: <a href="tel:+526623533813">662 353 3813</a><br />Correo: <a href="mailto:serviciomedicorise@gmail.com">serviciomedicorise@gmail.com</a></p><a [href]="page.cta.wa_url" target="_blank" rel="noopener">WhatsApp</a></aside>
   </div>
+  <footer class="mt-10 border-t border-line pt-6"><nav aria-label="Páginas legales" class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold"><a href="/aviso-de-privacidad" class="text-muted hover:text-brand-dark">Aviso de privacidad</a><a href="/terminos" class="text-muted hover:text-brand-dark">Términos y condiciones</a></nav></footer>
 </main>

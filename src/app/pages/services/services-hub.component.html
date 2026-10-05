@@ -1,27 +1,18 @@
-<main class="bg-canvas text-ink min-h-screen px-5 py-16 md:py-24">
-  <div class="max-w-5xl mx-auto">
-    <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted">
-      <a href="/" class="hover:text-accent-dark">Inicio</a> <span aria-hidden="true">›</span> Servicios
-    </nav>
-    <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Servicios médicos en Hermosillo</h1>
-    <p class="text-muted text-lg leading-relaxed max-w-3xl mb-10">
-      Conoce los servicios de Servicios Médicos RISE y escríbenos por WhatsApp para recibir información detallada.
-    </p>
-    <section aria-labelledby="servicios-disponibles">
-      <h2 id="servicios-disponibles" class="font-display text-2xl md:text-3xl font-bold mb-6">Servicios disponibles</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <a *ngFor="let page of pages" [routerLink]="page.slug" [href]="page.slug" class="block rounded-2xl border border-line bg-white p-6 no-underline hover:border-brand transition">
-          <h3 class="font-display text-xl font-bold text-ink mb-2">{{ page.name }}</h3>
-          <p class="text-muted leading-relaxed m-0">{{ summary(page.body_html) }}</p>
-        </a>
-      </div>
-    </section>
-    <aside class="mt-12" [innerHTML]="whereWhenHtml"></aside>
-    <footer class="mt-10 border-t border-line pt-6">
-      <nav aria-label="Páginas legales" class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
-        <a href="/aviso-de-privacidad" class="text-muted hover:text-accent-dark">Aviso de privacidad</a>
-        <a href="/terminos" class="text-muted hover:text-accent-dark">Términos y condiciones</a>
-      </nav>
-    </footer>
+<main class="service-layout" aria-labelledby="servicios-h1">
+  <nav aria-label="Migas de pan" class="mb-8 text-sm text-muted"><a href="/" class="hover:text-brand-dark">Inicio</a> <span aria-hidden="true">›</span> Servicios</nav>
+  <div class="service-header">
+    <div><p class="rise-eyebrow">Servicios en Hermosillo</p><h1 id="servicios-h1">Servicios médicos en Hermosillo</h1><p class="hero-support">Conoce los servicios de Servicios Médicos RISE y escríbenos por WhatsApp para recibir información detallada.</p></div>
+    <img class="service-photo" src="/fondo.webp" width="1280" height="960" alt="Consultorio de Servicios Médicos RISE" />
   </div>
+  <section aria-labelledby="servicios-disponibles">
+    <div class="rise-section-heading"><p class="rise-eyebrow">Lo que hacemos</p><h2 id="servicios-disponibles">Servicios disponibles</h2></div>
+    <div class="service-grid">
+      <a *ngFor="let card of cards" class="rise-card" [routerLink]="card.slug" [href]="card.slug">
+        <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="10"/><path d="M11 16h10M16 11v10" stroke="#e540ae"/></svg></div>
+        <h3>{{ card.name }}</h3><p>{{ card.summary }}</p><span style="margin-top:auto;color:var(--color-brand-dark);font-weight:800">Ver más →</span>
+      </a>
+    </div>
+  </section>
+  <aside class="mt-12" [innerHTML]="whereWhenHtml"></aside>
+  <footer class="mt-10 border-t border-line pt-6"><nav aria-label="Páginas legales" class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold"><a href="/aviso-de-privacidad" class="text-muted hover:text-brand-dark">Aviso de privacidad</a><a href="/terminos" class="text-muted hover:text-brand-dark">Términos y condiciones</a></nav></footer>
 </main>

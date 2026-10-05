@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HOME_COPY } from '../../data/home-copy';
 import { seoCopy } from '../../data/servicios-data';
 
 @Component({
@@ -10,11 +11,6 @@ import { seoCopy } from '../../data/servicios-data';
   templateUrl: './services-hub.component.html',
 })
 export class ServicesHubComponent {
-  readonly pages = seoCopy.pages;
+  readonly cards = HOME_COPY.serviceCards;
   readonly whereWhenHtml = seoCopy.donde_cuando_html;
-
-  summary(bodyHtml: string): string {
-    const firstParagraph = bodyHtml.match(/<p>([\s\S]*?)<\/p>/i)?.[1] ?? bodyHtml;
-    return firstParagraph.replace(/<[^>]+>/g, '').trim();
-  }
 }

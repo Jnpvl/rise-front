@@ -1,263 +1,144 @@
-<div class="bg-canvas text-ink">
-  <!-- HERO -->
-  <section
-    id="inicio"
-    class="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden text-white"
-    aria-label="Inicio"
-  >
-    <div
-      class="absolute inset-0 bg-cover bg-center scale-105 bg-[url('/fondo.png')]"
-      aria-hidden="true"
-    ></div>
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink/70 pointer-events-none"
-      aria-hidden="true"
-    ></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(32,208,223,0.2),transparent_65%)] pointer-events-none" aria-hidden="true"></div>
-
-    <div class="relative z-10 w-full max-w-2xl px-6 py-16 text-center page-shell">
-      <img
-        src="/logo-clear.png"
-        alt="RISE Servicios Médicos"
-        class="w-48 sm:w-60 h-auto mx-auto mb-6 drop-shadow-2xl float-soft"
-      />
-      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-3">
-        {{ homeCopy.h1 }}
-      </h1>
-      <div class="mx-auto max-w-xl text-base sm:text-lg leading-relaxed text-white/90 mb-8">
-        <p *ngFor="let paragraph of homeCopy.intro" class="mb-3 last:mb-0">{{ paragraph }}</p>
-      </div>
-      <div class="flex flex-wrap gap-3 justify-center">
-        <a href="/agenda" class="btn-brand" (click)="goToSection($event, 'agenda')">Agendar cita</a>
-        <a
-          href="/contacto"
-          (click)="goToSection($event, 'contacto')"
-          class="inline-flex items-center justify-center px-4 py-2.5 rounded-[0.85rem] font-semibold text-white border-[1.5px] border-white/55 bg-white/10 hover:bg-white/20 hover:border-white transition"
-        >
-          Pedir información
-        </a>
-      </div>
-    </div>
-
-    <a
-      href="/servicios"
-      (click)="goToSection($event, 'servicios')"
-      class="absolute z-10 bottom-6 left-1/2 -translate-x-1/2 text-xs font-semibold tracking-wider uppercase text-white/75 hover:text-white transition"
-      aria-label="Ver servicios"
-    >
-      Conoce más
-    </a>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section id="servicios" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24">
-    <div class="max-w-5xl mx-auto w-full">
-      <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Lo que hacemos</p>
-      <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
-        Servicios pensados para tu consulta
-      </h2>
-      <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-10">
-        En RISE acompañamos tu salud con procesos claros: desde la primera valoración hasta el seguimiento.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 border-t border-line">
-        <a *ngFor="let page of servicePages" [href]="page.slug" [routerLink]="page.slug" class="block py-6 pr-0 md:pr-6 border-b border-line no-underline hover:bg-brand-soft/40 transition">
-          <h3 class="font-display text-lg font-semibold mb-2 text-ink">{{ page.name }}</h3>
-          <p class="text-muted leading-relaxed m-0">{{ serviceSummary(page.body_html) }}</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCIA -->
-  <section id="experiencia" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24 brand-gradient-soft">
-    <div class="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <div>
-        <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Tu experiencia</p>
-        <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
-          Una visita simple, de principio a fin
-        </h2>
-        <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl">
-          Queremos que llegar a consulta se sienta ordenado: agenda, atención y siguiente paso sin complicaciones.
-        </p>
-      </div>
-
-      <ol class="space-y-6 list-none m-0 p-0">
-        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
-          <span class="font-display font-bold text-brand-dark pt-0.5">01</span>
-          <div>
-            <strong class="font-display block mb-1">Agenda</strong>
-            <p class="m-0 text-muted leading-relaxed">Elige un horario o déjanos tus datos y te confirmamos.</p>
-          </div>
-        </li>
-        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
-          <span class="font-display font-bold text-brand-dark pt-0.5">02</span>
-          <div>
-            <strong class="font-display block mb-1">Consulta</strong>
-            <p class="m-0 text-muted leading-relaxed">Atención médica con tiempo para escucharte y resolver dudas.</p>
-          </div>
-        </li>
-        <li class="grid grid-cols-[auto_1fr] gap-4 items-start">
-          <span class="font-display font-bold text-brand-dark pt-0.5">03</span>
-          <div>
-            <strong class="font-display block mb-1">Seguimiento</strong>
-            <p class="m-0 text-muted leading-relaxed">Indicaciones, próxima cita si hace falta y tu historial al día.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- AGENDA -->
-  <section id="agenda" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24">
-    <div class="max-w-md mx-auto w-full">
-      <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Agenda</p>
-      <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
-        Solicita tu cita
-      </h2>
-      <p class="text-muted leading-relaxed mb-8">
-        Completa el formulario y nos pondremos en contacto para confirmar el horario.
-      </p>
-
-      <form class="flex flex-col gap-4" (submit)="onAppointmentSubmit($event)">
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Nombre completo</span>
-          <input class="input-brand font-normal text-ink" name="apptName" [(ngModel)]="appointmentForm.name" placeholder="Tu nombre" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Teléfono</span>
-          <input class="input-brand font-normal text-ink" name="apptPhone" [(ngModel)]="appointmentForm.phone" placeholder="10 dígitos" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Fecha preferida</span>
-          <input class="input-brand font-normal text-ink" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Motivo de consulta</span>
-          <textarea
-            class="input-brand font-normal text-ink min-h-24 resize-y"
-            name="apptReason"
-            [(ngModel)]="appointmentForm.reason"
-            placeholder="Cuéntanos brevemente el motivo"
-            rows="4"
-          ></textarea>
-        </label>
-        <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingAppointment">
-          {{ submittingAppointment ? 'Enviando...' : 'Enviar solicitud' }}
-        </button>
-        <p class="text-xs text-muted m-0">Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto" class="min-h-dvh flex flex-col justify-center px-5 py-16 md:py-24 brand-gradient-soft">
-    <div class="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <div>
-        <p class="text-sm font-bold tracking-widest uppercase text-accent mb-2">Contacto</p>
-        <h2 class="font-display text-2xl md:text-4xl font-bold leading-tight max-w-[18ch] mb-3">
-          ¿Tienes dudas? Escríbenos
-        </h2>
-        <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-8">
-          Horarios, servicios o cualquier duda antes de tu visita. Respondemos lo antes posible.
-        </p>
-
-        <ul class="space-y-4 list-none m-0 p-0">
-          <li class="flex flex-col gap-0.5" *ngIf="clinic.horario">
-            <strong class="text-xs tracking-wider uppercase text-accent">Horario</strong>
-            <span class="font-semibold text-ink">{{ clinic.horario }}</span>
-          </li>
-          <li class="flex flex-col gap-0.5" *ngIf="clinic.telefono">
-            <strong class="text-xs tracking-wider uppercase text-accent">Teléfono</strong>
-            <a [href]="'tel:+526623533813'" class="font-semibold text-ink no-underline hover:text-accent-dark transition">{{ clinic.telefono }}</a>
-          </li>
-          <li class="flex flex-col gap-0.5" *ngIf="clinic.whatsapp">
-            <strong class="text-xs tracking-wider uppercase text-accent">WhatsApp</strong>
-            <a
-              [href]="whatsappHref"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-semibold text-ink no-underline hover:text-accent-dark transition"
-            >
-              {{ clinic.whatsapp }}
-            </a>
-          </li>
-          <li class="flex flex-col gap-0.5" *ngIf="clinic.ubicacion">
-            <strong class="text-xs tracking-wider uppercase text-accent">Ubicación</strong>
-            <span class="font-semibold text-ink">{{ clinic.ubicacion }}</span>
-          </li>
-        </ul>
-      </div>
-
-      <form class="flex flex-col gap-4" (submit)="onContactSubmit($event)">
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Nombre</span>
-          <input class="input-brand font-normal text-ink" name="contactName" [(ngModel)]="contactForm.name" placeholder="Tu nombre" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Teléfono</span>
-          <input class="input-brand font-normal text-ink" name="contactPhone" [(ngModel)]="contactForm.phone" placeholder="10 dígitos" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Correo (opcional)</span>
-          <input class="input-brand font-normal text-ink" type="email" name="contactEmail" [(ngModel)]="contactForm.email" placeholder="correo@ejemplo.com" />
-        </label>
-        <label class="flex flex-col gap-1.5 text-sm font-semibold text-muted">
-          <span>Mensaje</span>
-          <textarea
-            class="input-brand font-normal text-ink min-h-24 resize-y"
-            name="contactMessage"
-            [(ngModel)]="contactForm.message"
-            placeholder="¿En qué podemos ayudarte?"
-            rows="4"
-          ></textarea>
-        </label>
-        <button type="submit" class="btn-brand self-start mt-1" [disabled]="submittingContact">
-          {{ submittingContact ? 'Enviando...' : 'Enviar mensaje' }}
-        </button>
-        <p class="text-xs text-muted m-0">Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-line bg-white px-5 py-8 md:py-10">
-    <div class="max-w-5xl mx-auto flex flex-col gap-5 items-start">
-      <div class="flex items-center gap-3">
-        <img src="/logo-clear.png" alt="" class="w-12 h-auto" />
-        <p class="font-display font-bold text-sm m-0">RISE · Servicios Médicos</p>
-      </div>
-      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Secciones">
-        <a href="/servicios" (click)="goToSection($event, 'servicios')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Servicios</a>
-        <a href="/experiencia" (click)="goToSection($event, 'experiencia')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Experiencia</a>
-        <a href="/agenda" (click)="goToSection($event, 'agenda')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Agenda</a>
-        <a href="/contacto" (click)="goToSection($event, 'contacto')" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Contacto</a>
-        <a href="/aviso-de-privacidad" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Aviso de privacidad</a>
-        <a href="/terminos" class="text-sm font-semibold text-muted hover:text-accent-dark transition">Términos y condiciones</a>
+<div class="home-page">
+  <header class="rise-header">
+    <div class="rise-shell rise-nav">
+      <a class="rise-brand" href="/" aria-label="Servicios Médicos RISE, inicio">
+        <img src="/logo-clear.png" width="42" height="42" alt="Logo de Servicios Médicos RISE" />
+        <span>Servicios Médicos RISE</span>
+      </a>
+      <nav class="rise-nav-links" aria-label="Navegación principal">
+        <a href="/servicios" (click)="goToSection($event, 'servicios')">Servicios</a>
+        <a href="/experiencia" (click)="goToSection($event, 'experiencia')">Cómo atendemos</a>
+        <a href="/agenda" (click)="goToSection($event, 'agenda')">Agenda</a>
+        <a href="/contacto" (click)="goToSection($event, 'contacto')">Contacto</a>
       </nav>
-      <div class="flex flex-wrap items-center gap-4">
-        <a
-          *ngIf="facebookHref"
-          [href]="facebookHref"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-accent-dark transition no-underline"
-          aria-label="Facebook"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.4V9.85c0-2.37 1.4-3.68 3.56-3.68 1.03 0 2.11.18 2.11.18v2.32h-1.19c-1.17 0-1.54.73-1.54 1.48v1.78h2.62l-.42 2.9h-2.2V22c4.78-.75 8.44-4.91 8.44-9.93z"/>
-          </svg>
-          Facebook
-        </a>
+      <a class="btn-primary" href="/agenda" (click)="goToSection($event, 'agenda')">Agendar cita</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-clean" aria-label="Inicio">
+      <div class="rise-shell hero-grid">
+        <div>
+          <p class="rise-eyebrow">Consultorio en Hermosillo</p>
+          <h1>{{ homeCopy.h1 }}</h1>
+          <p class="hero-lead">{{ homeCopy.heroLead }}</p>
+          <p class="hero-support">{{ homeCopy.heroSupport }}</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="/agenda" (click)="goToSection($event, 'agenda')">Agendar cita</a>
+            <a class="btn-outline" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+          </div>
+          <div class="hero-chips" aria-label="Información rápida">
+            <span>Lunes a viernes, 9:00 a 13:00</span>
+            <span>Col. Constitución, Hermosillo</span>
+          </div>
+        </div>
+        <img class="hero-photo" src="/fondo.webp" width="1280" height="960" alt="Interior del consultorio de Servicios Médicos RISE" />
       </div>
-      <div class="w-full" [innerHTML]="whereWhenHtml"></div>
-      <div class="flex flex-wrap items-center gap-4 text-sm">
-        <a [href]="'mailto:' + clinicEmail" class="font-semibold text-muted hover:text-accent-dark transition">{{ clinicEmail }}</a>
-        <a [href]="clinicInstagram" target="_blank" rel="noopener noreferrer" class="font-semibold text-muted hover:text-accent-dark transition">Instagram</a>
+    </section>
+
+    <section class="info-strip" aria-label="Información de contacto rápida">
+      <div class="rise-shell info-strip-grid">
+        <div class="info-strip-item"><div><strong>Horario</strong><span>{{ clinic.horario }}</span></div></div>
+        <div class="info-strip-item"><div><strong>Ubicación</strong><span>{{ clinic.ubicacion }}</span></div></div>
+        <div class="info-strip-item"><div><strong>WhatsApp</strong><a [href]="whatsappHref" target="_blank" rel="noopener noreferrer">{{ clinic.whatsapp }}</a></div></div>
       </div>
-      <p class="text-xs text-muted m-0">
-        © {{ currentYear }} RISE. Todos los derechos reservados.
-      </p>
+    </section>
+
+    <section id="servicios" class="rise-section" aria-labelledby="servicios-titulo">
+      <div class="rise-shell">
+        <div class="rise-section-heading">
+          <p class="rise-eyebrow">Lo que hacemos</p>
+          <h2 id="servicios-titulo">Servicios pensados para tu consulta</h2>
+          <p>Conoce cada servicio y cómo podemos acompañarte.</p><p>{{ homeCopy.processIntro }}</p><p>{{ homeCopy.servicesIntro }}</p>
+        </div>
+        <div class="service-grid">
+          <a *ngFor="let card of homeCopy.serviceCards" class="rise-card" [href]="card.slug" [routerLink]="card.slug">
+            <div class="service-icon" aria-hidden="true">
+              <ng-container [ngSwitch]="card.icon">
+                <svg *ngSwitchCase="'stethoscope'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v8a6 6 0 0 0 12 0V5"/><path d="M15 19v3a5 5 0 0 0 10 0v-2"/><circle cx="25" cy="17" r="3" stroke="#e540ae"/></svg>
+                <svg *ngSwitchCase="'foot'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c4 0 6 3 6 8 0 4 3 6 3 10 0 3-2 4-5 4s-6-2-6-6c0-5-3-6-3-10 0-3 2-6 5-6z"/><circle cx="23" cy="8" r="1.5" stroke="#e540ae"/><circle cx="26" cy="12" r="1.3" stroke="#e540ae"/></svg>
+                <svg *ngSwitchCase="'bandage'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="5" transform="rotate(-35 16 16)"/><path d="m13.5 13.5 5 5" stroke="#e540ae"/><circle cx="16" cy="16" r="1" fill="#e540ae" stroke="#e540ae"/></svg>
+                <svg *ngSwitchCase="'flask'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4h6M13 4v10M17 4v10"/><path d="M8 28h16M10 28a8 8 0 0 1 4-14"/><circle cx="21" cy="19" r="3" stroke="#e540ae"/></svg>
+                <svg *ngSwitchCase="'clipboard'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="6" width="18" height="22" rx="3"/><path d="M12 4h8v4h-8zM11 16h10M11 21h6"/><path d="m12 11 1.5 1.5L17 9" stroke="#e540ae"/></svg>
+                <svg *ngSwitchDefault viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 3-3l11 11a3 3 0 1 1 3 3 3 3 0 1 1-3 3L9 12a3 3 0 0 1 0-3z"/><path d="m15 15 2 2" stroke="#e540ae"/></svg>
+              </ng-container>
+            </div>
+            <h3>{{ card.name }}</h3>
+            <p>{{ card.summary }}</p>
+            <span class="font-display" style="margin-top:auto;color:var(--color-brand-dark);font-weight:800;font-size:.9rem">Ver más →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="rise-section steps-section" aria-labelledby="experiencia-titulo">
+      <div class="rise-shell">
+        <div class="rise-section-heading">
+          <p class="rise-eyebrow">Tu experiencia</p>
+          <h2 id="experiencia-titulo">Una visita simple, de principio a fin</h2>
+          <p>Queremos que llegar a consulta se sienta ordenado: agenda, atención y siguiente paso sin complicaciones.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step" *ngFor="let step of homeCopy.steps"><div class="step-number">{{ step.number }}</div><h3>{{ step.title }}</h3><p>{{ step.text }}</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agenda" class="rise-section" aria-labelledby="agenda-titulo">
+      <div class="rise-shell agenda-grid">
+        <div class="agenda-copy">
+          <p class="rise-eyebrow">Agenda</p>
+          <h2 id="agenda-titulo">Solicita tu cita</h2>
+          <p>{{ homeCopy.agendaIntro }}</p>
+          <div class="agenda-details"><div class="agenda-detail"><strong>Dónde y cuándo</strong><p>Consulta nuestros servicios y horarios antes de tu visita.</p></div>
+            <div class="agenda-detail"><strong>Dónde estamos</strong><p>{{ clinic.ubicacion }}</p></div>
+            <div class="agenda-detail"><strong>Horario</strong><p>{{ clinic.horario }}</p></div>
+            <div class="agenda-detail"><strong>WhatsApp</strong><p><a [href]="whatsappHref">{{ clinic.whatsapp }}</a> · <a [href]="'mailto:' + clinicEmail">{{ clinicEmail }}</a></p></div>
+            <div class="agenda-detail"><strong>Ante una urgencia</strong><p>Ante una urgencia grave, acude a urgencias o llama al 911.</p></div>
+          </div>
+        </div>
+        <form class="rise-form" (submit)="onAppointmentSubmit($event)" aria-label="Formulario de cita">
+          <h3>Solicita tu cita</h3>
+          <div class="form-two">
+            <label class="form-label"><span>Nombre completo</span><input class="input-brand" name="apptName" [(ngModel)]="appointmentForm.name" required placeholder="Tu nombre" /></label>
+            <label class="form-label"><span>Teléfono</span><input class="input-brand" name="apptPhone" [(ngModel)]="appointmentForm.phone" (input)="formatPhone($event)" inputmode="numeric" autocomplete="tel" maxlength="12" required placeholder="662 000 0000" /></label>
+          </div>
+          <div class="form-two">
+            <label class="form-label"><span>Fecha preferida</span><input class="input-brand" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" [min]="today" /></label>
+            <label class="form-label"><span>Motivo de consulta (opcional)</span><input class="input-brand" name="apptReason" [(ngModel)]="appointmentForm.reason" placeholder="Cuéntanos brevemente" /></label>
+          </div>
+          <button type="submit" class="btn-primary" [disabled]="submittingAppointment">{{ submittingAppointment ? 'Enviando...' : 'Enviar solicitud' }}</button>
+          <p class="form-note">Puedes dejarnos un mensaje breve. Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="contacto" class="rise-section" aria-labelledby="contacto-titulo">
+      <div class="rise-shell">
+        <div class="rise-section-heading">
+          <p class="rise-eyebrow">Contacto</p>
+          <h2 id="contacto-titulo">¿Tienes dudas? Escríbenos</h2>
+          <p>Horarios, servicios o cualquier duda antes de tu visita. Para pedir información, escríbenos y respondemos lo antes posible.</p>
+        </div>
+        <div class="contact-cards">
+          <a class="contact-card" [href]="whatsappHref" target="_blank" rel="noopener noreferrer"><strong>WhatsApp</strong><span>{{ clinic.whatsapp }}</span></a>
+          <a class="contact-card" href="tel:+526623533813"><strong>Teléfono</strong><span>{{ clinic.telefono }}</span></a>
+          <a class="contact-card" [href]="'mailto:' + clinicEmail"><strong>Correo</strong><span>{{ clinicEmail }}</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rise-footer">
+    <div class="rise-shell">
+      <div class="footer-grid">
+        <div><h3>Servicios Médicos RISE</h3><p>Consultorio en Hermosillo, Sonora.<br />Atención cercana, clara y profesional.</p></div>
+        <div><h4>Servicios</h4><a *ngFor="let card of homeCopy.serviceCards" [href]="card.slug">{{ card.name }}</a></div>
+        <div><h4>Contacto</h4><a href="tel:+526623533813">{{ clinic.telefono }}</a><a [href]="'mailto:' + clinicEmail">{{ clinicEmail }}</a><a *ngIf="facebookHref" [href]="facebookHref" target="_blank" rel="noopener noreferrer">Facebook</a><a [href]="clinicInstagram" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+      </div>
+      <div class="footer-bottom"><span>© {{ currentYear }} Servicios Médicos RISE. Todos los derechos reservados.</span><span><a href="/aviso-de-privacidad">Aviso de privacidad</a> · <a href="/terminos">Términos y condiciones</a></span></div>
     </div>
   </footer>
+
+  <div class="mobile-actions" aria-label="Contacto rápido en móvil"><a [href]="whatsappHref" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="tel:+526623533813">Llamar</a></div>
 </div>

@@ -16,6 +16,7 @@ import { WebInquiryService } from '../../services/web-inquiry.service';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { seoCopy } from '../../data/servicios-data';
+import { HOME_COPY } from '../../data/home-copy';
 import { CLINIC_DEFAULTS, CLINIC_EMAIL, CLINIC_INSTAGRAM } from '../../core/clinic-defaults';
 
 const LANDING_SECTIONS = ['servicios', 'experiencia', 'agenda', 'contacto'] as const;
@@ -35,8 +36,9 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly webInquiryService = inject(WebInquiryService);
 
   readonly currentYear = new Date().getFullYear();
-  readonly homeCopy = seoCopy.home;
+  readonly homeCopy = HOME_COPY;
   readonly servicePages = seoCopy.pages;
+  readonly today = this.getTodayLocal();
   readonly whereWhenHtml = seoCopy.donde_cuando_html;
   readonly clinicEmail = CLINIC_EMAIL;
   readonly clinicInstagram = CLINIC_INSTAGRAM;
@@ -58,6 +60,22 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     preferredDate: '',
     reason: '',
   };
+
+  formatPhone(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const digits = input.value.replace(/\D/g, '').slice(0, 10);
+    let formatted = digits;
+    if (digits.length > 6) formatted = `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+    else if (digits.length > 3) formatted = `${digits.slice(0, 3)} ${digits.slice(3)}`;
+    this.appointmentForm.phone = formatted;
+    input.value = formatted;
+  }
+
+  private getTodayLocal(): string {
+    const now = new Date();
+    const pad = (value: number) => String(value).padStart(2, '0');
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  }
 
   get whatsappHref(): string {
     const digits = this.clinic.whatsapp.replace(/\D/g, '');
