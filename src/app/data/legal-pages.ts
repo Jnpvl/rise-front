@@ -20,7 +20,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       <p><strong>Última actualización:</strong> 4 de octubre de 2026</p>
       <p><strong>Servicios Médicos RISE</strong>, con domicilio en C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora, es responsable del tratamiento de los datos personales que usted nos proporcione, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
       <h2>Qué información recibimos</h2>
-      <p>Este sitio no recopila información personal de forma automática. No utilizamos cookies de rastreo propias, herramientas de analítica ni píxeles publicitarios. Algunos contenidos de terceros, como los mapas de Google, pueden usar sus propias cookies.</p>
+      <p>Este sitio no recopila información personal de forma automática. No utilizamos cookies de rastreo propias, herramientas de analítica ni píxeles publicitarios. Algunos recursos de terceros, como las fuentes de Google, pueden funcionar con sus propias cookies.</p>
       <p>Solo recibimos los datos que usted decide compartirnos voluntariamente, por ejemplo al escribirnos por WhatsApp, llamarnos por teléfono o enviar el formulario de contacto.</p>
       <h2>Para qué los usamos</h2>
       <p>Usamos esos datos únicamente para responder a su mensaje, agendar su cita y darle seguimiento. No vendemos su información ni la compartimos con terceros con fines comerciales; solo se procesa mediante los servicios técnicos necesarios para operar el sitio y enviarnos su mensaje, o cuando la ley lo exija. La información relacionada con su atención se maneja con confidencialidad.</p>
