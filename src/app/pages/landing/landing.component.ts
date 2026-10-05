@@ -17,6 +17,7 @@ import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { seoCopy } from '../../data/servicios-data';
 import { HOME_COPY } from '../../data/home-copy';
+import { ServiceCardComponent } from '../../components/service-card/service-card.component';
 import { CLINIC_DEFAULTS, CLINIC_EMAIL, CLINIC_INSTAGRAM } from '../../core/clinic-defaults';
 
 const LANDING_SECTIONS = ['servicios', 'experiencia', 'agenda', 'contacto'] as const;
@@ -25,7 +26,7 @@ type LandingSection = (typeof LANDING_SECTIONS)[number];
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, ServiceCardComponent],
   templateUrl: './landing.component.html',
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {

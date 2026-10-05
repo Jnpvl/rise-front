@@ -52,21 +52,7 @@
           <p>Conoce cada servicio y cómo podemos acompañarte.</p><p>{{ homeCopy.processIntro }}</p><p>{{ homeCopy.servicesIntro }}</p>
         </div>
         <div class="service-grid">
-          <a *ngFor="let card of homeCopy.serviceCards" class="rise-card" [href]="card.slug" [routerLink]="card.slug">
-            <div class="service-icon" aria-hidden="true">
-              <ng-container [ngSwitch]="card.icon">
-                <svg *ngSwitchCase="'stethoscope'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v8a6 6 0 0 0 12 0V5"/><path d="M15 19v3a5 5 0 0 0 10 0v-2"/><circle cx="25" cy="17" r="3" stroke="#e540ae"/></svg>
-                <svg *ngSwitchCase="'foot'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c4 0 6 3 6 8 0 4 3 6 3 10 0 3-2 4-5 4s-6-2-6-6c0-5-3-6-3-10 0-3 2-6 5-6z"/><circle cx="23" cy="8" r="1.5" stroke="#e540ae"/><circle cx="26" cy="12" r="1.3" stroke="#e540ae"/></svg>
-                <svg *ngSwitchCase="'bandage'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="5" transform="rotate(-35 16 16)"/><path d="m13.5 13.5 5 5" stroke="#e540ae"/><circle cx="16" cy="16" r="1" fill="#e540ae" stroke="#e540ae"/></svg>
-                <svg *ngSwitchCase="'flask'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4h6M13 4v10M17 4v10"/><path d="M8 28h16M10 28a8 8 0 0 1 4-14"/><circle cx="21" cy="19" r="3" stroke="#e540ae"/></svg>
-                <svg *ngSwitchCase="'clipboard'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="6" width="18" height="22" rx="3"/><path d="M12 4h8v4h-8zM11 16h10M11 21h6"/><path d="m12 11 1.5 1.5L17 9" stroke="#e540ae"/></svg>
-                <svg *ngSwitchDefault viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 3-3l11 11a3 3 0 1 1 3 3 3 3 0 1 1-3 3L9 12a3 3 0 0 1 0-3z"/><path d="m15 15 2 2" stroke="#e540ae"/></svg>
-              </ng-container>
-            </div>
-            <h3>{{ card.name }}</h3>
-            <p>{{ card.summary }}</p>
-            <span class="font-display" style="margin-top:auto;color:var(--color-brand-dark);font-weight:800;font-size:.9rem">Ver más →</span>
-          </a>
+          <app-service-card *ngFor="let card of homeCopy.serviceCards; let i = index" [card]="card" [number]="'0' + (i + 1)"></app-service-card>
         </div>
       </div>
     </section>

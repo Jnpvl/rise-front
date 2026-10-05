@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HOME_COPY } from '../../data/home-copy';
+import { ServiceCardComponent } from '../../components/service-card/service-card.component';
 import { seoCopy } from '../../data/servicios-data';
 
 @Component({
   selector: 'app-services-hub',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ServiceCardComponent],
   templateUrl: './services-hub.component.html',
 })
 export class ServicesHubComponent {

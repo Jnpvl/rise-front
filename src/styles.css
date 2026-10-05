@@ -41,6 +41,12 @@ button, a, input, textarea, select { outline-offset: 3px; }
 .rise-card { display: flex; flex-direction: column; gap: .65rem; padding: 1.4rem; border: 1px solid var(--color-line); border-radius: 1rem; background: #fff; text-decoration: none; min-height: 100%; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
 .rise-card:hover { border-color: var(--color-brand); box-shadow: 0 12px 28px rgba(21,32,43,.08); transform: translateY(-2px); }
 .rise-card h3 { margin: 0; font-size: 1.05rem; }
+.service-card-typographic { position: relative; overflow: hidden; }
+.service-card-image { width: calc(100% + 2.8rem); height: auto; aspect-ratio: 4 / 3; object-fit: cover; margin: -1.4rem -1.4rem .35rem; }
+.service-card-accent { width: 3.2rem; height: .22rem; border-radius: 99px; background: var(--color-brand-dark); }
+.service-card-eyebrow { margin: .15rem 0 0 !important; color: var(--color-accent) !important; font-size: .72rem !important; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.service-card-link { margin-top: auto; color: var(--color-brand-dark); font-weight: 800; font-size: .9rem; }
+
 .rise-card p { margin: 0; color: var(--color-muted); font-size: .93rem; line-height: 1.65; }
 .service-icon { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid #bfeef3; border-radius: .9rem; background: var(--color-brand-soft); color: var(--color-brand-dark); }
 .service-icon svg { width: 2rem; height: 2rem; }
