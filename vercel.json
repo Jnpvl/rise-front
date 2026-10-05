@@ -25,11 +25,11 @@
   "rewrites": [
     {
       "source": "/admin",
-      "destination": "/admin-shell.html"
+      "destination": "/admin-shell"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/admin-shell.html"
+      "destination": "/admin-shell"
     },
     {
       "source": "/experiencia",
