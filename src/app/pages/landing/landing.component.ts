@@ -13,7 +13,7 @@ import {
   ClinicSettingsService,
 } from '../../services/clinic-settings.service';
 import { WebInquiryService } from '../../services/web-inquiry.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { seoCopy } from '../../data/servicios-data';
 import { HOME_COPY } from '../../data/home-copy';
@@ -26,7 +26,7 @@ type LandingSection = (typeof LANDING_SECTIONS)[number];
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, ServiceCardComponent],
+  imports: [CommonModule, FormsModule, ServiceCardComponent],
   templateUrl: './landing.component.html',
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
