@@ -19,17 +19,17 @@
     <section id="inicio" class="hero-clean" aria-label="Inicio">
       <div class="rise-shell hero-grid">
         <div>
-          <p class="rise-eyebrow">Consultorio en Hermosillo</p>
-          <h1>{{ homeCopy.h1 }}</h1>
-          <p class="hero-lead">{{ homeCopy.heroLead }}</p>
-          <p class="hero-support">{{ homeCopy.heroSupport }}</p>
+          <p class="rise-eyebrow">{{ homeCopy.hero.eyebrow }}</p>
+          <h1>{{ homeCopy.conservar_sin_cambio.h1 }}</h1>
+          <p class="hero-lead">{{ homeCopy.hero.titulo_corto }}</p>
+          <p class="hero-support">{{ homeCopy.hero.frase }}</p>
           <div class="hero-actions">
             <a class="btn-primary" href="/agenda" (click)="goToSection($event, 'agenda')">Agendar cita</a>
-            <a class="btn-outline" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+            <a class="btn-outline" [href]="homeCopy.hero.cta_secundario.destino" target="_blank" rel="noopener noreferrer">{{ homeCopy.hero.cta_secundario.texto }}</a>
           </div>
           <div class="hero-chips" aria-label="Información rápida">
-            <span>Lunes a viernes, 9:00 a 13:00</span>
-            <span>Col. Constitución, Hermosillo</span>
+            <span>{{ homeCopy.hero.chips[0] }}</span>
+            <span>{{ homeCopy.hero.chips[1] }}</span>
           </div>
         </div>
         <img class="hero-photo" src="/fondo.webp" width="1280" height="960" alt="Interior del consultorio de Servicios Médicos RISE" />
@@ -38,21 +38,21 @@
 
     <section class="info-strip" aria-label="Información de contacto rápida">
       <div class="rise-shell info-strip-grid">
-        <div class="info-strip-item"><div><strong>Horario</strong><span>{{ clinic.horario }}</span></div></div>
-        <div class="info-strip-item"><div><strong>Ubicación</strong><span>{{ clinic.ubicacion }}</span></div></div>
-        <div class="info-strip-item"><div><strong>WhatsApp</strong><a [href]="whatsappHref" target="_blank" rel="noopener noreferrer">{{ clinic.whatsapp }}</a></div></div>
+        <div class="info-strip-item"><div><strong>{{ homeCopy.franja.horario.etiqueta }}</strong><span>{{ homeCopy.franja.horario.texto }}</span></div></div>
+        <div class="info-strip-item"><div><strong>{{ homeCopy.franja.ubicacion.etiqueta }}</strong><span>{{ homeCopy.franja.ubicacion.texto }}</span></div></div>
+        <div class="info-strip-item"><div><strong>{{ homeCopy.franja.whatsapp.etiqueta }}</strong><a [href]="whatsappHref" target="_blank" rel="noopener noreferrer">{{ homeCopy.franja.whatsapp.texto }}</a></div></div>
       </div>
     </section>
 
     <section id="servicios" class="rise-section" aria-labelledby="servicios-titulo">
       <div class="rise-shell">
         <div class="rise-section-heading">
-          <p class="rise-eyebrow">Lo que hacemos</p>
-          <h2 id="servicios-titulo">Servicios pensados para tu consulta</h2>
-          <p>Conoce cada servicio y cómo podemos acompañarte.</p><p>{{ homeCopy.processIntro }}</p><p>{{ homeCopy.servicesIntro }}</p>
+          <p class="rise-eyebrow">{{ homeCopy.servicios.eyebrow }}</p>
+          <h2 id="servicios-titulo">{{ homeCopy.conservar_sin_cambio.h2_seo[0] }}</h2>
+          <p>{{ homeCopy.servicios.subtitulo }}</p>
         </div>
         <div class="service-grid">
-          <app-service-card *ngFor="let card of homeCopy.serviceCards; let i = index" [card]="card" [number]="'0' + (i + 1)"></app-service-card>
+          <app-service-card *ngFor="let card of homeCopy.tarjetas; let i = index" [card]="card" [number]="'0' + (i + 1)"></app-service-card>
         </div>
       </div>
     </section>
@@ -60,12 +60,12 @@
     <section id="experiencia" class="rise-section steps-section" aria-labelledby="experiencia-titulo">
       <div class="rise-shell">
         <div class="rise-section-heading">
-          <p class="rise-eyebrow">Tu experiencia</p>
-          <h2 id="experiencia-titulo">Una visita simple, de principio a fin</h2>
+          <p class="rise-eyebrow">{{ homeCopy.pasos.eyebrow }}</p>
+          <h2 id="experiencia-titulo">{{ homeCopy.pasos.titulo_h2 }}</h2>
           <p>Queremos que llegar a consulta se sienta ordenado: agenda, atención y siguiente paso sin complicaciones.</p>
         </div>
         <div class="steps-grid">
-          <div class="step" *ngFor="let step of homeCopy.steps"><div class="step-number">{{ step.number }}</div><h3>{{ step.title }}</h3><p>{{ step.text }}</p></div>
+          <div class="step" *ngFor="let step of homeCopy.pasos.pasos"><div class="step-number">{{ step.n }}</div><h3>{{ step.titulo }}</h3><p>{{ step.linea }}</p></div>
         </div>
       </div>
     </section>
@@ -73,28 +73,29 @@
     <section id="agenda" class="rise-section" aria-labelledby="agenda-titulo">
       <div class="rise-shell agenda-grid">
         <div class="agenda-copy">
-          <p class="rise-eyebrow">Agenda</p>
-          <h2 id="agenda-titulo">Solicita tu cita</h2>
-          <p>{{ homeCopy.agendaIntro }}</p>
-          <div class="agenda-details"><div class="agenda-detail"><strong>Dónde y cuándo</strong><p>Consulta nuestros servicios y horarios antes de tu visita.</p></div>
-            <div class="agenda-detail"><strong>Dónde estamos</strong><p>{{ clinic.ubicacion }}</p></div>
-            <div class="agenda-detail"><strong>Horario</strong><p>{{ clinic.horario }}</p></div>
-            <div class="agenda-detail"><strong>WhatsApp</strong><p><a [href]="whatsappHref">{{ clinic.whatsapp }}</a> · <a [href]="'mailto:' + clinicEmail">{{ clinicEmail }}</a></p></div>
+          <p class="rise-eyebrow">{{ homeCopy.agenda.eyebrow }}</p>
+          <h2 id="agenda-titulo">{{ homeCopy.agenda.titulo }}</h2>
+          <p>{{ homeCopy.agenda.intro }}</p><p>{{ homeCopy.agenda.aviso_urgencias }}</p>
+          <div class="agenda-details"><h2 class="font-display" style="font-size:1.35rem;margin:0">{{ homeCopy.conservar_sin_cambio.h2_seo[2] }}</h2>
+            <div class="agenda-detail"><strong>{{ homeCopy.agenda.donde.etiqueta }}</strong><p>{{ homeCopy.agenda.donde.texto }}</p></div>
+            <div class="agenda-detail"><strong>{{ homeCopy.agenda.horario.etiqueta }}</strong><p>{{ homeCopy.agenda.horario.texto }}</p></div>
+            <div class="agenda-detail"><strong>{{ homeCopy.agenda.contacto_alterno.etiqueta }}</strong><p>{{ homeCopy.agenda.contacto_alterno.texto }}</p></div>
             <div class="agenda-detail"><strong>Ante una urgencia</strong><p>Ante una urgencia grave, acude a urgencias o llama al 911.</p></div>
           </div>
         </div>
         <form class="rise-form" (submit)="onAppointmentSubmit($event)" aria-label="Formulario de cita">
-          <h3>Solicita tu cita</h3>
+          <h3>{{ homeCopy.formulario_cita.titulo }}</h3>
           <div class="form-two">
-            <label class="form-label"><span>Nombre completo</span><input class="input-brand" name="apptName" [(ngModel)]="appointmentForm.name" required placeholder="Tu nombre" /></label>
-            <label class="form-label"><span>Teléfono</span><input class="input-brand" type="tel" name="apptPhone" [(ngModel)]="appointmentForm.phone" (input)="formatPhone($event)" inputmode="numeric" autocomplete="tel" maxlength="12" required placeholder="662 000 0000" /></label>
+            <label class="form-label"><span>{{ homeCopy.formulario_cita.campos.nombre }}</span><input class="input-brand" name="apptName" [(ngModel)]="appointmentForm.name" required placeholder="Tu nombre" /></label>
+            <label class="form-label"><span>{{ homeCopy.formulario_cita.campos.telefono }}</span><input class="input-brand" type="tel" name="apptPhone" [(ngModel)]="appointmentForm.phone" (input)="formatPhone($event)" inputmode="numeric" autocomplete="tel" maxlength="12" required placeholder="662 000 0000" /></label>
           </div>
           <div class="form-two">
-            <label class="form-label"><span>Fecha preferida</span><input class="input-brand" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" [min]="today" /></label>
-            <label class="form-label"><span>Motivo de consulta (opcional)</span><input class="input-brand" name="apptReason" [(ngModel)]="appointmentForm.reason" placeholder="Cuéntanos brevemente" /></label>
-          </div>
-          <button type="submit" class="btn-primary" [disabled]="submittingAppointment">{{ submittingAppointment ? 'Enviando...' : 'Enviar solicitud' }}</button>
-          <p class="form-note">Puedes dejarnos un mensaje breve. Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
+            <label class="form-label"><span>{{ homeCopy.formulario_cita.campos.servicio }}</span><select class="input-brand" name="apptService" [(ngModel)]="appointmentForm.service" required><option value="" disabled>Selecciona un servicio</option><option *ngFor="let option of homeCopy.formulario_cita.opciones_servicio" [value]="option">{{ option }}</option></select></label>
+            <label class="form-label"><span>{{ homeCopy.formulario_cita.campos.fecha }}</span><input class="input-brand" type="datetime-local" name="apptDate" [(ngModel)]="appointmentForm.preferredDate" [min]="today" /></label>
+            </div>
+          <label class="form-label"><span>{{ homeCopy.formulario_cita.campos.mensaje }}</span><input class="input-brand" name="apptReason" [(ngModel)]="appointmentForm.reason" placeholder="Cuéntanos brevemente" /></label>
+          <button type="submit" class="btn-primary" [disabled]="submittingAppointment">{{ submittingAppointment ? 'Enviando...' : homeCopy.formulario_cita.boton }}</button>
+          <p class="form-note">Al enviar tus datos aceptas el <a href="/aviso-de-privacidad">Aviso de privacidad</a>.</p>
         </form>
       </div>
     </section>
@@ -103,7 +104,7 @@
       <div class="rise-shell">
         <div class="rise-section-heading">
           <p class="rise-eyebrow">Contacto</p>
-          <h2 id="contacto-titulo">¿Tienes dudas? Escríbenos</h2>
+          <h2 id="contacto-titulo">{{ homeCopy.conservar_sin_cambio.h2_seo[4] }}</h2>
           <p>Horarios, servicios o cualquier duda antes de tu visita. Para pedir información, escríbenos y respondemos lo antes posible.</p>
         </div>
         <div class="contact-cards">
@@ -118,9 +119,9 @@
   <footer class="rise-footer">
     <div class="rise-shell">
       <div class="footer-grid">
-        <div><h3>Servicios Médicos RISE</h3><p>Consultorio en Hermosillo, Sonora.<br />Atención cercana, clara y profesional.</p></div>
-        <div><h4>Servicios</h4><a *ngFor="let card of homeCopy.serviceCards" [href]="card.slug">{{ card.name }}</a></div>
-        <div><h4>Contacto</h4><a href="tel:+526623533813">{{ clinic.telefono }}</a><a [href]="'mailto:' + clinicEmail">{{ clinicEmail }}</a><a *ngIf="facebookHref" [href]="facebookHref" target="_blank" rel="noopener noreferrer">Facebook</a><a [href]="clinicInstagram" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+        <div><h3>Servicios Médicos RISE</h3><p>{{ homeCopy.pie.linea_marca }}</p></div>
+        <div><h4>Servicios</h4><a *ngFor="let card of homeCopy.pie.columna_servicios" href="/servicios">{{ card }}</a></div>
+        <div><h4>Contacto</h4><a href="tel:+526623533813">{{ homeCopy.pie.contacto[0] }}</a><a [href]="'mailto:' + clinicEmail">{{ homeCopy.pie.contacto[1] }}</a><a *ngIf="facebookHref" [href]="facebookHref" target="_blank" rel="noopener noreferrer">Facebook</a><a [href]="clinicInstagram" target="_blank" rel="noopener noreferrer">Instagram</a></div>
       </div>
       <div class="footer-bottom"><span>© {{ currentYear }} Servicios Médicos RISE. Todos los derechos reservados.</span><span><a href="/aviso-de-privacidad">Aviso de privacidad</a> · <a href="/terminos">Términos y condiciones</a></span></div>
     </div>

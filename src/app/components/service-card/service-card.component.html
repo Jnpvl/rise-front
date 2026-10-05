@@ -1,8 +1,8 @@
-<a class="rise-card service-card-typographic" [href]="card.slug" [routerLink]="card.slug">
-  <img *ngIf="imagen" class="service-card-image" [src]="imagen" width="640" height="480" [alt]="card.name" />
+<a class="rise-card service-card-typographic" [href]="card.enlace" [routerLink]="card.enlace">
+  <img *ngIf="imagen" class="service-card-image" [src]="imagen" width="640" height="480" [alt]="card.titulo" />
   <div class="service-card-accent" aria-hidden="true"></div>
-  <p class="service-card-eyebrow" *ngIf="number || card.key">{{ number || card.key }}</p>
-  <h3>{{ card.name }}</h3>
-  <p>{{ card.summary }}</p>
+  <p class="service-card-eyebrow" *ngIf="number || card.enlace">{{ number || card.enlace }}</p>
+  <h3>{{ card.titulo }}</h3>
+  <p>{{ card.linea }}</p>
   <span class="service-card-link">Ver más →</span>
 </a>

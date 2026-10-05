@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HomeServiceCard } from '../../data/home-copy';
+export type ServiceCardCopy = { titulo: string; linea: string; enlace: string };
 
 @Component({
   selector: 'app-service-card',
@@ -10,7 +10,7 @@ import { HomeServiceCard } from '../../data/home-copy';
   templateUrl: './service-card.component.html',
 })
 export class ServiceCardComponent {
-  @Input({ required: true }) card!: HomeServiceCard;
+  @Input({ required: true }) card!: ServiceCardCopy;
   @Input() number = '';
   @Input() imagen?: string;
 }

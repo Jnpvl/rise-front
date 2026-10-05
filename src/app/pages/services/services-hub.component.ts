@@ -11,6 +11,6 @@ import { seoCopy } from '../../data/servicios-data';
   templateUrl: './services-hub.component.html',
 })
 export class ServicesHubComponent {
-  readonly cards = HOME_COPY.serviceCards;
+  readonly cards = HOME_COPY.tarjetas;
   readonly whereWhenHtml = seoCopy.donde_cuando_html;
 }

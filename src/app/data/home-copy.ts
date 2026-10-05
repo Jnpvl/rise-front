@@ -1,31 +1,172 @@
-import copy from './servicios.json';
-
-export type HomeServiceCard = {
-  key: string;
-  name: string;
-  slug: string;
-  summary: string;
-  imagen?: string;
-};
-
+// Copy de Ahri, 4 de octubre de 2026. Las claves de referencia se conservan; las que empiezan con _ no se renderizan.
 export const HOME_COPY = {
-  h1: copy.home.h1,
-  heroLead: 'Levántate, recupérate, mejora.',
-  heroSupport: 'En Servicios Médicos RISE te recibimos con atención cercana, clara y profesional, con tiempo para escucharte y resolver tus dudas.',
-  processIntro: 'En RISE acompañamos tu salud con procesos claros: desde la primera valoración hasta el seguimiento.',
-  servicesIntro: 'Ofrecemos consulta de medicina general, podología y revisión de pie diabético, curaciones, análisis clínicos, antidoping, yesos e inmovilización, y suturas y retiro de puntos, además de sueros y procedimientos menores. En cada caso, el médico valora y decide qué procede.',
-  serviceCards: [
-    { key: 'consulta', name: 'Consulta de medicina general', slug: '/servicios/consulta-medicina-general', summary: 'En Servicios Médicos RISE te atendemos en consulta de medicina general en Hermosillo, con tiempo para escucharte y resolver tus dudas. Es un buen punto de partida cuando no sabes con quién acudir o quieres una valoración de tu salud.' },
-    { key: 'podologia', name: 'Podología y pie diabético', slug: '/servicios/podologia-pie-diabetico', summary: 'En Servicios Médicos RISE ofrecemos atención podológica en Hermosillo: revisamos tus pies y uñas y, según tu caso, te orientamos sobre el cuidado que corresponde. Si vives con diabetes, también damos revisión y cuidado preventivo del pie, con indicaciones claras para el día a día.' },
-    { key: 'curaciones', name: 'Curaciones', slug: '/servicios/curaciones', summary: 'En Servicios Médicos RISE realizamos curaciones en Hermosillo: limpieza y cuidado de heridas menores y cambio de vendajes o apósitos, siempre con valoración del médico. Es un servicio pensado para quien necesita atender una herida o darle seguimiento con indicaciones claras.' },
-    { key: 'analisis', name: 'Análisis clínicos', slug: '/servicios/analisis-clinicos', summary: 'En Servicios Médicos RISE puedes consultar por análisis clínicos en Hermosillo. Son estudios que ayudan al médico a conocer mejor tu estado de salud y a dar seguimiento a tu caso. Ofrecemos una variedad de estudios, y el médico te orienta sobre cuáles convienen según tu situación.' },
-    { key: 'antidoping', name: 'Antidoping', slug: '/servicios/antidoping', summary: 'En Servicios Médicos RISE ofrecemos el servicio de antidoping en Hermosillo. Es una prueba que algunas empresas, escuelas o trámites piden como parte de un proceso, y aquí puedes resolver tus dudas con atención cercana y clara.' },
-    { key: 'yesos', name: 'Yesos, férulas y retiro de puntos', slug: '/servicios/yesos-puntos', summary: 'En Servicios Médicos RISE te atendemos en Hermosillo cuando necesitas inmovilización con yeso o férula, suturas (puntos) en heridas menores o retiro de puntos. Todo parte de una valoración del médico, quien decide qué procede según tu situación.' },
-  ] as HomeServiceCard[],
-  steps: [
-    { number: '1', title: 'Agenda', text: 'Elige un horario o déjanos tus datos y te confirmamos.' },
-    { number: '2', title: 'Consulta', text: 'Atención médica con tiempo para escucharte y resolver dudas.' },
-    { number: '3', title: 'Seguimiento', text: 'Indicaciones, próxima cita si hace falta y tu historial al día.' },
+  "_nota": "Texto corto de la HOME de RISE para el rediseño (Ahri, 4 oct 2026). Se conservan sin cambio: H1, title, meta, H2 SEO y las 6 páginas de servicio. Lo recortado se redistribuye (ver 'redistribucion'). Sin precios; podología genérica, se agenda por WhatsApp. Las claves que empiezan con _ no se muestran.",
+  "conservar_sin_cambio": {
+    "title": "Servicios Médicos RISE | Consultorio en Hermosillo, Sonora",
+    "h1": "Servicios Médicos RISE, tu consultorio en Hermosillo",
+    "meta": "Consultorio en Hermosillo: consulta general, podología, curaciones, análisis clínicos y más. Lunes a viernes de 9:00 a 13:00. Escríbenos por WhatsApp.",
+    "h2_seo": [
+      "Servicios pensados para tu consulta",
+      "Una visita simple, de principio a fin",
+      "Dónde y cuándo",
+      "Solicita tu cita",
+      "¿Tienes dudas? Escríbenos"
+    ]
+  },
+  "hero": {
+    "eyebrow": "Consultorio en Hermosillo",
+    "titulo_corto": "Atención médica cercana, con tiempo para escucharte",
+    "frase": "Consulta general, podología, curaciones y más, siempre con valoración del médico.",
+    "cta_primario": {
+      "texto": "Agendar cita",
+      "destino": "#agenda"
+    },
+    "cta_secundario": {
+      "texto": "Escríbenos por WhatsApp",
+      "destino": "https://wa.me/526623533813?text=Hola%2C%20quiero%20informaci%C3%B3n%20detallada%20sobre%20los%20servicios%20de%20Servicios%20M%C3%A9dicos%20RISE."
+    },
+    "chips": [
+      "Lun–Vie 9:00 a 13:00",
+      "Col. Constitución, Hermosillo"
+    ]
+  },
+  "franja": {
+    "horario": {
+      "etiqueta": "Horario",
+      "texto": "Lunes a viernes, 9:00 a 13:00"
+    },
+    "ubicacion": {
+      "etiqueta": "Ubicación",
+      "texto": "C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo"
+    },
+    "whatsapp": {
+      "etiqueta": "WhatsApp",
+      "texto": "662 353 3813"
+    }
+  },
+  "servicios": {
+    "eyebrow": "Lo que hacemos",
+    "titulo_visible": "Servicios para tu consulta",
+    "subtitulo": "Elige el que necesitas y conoce los detalles.",
+    "enlace_tarjeta": "Ver más →"
+  },
+  "tarjetas": [
+    {
+      "titulo": "Consulta de medicina general",
+      "linea": "Valoración médica con tiempo para resolver tus dudas.",
+      "enlace": "/servicios/consulta-medicina-general"
+    },
+    {
+      "titulo": "Podología y pie diabético",
+      "linea": "Revisión y cuidado de tus pies; agenda por WhatsApp.",
+      "enlace": "/servicios/podologia-pie-diabetico"
+    },
+    {
+      "titulo": "Curaciones",
+      "linea": "Curaciones, sueros y procedimientos menores.",
+      "enlace": "/servicios/curaciones"
+    },
+    {
+      "titulo": "Análisis clínicos",
+      "linea": "Estudios según indicación; pregunta por el que necesitas.",
+      "enlace": "/servicios/analisis-clinicos"
+    },
+    {
+      "titulo": "Antidoping",
+      "linea": "Pruebas antidoping; pide información por WhatsApp.",
+      "enlace": "/servicios/antidoping"
+    },
+    {
+      "titulo": "Yesos y retiro de puntos",
+      "linea": "Inmovilización con yeso o férula y retiro de puntos.",
+      "enlace": "/servicios/yesos-puntos"
+    }
   ],
-  agendaIntro: 'Completa el formulario y nos pondremos en contacto para confirmar el horario. Estamos en la Col. Constitución, en Hermosillo, de lunes a viernes de 9:00 a 13:00. Para información detallada de cualquier servicio, escríbenos por WhatsApp al 662 353 3813. Ante una urgencia grave, acude a urgencias o llama al 911.',
-};
+  "pasos": {
+    "eyebrow": "Cómo atendemos",
+    "titulo_h2": "Una visita simple, de principio a fin",
+    "pasos": [
+      {
+        "n": 1,
+        "titulo": "Agenda",
+        "linea": "Elige un horario o déjanos tus datos y te confirmamos."
+      },
+      {
+        "n": 2,
+        "titulo": "Consulta",
+        "linea": "Atención médica con tiempo para escucharte y resolver dudas."
+      },
+      {
+        "n": 3,
+        "titulo": "Seguimiento",
+        "linea": "Indicaciones claras y próxima cita si hace falta."
+      }
+    ]
+  },
+  "agenda": {
+    "eyebrow": "Agenda",
+    "titulo": "Agenda tu cita",
+    "intro": "Déjanos tus datos y te confirmamos por WhatsApp. El médico valora cada caso y decide qué procede.",
+    "aviso_urgencias": "Ante una urgencia grave, acude a urgencias o llama al 911.",
+    "donde": {
+      "etiqueta": "Dónde estamos",
+      "texto": "C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo, Son."
+    },
+    "horario": {
+      "etiqueta": "Horario",
+      "texto": "Lunes a viernes, 9:00 a 13:00"
+    },
+    "contacto_alterno": {
+      "etiqueta": "¿Prefieres escribirnos?",
+      "texto": "WhatsApp 662 353 3813 · serviciomedicorise@gmail.com"
+    }
+  },
+  "formulario_cita": {
+    "titulo": "Solicita tu cita",
+    "campos": {
+      "nombre": "Nombre",
+      "telefono": "Teléfono",
+      "servicio": "Servicio",
+      "fecha": "Fecha preferida",
+      "mensaje": "Mensaje (opcional)"
+    },
+    "opciones_servicio": [
+      "Consulta general",
+      "Podología / pie diabético",
+      "Curaciones",
+      "Análisis clínicos",
+      "Antidoping",
+      "Yesos / retiro de puntos",
+      "Otro"
+    ],
+    "boton": "Enviar solicitud",
+    "aviso": "Al enviar tus datos aceptas el Aviso de privacidad.",
+    "confirmacion": "Gracias, recibimos tu solicitud. Te confirmamos por WhatsApp en horario de atención (lunes a viernes, 9:00 a 13:00)."
+  },
+  "pie": {
+    "linea_marca": "Consultorio en Hermosillo, Sonora. Levántate, recupérate, mejora.",
+    "direccion": "C. Benito Juárez 177, Col. Constitución, 83150 Hermosillo",
+    "horario": "Lun–Vie 9:00 a 13:00",
+    "columna_servicios": [
+      "Medicina general",
+      "Podología y pie diabético",
+      "Curaciones",
+      "Análisis clínicos"
+    ],
+    "contacto": [
+      "662 353 3813",
+      "serviciomedicorise@gmail.com"
+    ],
+    "legal": "© 2026 Servicios Médicos RISE · Aviso de privacidad · Términos y condiciones"
+  },
+  "redistribucion": {
+    "parrafo1_hero_largo": "→ hero.frase + titulo_corto (se conserva el H1)",
+    "parrafo2_servicios": "→ las 6 tarjetas (+ 'sueros y procedimientos menores' en la tarjeta de Curaciones)",
+    "parrafo3_dato_urgencia": "→ franja (horario/ubicación/WhatsApp) + agenda.aviso_urgencias (911)",
+    "texto_original_completo": "/workspace/seo/rise-copy-seo.md (sección Home)"
+  },
+  "paginas_servicio": {
+    "regla": "Contenido de las 6 páginas sin cambio salvo lo corregido en curaciones, podología y yesos/puntos (JP, 4 oct: texto general). Un solo botón de WhatsApp en el cuerpo; la columna lateral es tarjeta de contacto.",
+    "fuente_texto_corregido": "/workspace/seo/rise-copy-seo.json (regenerado 4 oct)"
+  }
+} as const;

@@ -58,6 +58,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   appointmentForm = {
     name: '',
     phone: '',
+    service: '',
     preferredDate: '',
     reason: '',
   };
@@ -143,7 +144,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       Swal.fire({
         icon: 'success',
         title: 'Mensaje enviado',
-        text: result.message,
+        text: HOME_COPY.formulario_cita.confirmacion,
         timer: 2500,
         showConfirmButton: false,
       });
@@ -169,18 +170,19 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         name: this.appointmentForm.name.trim(),
         phone: this.appointmentForm.phone.trim(),
         preferredDate: this.appointmentForm.preferredDate || undefined,
-        reason: this.appointmentForm.reason.trim() || undefined,
+        reason: [this.appointmentForm.service, this.appointmentForm.reason.trim()].filter(Boolean).join(': ') || undefined,
       });
       this.appointmentForm = {
         name: '',
         phone: '',
         preferredDate: '',
+        service: '',
         reason: '',
       };
       Swal.fire({
         icon: 'success',
         title: 'Solicitud enviada',
-        text: result.message,
+        text: HOME_COPY.formulario_cita.confirmacion,
         timer: 2500,
         showConfirmButton: false,
       });
