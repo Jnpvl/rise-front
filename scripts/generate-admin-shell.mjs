@@ -41,6 +41,6 @@ if (/<meta\b[^>]*\bcharset=/i.test(html)) {
   );
 }
 
-const outPath = resolve(output, 'admin.html');
+const outPath = resolve(output, 'admin-shell.html');
 await writeFile(outPath, html);
-console.log(`Generated admin shell at ${outPath}`);
+console.log(`Generated admin CSR shell at ${outPath}`);
