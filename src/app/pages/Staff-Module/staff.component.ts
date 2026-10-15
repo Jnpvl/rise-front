@@ -209,9 +209,21 @@ export class StaffComponent implements OnInit {
               <option value="auxiliar">Auxiliar</option>
             </select>
           </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Cédula profesional federal (opcional)</label>
+            <input id="staff-cedula" class="swal2-input" placeholder="Cédula federal">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Cédula profesional estatal (opcional)</label>
+            <input id="staff-cedula-estatal" class="swal2-input" placeholder="Cédula estatal">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Universidad (opcional)</label>
+            <input id="staff-universidad" class="swal2-input" placeholder="Universidad">
+          </div>
           <div class="form-group">
-            <label class="form-label">Cédula profesional (opcional)</label>
-            <input id="staff-cedula" class="swal2-input" placeholder="Cédula">
+            <label class="form-label">Permiso para ejercer (opcional)</label>
+            <input id="staff-permiso-ejercer" class="swal2-input" maxlength="60" placeholder="Permiso para ejercer">
           </div>
           ${this.signatureFieldHtml()}
         </div>
@@ -229,6 +241,9 @@ export class StaffComponent implements OnInit {
         const password = (document.getElementById('staff-password') as HTMLInputElement).value;
         const role = (document.getElementById('staff-role') as HTMLSelectElement).value;
         const cedula = (document.getElementById('staff-cedula') as HTMLInputElement).value.trim();
+        const cedulaEstatal = (document.getElementById('staff-cedula-estatal') as HTMLInputElement).value.trim();
+        const universidad = (document.getElementById('staff-universidad') as HTMLInputElement).value.trim();
+        const permisoEjercer = (document.getElementById('staff-permiso-ejercer') as HTMLInputElement).value.trim();
         const signatureDataUrl = this.signaturePad?.toDataUrl();
 
         if (!name || !email || !password || !role) {
@@ -245,6 +260,9 @@ export class StaffComponent implements OnInit {
           password,
           role,
           cedula: cedula || undefined,
+          cedulaEstatal: cedulaEstatal || undefined,
+          universidad: universidad || undefined,
+          permisoEjercer: permisoEjercer || undefined,
           signatureDataUrl,
         };
       },
@@ -289,8 +307,20 @@ export class StaffComponent implements OnInit {
             </select>
           </div>
           <div class="form-group" style="margin-bottom:12px">
-            <label class="form-label">Cédula profesional</label>
+            <label class="form-label">Cédula profesional federal</label>
             <input id="staff-cedula" class="swal2-input" value="${(member.cedula || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Cédula profesional estatal</label>
+            <input id="staff-cedula-estatal" class="swal2-input" value="${(member.cedulaEstatal || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Universidad</label>
+            <input id="staff-universidad" class="swal2-input" value="${(member.universidad || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label class="form-label">Permiso para ejercer</label>
+            <input id="staff-permiso-ejercer" class="swal2-input" maxlength="60" value="${(member.permisoEjercer || '').replace(/"/g, '&quot;')}">
           </div>
           <div class="form-group">
             <label class="form-label">Estado</label>
@@ -315,6 +345,9 @@ export class StaffComponent implements OnInit {
         const password = (document.getElementById('staff-password') as HTMLInputElement).value;
         const role = (document.getElementById('staff-role') as HTMLSelectElement).value;
         const cedula = (document.getElementById('staff-cedula') as HTMLInputElement).value.trim();
+        const cedulaEstatal = (document.getElementById('staff-cedula-estatal') as HTMLInputElement).value.trim();
+        const universidad = (document.getElementById('staff-universidad') as HTMLInputElement).value.trim();
+        const permisoEjercer = (document.getElementById('staff-permiso-ejercer') as HTMLInputElement).value.trim();
         const isActive = (document.getElementById('staff-active') as HTMLSelectElement).value === 'true';
         const drawn = this.signaturePad?.toDataUrl();
 
@@ -328,6 +361,9 @@ export class StaffComponent implements OnInit {
           email,
           role,
           cedula,
+          cedulaEstatal,
+          universidad,
+          permisoEjercer,
           isActive,
           signatureDataUrl: drawn || existingSignature || '',
         };

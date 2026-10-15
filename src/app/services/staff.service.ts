@@ -8,6 +8,9 @@ export interface StaffMember {
   email: string;
   role: 'admin' | 'auxiliar';
   cedula?: string;
+  cedulaEstatal?: string;
+  universidad?: string;
+  permisoEjercer?: string;
   signatureDataUrl?: string;
   isActive: boolean;
 }
@@ -28,6 +31,9 @@ export class StaffService {
     password: string;
     role: string;
     cedula?: string;
+    cedulaEstatal?: string;
+    universidad?: string;
+    permisoEjercer?: string;
     signatureDataUrl?: string;
   }): Promise<any> {
     return this.apiClient.post(`staff/register`, data, environment.apiUrl);
@@ -39,6 +45,9 @@ export class StaffService {
     password: string;
     role: string;
     cedula: string;
+    cedulaEstatal: string;
+    universidad: string;
+    permisoEjercer: string;
     signatureDataUrl: string;
     isActive: boolean;
   }>): Promise<any> {
